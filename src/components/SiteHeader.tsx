@@ -22,7 +22,7 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-2">
           <span className="inline-block size-2.5 rounded-full bg-ember" />
           <span className="font-display text-lg uppercase tracking-wider">
-            Ember<span className="text-ember">.</span>News
+            Ember<span className="text-red-500">.</span>News
           </span>
         </Link>
 

@@ -95,7 +95,7 @@ function Index() {
       <footer className="mt-20 border-t border-border/60">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">
           <span className="font-display uppercase tracking-wider text-foreground">
-            Ember<span className="text-ember">.</span>News
+            Ember<span className="text-red-500">.</span>News
           </span>
           <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
         </div>

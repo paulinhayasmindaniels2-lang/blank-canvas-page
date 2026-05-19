@@ -7,10 +7,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
+    <div className="flex min-h-screen items-center justify-center bg-background">
       <img
         src={logoUrl}
         alt="Logo"

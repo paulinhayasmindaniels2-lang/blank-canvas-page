@@ -106,7 +106,7 @@ function ArticlePage() {
           <div className="mt-6 flex items-center justify-between border-y border-border py-4">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-full bg-ember/15 text-sm font-medium text-ember">
-                {article.author.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                {article.author.split(" ").map((n: string) => n[0]).slice(0, 2).join("")}
               </div>
               <div>
                 <div className="text-sm font-medium">{article.author}</div>
@@ -144,10 +144,12 @@ function ArticlePage() {
               </button>
               <button
                 onClick={() => {
-                  if (typeof navigator !== "undefined" && "share" in navigator) {
-                    void navigator.share({ title: article.title, url: window.location.href });
-                  } else if (typeof navigator !== "undefined") {
-                    void navigator.clipboard?.writeText(window.location.href);
+                  if (typeof window === "undefined") return;
+                  const nav = window.navigator as Navigator & { share?: (data: ShareData) => Promise<void> };
+                  if (nav.share) {
+                    void nav.share({ title: article.title, url: window.location.href });
+                  } else if (nav.clipboard) {
+                    void nav.clipboard.writeText(window.location.href);
                   }
                 }}
                 aria-label="Compartilhar"
@@ -159,7 +161,7 @@ function ArticlePage() {
           </div>
 
           <div className="prose prose-invert mt-8 max-w-none space-y-5 text-base leading-relaxed text-foreground/90">
-            {article.body.map((p, i) => (
+            {article.body.map((p: string, i: number) => (
               <p key={i}>{p}</p>
             ))}
           </div>

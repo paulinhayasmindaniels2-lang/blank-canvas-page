@@ -8,11 +8,16 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-background">
       <img
         src={logoUrl}
         alt="Logo"
         className="max-w-[300px] w-full h-auto"
+      />
+      <img
+        src={imageUrl}
+        alt="Imagem"
+        className="max-w-[300px] w-full h-auto rounded-lg"
       />
     </div>
   );

@@ -86,3 +86,44 @@
 #lovable-badge {
   display: none !important;
 }
+
+@keyframes ember-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--ember) 70%, transparent),
+                0 0 8px 2px color-mix(in oklab, var(--ember) 40%, transparent);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--ember) 0%, transparent),
+                0 0 14px 4px color-mix(in oklab, var(--ember) 60%, transparent);
+    transform: scale(1.15);
+  }
+}
+
+@keyframes ember-flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.55; }
+  55% { opacity: 1; }
+}
+
+.ember-dot {
+  animation: ember-glow 2.2s ease-in-out infinite;
+}
+
+.ember-accent {
+  display: inline-block;
+  animation: ember-flicker 3s ease-in-out infinite;
+}
+
+.ember-logo .ember-word {
+  display: inline-block;
+  transition: letter-spacing 0.4s ease;
+}
+
+.ember-logo:hover .ember-word {
+  letter-spacing: 0.12em;
+}
+
+.ember-logo:hover .ember-dot {
+  animation-duration: 0.9s;
+}

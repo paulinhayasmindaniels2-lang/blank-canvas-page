@@ -19,10 +19,10 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 md:px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="inline-block size-2.5 rounded-full bg-ember" />
-          <span className="font-display text-lg uppercase tracking-wider">
-            Ember<span className="text-red-500">.</span>News
+        <Link to="/" className="ember-logo group flex items-center gap-2">
+          <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
+          <span className="ember-word font-display text-lg uppercase tracking-wider">
+            Ember<span className="ember-accent text-ember">.</span>News
           </span>
         </Link>
 

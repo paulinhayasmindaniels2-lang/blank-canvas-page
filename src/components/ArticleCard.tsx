@@ -59,12 +59,12 @@ export function ArticleCard({
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${
-          isLg ? "from-[#8B5CF6] via-[#C084FC] to-[#EC4899]" : "from-transparent via-ember/40 to-transparent"
+          isLg || isSpot ? "from-[#8B5CF6] via-[#C084FC] to-[#EC4899]" : "from-transparent via-ember/40 to-transparent"
         }`}
       />
 
       <div className="relative flex flex-col gap-3">
-        {isLg && (
+        {(isLg || isSpot) && (
           <div className="mb-1 flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(192,132,252,0.6)]">
               <span className="inline-block size-1.5 animate-pulse rounded-full bg-white" />

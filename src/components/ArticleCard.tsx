@@ -26,6 +26,8 @@ export function ArticleCard({
       className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all ${
         isLg
           ? "min-h-[420px] border-[#C084FC]/40 p-7 shadow-[0_20px_60px_-20px_rgba(192,132,252,0.45)] hover:border-[#EC4899]/70 hover:shadow-[0_30px_80px_-20px_rgba(236,72,153,0.55)] md:min-h-[520px]"
+          : isSpot
+          ? "min-h-[260px] border-[#C084FC]/50 shadow-[0_12px_40px_-12px_rgba(192,132,252,0.5)] hover:border-[#EC4899]/70 hover:shadow-[0_18px_50px_-12px_rgba(236,72,153,0.6)]"
           : isSm
           ? "min-h-[200px] border-border hover:border-ember/60 hover:shadow-[0_0_0_1px_var(--color-ember)]"
           : "min-h-[260px] border-border hover:border-ember/60 hover:shadow-[0_0_0_1px_var(--color-ember)]"
@@ -35,12 +37,13 @@ export function ArticleCard({
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-0 transition-opacity ${
-          isLg ? "opacity-100" : "opacity-60 group-hover:opacity-90"
+          isLg || isSpot ? "opacity-100" : "opacity-60 group-hover:opacity-90"
         }`}
         style={{
-          background: isLg
-            ? "radial-gradient(120% 90% at 0% 100%, rgba(139,92,246,0.35), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(236,72,153,0.30), transparent 55%)"
-            : "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--color-ember) 22%, transparent), transparent 60%)",
+          background:
+            isLg || isSpot
+              ? "radial-gradient(120% 90% at 0% 100%, rgba(139,92,246,0.30), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(236,72,153,0.25), transparent 55%)"
+              : "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--color-ember) 22%, transparent), transparent 60%)",
         }}
       />
       {isLg && (

@@ -49,9 +49,9 @@ function Index() {
           <div className="md:col-span-2 md:row-span-2">
             <ArticleCard article={featured} size="lg" />
           </div>
-          {secondary.map((a) => (
+          {secondary.map((a, i) => (
             <div key={a.slug}>
-              <ArticleCard article={a} size="md" />
+              <ArticleCard article={a} size="md" spotlight={i === 0} />
             </div>
           ))}
         </section>

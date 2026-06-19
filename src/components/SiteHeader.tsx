@@ -32,7 +32,7 @@ export function SiteHeader() {
               key={c.slug}
               to="/categoria/$slug"
               params={{ slug: c.slug }}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+              className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
               activeProps={{ className: "text-foreground bg-card" }}
             >
               {c.name}

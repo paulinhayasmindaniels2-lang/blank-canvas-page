@@ -127,3 +127,8 @@
 .ember-logo:hover .ember-dot {
   animation-duration: 0.9s;
 }
+
+#lovable-badge {
+  display: none !important;
+}
+

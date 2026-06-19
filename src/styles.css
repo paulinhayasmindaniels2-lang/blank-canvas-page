@@ -61,7 +61,7 @@
    --border: oklch(0.32 0 0 / 60%);
    --input: oklch(0.27 0 0);
    --ring: oklch(0.62 0.19 256);
-   --ember: oklch(0.62 0.19 256);
+   --ember: oklch(0.72 0.18 310);
    --ember-foreground: oklch(0.97 0 0);
 }
 

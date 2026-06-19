@@ -4,11 +4,20 @@ import { type Article, categories, formatDate } from "@/lib/articles";
 
 type Size = "lg" | "md" | "sm";
 
-export function ArticleCard({ article, size = "md" }: { article: Article; size?: Size }) {
+export function ArticleCard({
+  article,
+  size = "md",
+  spotlight = false,
+}: {
+  article: Article;
+  size?: Size;
+  spotlight?: boolean;
+}) {
   const cat = categories.find((c) => c.slug === article.category);
 
   const isLg = size === "lg";
   const isSm = size === "sm";
+  const isSpot = spotlight && !isLg;
 
   return (
     <Link

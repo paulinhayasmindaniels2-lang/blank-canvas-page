@@ -38,7 +38,7 @@ function Index() {
         <section className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <span className="h-px flex-1 bg-border" />
-            <span className="bg-gradient-to-r from-[#8B5CF6] via-[#C084FC] to-[#EC4899] bg-clip-text text-xs uppercase tracking-[0.3em] text-transparent">Em destaque</span>
+            <span className="ember-shimmer-text text-xs uppercase tracking-[0.3em]">Em destaque</span>
             <span className="h-px flex-1 bg-border" />
           </div>
           <h1 className="sr-only">Notícias de tecnologia</h1>

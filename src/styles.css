@@ -106,6 +106,16 @@
   55% { opacity: 1; }
 }
 
+@keyframes ember-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes ember-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
 .ember-dot {
   animation: ember-glow 2.2s ease-in-out infinite;
 }
@@ -117,6 +127,12 @@
 
 .ember-logo .ember-word {
   display: inline-block;
+  background-image: linear-gradient(90deg, #8B5CF6 0%, #C084FC 25%, #EC4899 50%, #C084FC 75%, #8B5CF6 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ember-shimmer 4s linear infinite, ember-float 3.5s ease-in-out infinite;
   transition: letter-spacing 0.4s ease;
 }
 

@@ -41,13 +41,13 @@ export function SiteHeader() {
         </nav>
 
         <form onSubmit={handleSearch} className="ml-auto hidden md:block">
-          <div className="relative">
+          <div className="ember-search relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-56 rounded-md border border-border bg-card py-2 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ember"
+              className="w-56 rounded-[7px] bg-card py-2 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:outline-none"
             />
           </div>
         </form>

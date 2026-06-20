@@ -47,7 +47,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-56 rounded-[7px] bg-card py-2 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:outline-none"
+              className="w-56 rounded-[7px] border border-[#EC4899] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(236,72,153,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#F472B6] focus:shadow-[0_0_18px_rgba(236,72,153,0.8)] focus:outline-none"
             />
           </div>
         </form>
@@ -72,7 +72,7 @@ export function SiteHeader() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar artigos..."
-                  className="w-full rounded-[7px] bg-card py-2 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:outline-none"
+                  className="w-full rounded-[7px] border border-[#EC4899] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(236,72,153,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#F472B6] focus:shadow-[0_0_18px_rgba(236,72,153,0.8)] focus:outline-none"
                 />
               </div>
             </form>

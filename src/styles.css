@@ -148,3 +148,12 @@
   display: none !important;
 }
 
+
+.ember-shimmer-text {
+  background-image: linear-gradient(90deg, #8B5CF6 0%, #C084FC 25%, #EC4899 50%, #C084FC 75%, #8B5CF6 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ember-shimmer 4s linear infinite;
+}

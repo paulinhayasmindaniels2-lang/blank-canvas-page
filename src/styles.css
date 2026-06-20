@@ -157,3 +157,42 @@
   color: transparent;
   animation: ember-shimmer 4s linear infinite;
 }
+
+@keyframes ember-search-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.4),
+                0 0 12px -2px rgba(139, 92, 246, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.55),
+                0 0 22px 0px rgba(236, 72, 153, 0.5);
+  }
+}
+
+@keyframes ember-search-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.ember-search {
+  position: relative;
+  border-radius: 0.5rem;
+  padding: 1px;
+  background: linear-gradient(90deg, #8B5CF6, #C084FC, #EC4899, #C084FC, #8B5CF6);
+  background-size: 200% 100%;
+  animation: ember-search-border 4s linear infinite, ember-search-glow 3s ease-in-out infinite;
+}
+
+.ember-search > input {
+  border: none !important;
+  background: hsl(var(--card, 0 0% 7%)) !important;
+  background-color: #0a0a0a !important;
+}
+
+.ember-search > svg {
+  z-index: 1;
+}
+
+.ember-search:focus-within {
+  animation-duration: 1.5s, 1.5s;
+}

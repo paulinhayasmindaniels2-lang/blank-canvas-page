@@ -230,3 +230,27 @@
   width: 40%;
   animation: badge-destaque-shine 2.8s ease-in-out infinite;
 }
+
+@keyframes headline-shimmer-sweep {
+  0% { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+
+.headline-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    hsl(var(--foreground)) 0%,
+    hsl(var(--foreground)) 40%,
+    #C084FC 50%,
+    #EC4899 55%,
+    hsl(var(--foreground)) 65%,
+    hsl(var(--foreground)) 100%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: headline-shimmer-sweep 4.5s linear infinite;
+}

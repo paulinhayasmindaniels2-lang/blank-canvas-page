@@ -26,16 +26,19 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden flex-1 items-center gap-1 md:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
           {categories.map((c) => (
             <Link
               key={c.slug}
               to="/categoria/$slug"
               params={{ slug: c.slug }}
-              className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
-              activeProps={{ className: "text-foreground bg-card" }}
+              className="group relative px-5 py-2"
+              activeProps={{ className: "active" }}
             >
-              {c.name}
+              <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
+                {c.name}
+              </span>
+              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-fuchsia-500 to-violet-500 opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(217,70,239,0.6)]" />
             </Link>
           ))}
         </nav>
@@ -76,16 +79,20 @@ export function SiteHeader() {
                 />
               </div>
             </form>
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid grid-cols-1 gap-1">
               {categories.map((c) => (
                 <Link
                   key={c.slug}
                   to="/categoria/$slug"
                   params={{ slug: c.slug }}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
+                  className="group relative px-3 py-2"
+                  activeProps={{ className: "active" }}
                 >
-                  {c.name}
+                  <span className="relative z-10 text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
+                    {c.name}
+                  </span>
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-fuchsia-500 to-violet-500 opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100 group-[.active]:inset-x-3 group-[.active]:w-auto group-[.active]:opacity-100" />
                 </Link>
               ))}
             </div>

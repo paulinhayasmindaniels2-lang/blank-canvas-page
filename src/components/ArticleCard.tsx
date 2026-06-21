@@ -83,7 +83,7 @@ export function ArticleCard({
         <h3
           className={`font-display uppercase leading-tight transition-colors ${
             isLg
-              ? "text-4xl text-foreground md:text-5xl lg:text-6xl"
+              ? "headline-shimmer text-4xl text-foreground md:text-5xl lg:text-6xl"
               : isSm
               ? "text-base text-foreground group-hover:text-ember"
               : "text-xl text-foreground group-hover:text-ember md:text-2xl"

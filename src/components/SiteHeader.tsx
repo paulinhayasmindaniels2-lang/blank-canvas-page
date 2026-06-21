@@ -38,7 +38,7 @@ export function SiteHeader() {
               <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
                 {c.name}
               </span>
-              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-fuchsia-500 to-violet-500 opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(217,70,239,0.6)]" />
+              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(217,70,239,0.6)]" />
             </Link>
           ))}
         </nav>
@@ -92,7 +92,7 @@ export function SiteHeader() {
                   <span className="relative z-10 text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
                     {c.name}
                   </span>
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-fuchsia-500 to-violet-500 opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100 group-[.active]:inset-x-3 group-[.active]:w-auto group-[.active]:opacity-100" />
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100 group-[.active]:inset-x-3 group-[.active]:w-auto group-[.active]:opacity-100" />
                 </Link>
               ))}
             </div>

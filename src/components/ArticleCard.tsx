@@ -66,9 +66,10 @@ export function ArticleCard({
       <div className="relative flex flex-col gap-3">
         {(isLg || isSpot) && (
           <div className="mb-1 flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(192,132,252,0.6)]">
+            <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(192,132,252,0.6)]">
               <span className="inline-block size-1.5 animate-pulse rounded-full bg-white" />
-              Destaque
+              <span className="relative z-10">Destaque</span>
+              <span aria-hidden className="badge-destaque__shine" />
             </span>
           </div>
         )}

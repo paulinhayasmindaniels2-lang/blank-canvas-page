@@ -34,7 +34,6 @@ export function SiteHeader() {
               params={{ slug: c.slug }}
               className="group relative px-5 py-2"
               activeProps={{ className: "active" }}
-              onClick={() => setOpen(false)}
             >
               <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
                 {c.name}

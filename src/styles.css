@@ -36,6 +36,8 @@
   --color-ring: var(--ring);
   --color-ember: var(--ember);
   --color-ember-foreground: var(--ember-foreground);
+  --color-nav-glow-start: var(--nav-glow-start);
+  --color-nav-glow-end: var(--nav-glow-end);
 }
 
 :root {

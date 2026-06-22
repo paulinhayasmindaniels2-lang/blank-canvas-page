@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SiteHeader } from "@/components/SiteHeader";
+import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
 import { ArrowRight } from "lucide-react";
 
@@ -42,6 +43,18 @@ function Index() {
             <span className="h-px flex-1 bg-border" />
           </div>
           <h1 className="sr-only">Notícias de tecnologia</h1>
+        </section>
+
+        {/* Vídeo em destaque */}
+        <section className="mt-6">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
+            <video
+              src={estatuaVideo.url}
+              controls
+              playsInline
+              className="h-auto w-full"
+            />
+          </div>
         </section>
 
         {/* Bento grid */}

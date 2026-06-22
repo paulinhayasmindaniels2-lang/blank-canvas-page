@@ -46,13 +46,13 @@ function Index() {
         </section>
 
         {/* Vídeo em destaque */}
-        <section className="mt-6">
-          <div className="overflow-hidden rounded-xl border border-border bg-card">
+        <section className="mt-6 flex justify-center">
+          <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-border bg-card">
             <video
               src={estatuaVideo.url}
               controls
               playsInline
-              className="h-auto w-full"
+              className="aspect-video w-full object-cover"
             />
           </div>
         </section>

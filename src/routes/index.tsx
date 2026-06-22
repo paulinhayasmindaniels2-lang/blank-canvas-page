@@ -47,13 +47,19 @@ function Index() {
 
         {/* Vídeo em destaque */}
         <section className="mt-6 flex justify-center">
-          <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-border bg-card">
-            <video
-              src={estatuaVideo.url}
-              controls
-              playsInline
-              className="aspect-video w-full object-cover"
-            />
+          <div className="relative w-full max-w-2xl">
+            <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
+              <div className="video-aurora absolute inset-0" />
+              <div className="video-aurora-2 absolute inset-0" />
+            </div>
+            <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+              <video
+                src={estatuaVideo.url}
+                controls
+                playsInline
+                className="aspect-video w-full object-cover"
+              />
+            </div>
           </div>
         </section>
 

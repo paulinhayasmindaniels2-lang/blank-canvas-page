@@ -27,27 +27,62 @@ export const Route = createFileRoute("/")({
 function Index() {
   const featured = articles.find((a) => a.featured) ?? articles[0];
   const rest = articles.filter((a) => a.slug !== featured.slug);
-  const secondary = rest.slice(0, 2);
-  const tertiary = rest.slice(2, 6);
+  const sidebarList = rest.slice(0, 5);
+  const zigzag = rest.slice(5, 9);
+  const grid = rest.slice(9, 13);
 
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
-        {/* Hero */}
-        <section className="flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <span className="h-px flex-1 bg-border" />
-            <span className="ember-shimmer-text text-xs uppercase tracking-[0.3em]">Em destaque</span>
-            <span className="h-px flex-1 bg-border" />
+        <h1 className="sr-only">Notícias de tecnologia</h1>
+
+        {/* Hero split: featured story + sidebar list */}
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.6fr_1fr]">
+          <div className="flex flex-col gap-4">
+            <span className="ember-shimmer-text text-xs uppercase tracking-[0.3em]">
+              Manchete do dia
+            </span>
+            <ArticleCard article={featured} size="lg" />
           </div>
-          <h1 className="sr-only">Notícias de tecnologia</h1>
+
+          <aside className="flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">
+            <div className="flex items-center justify-between">
+              <h2 className="font-display text-sm uppercase tracking-[0.3em] text-muted-foreground">
+                Últimas
+              </h2>
+              <span className="text-xs text-muted-foreground">ao vivo</span>
+            </div>
+            <ol className="flex flex-col divide-y divide-border">
+              {sidebarList.map((a, i) => (
+                <li key={a.slug} className="py-3 first:pt-0">
+                  <Link
+                    to="/artigo/$slug"
+                    params={{ slug: a.slug }}
+                    className="group flex gap-3"
+                  >
+                    <span className="font-display text-2xl text-ember/70 tabular-nums">
+                      {(i + 1).toString().padStart(2, "0")}
+                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                        {a.category}
+                      </span>
+                      <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-ember">
+                        {a.title}
+                      </h3>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </section>
 
         {/* Vídeo em destaque */}
-        <section className="mt-6 flex justify-center">
-          <div className="relative w-full max-w-2xl">
+        <section className="mt-16 flex justify-center">
+          <div className="relative w-full max-w-3xl">
             <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
               <div className="video-aurora absolute inset-0" />
               <div className="video-aurora-2 absolute inset-0" />
@@ -63,23 +98,46 @@ function Index() {
           </div>
         </section>
 
-        {/* Bento grid */}
-        <section className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-[auto_auto]">
-          <div className="md:col-span-2 md:row-span-2">
-            <ArticleCard article={featured} size="lg" />
+        {/* Zigzag editorial rows */}
+        <section className="mt-16 flex flex-col gap-10">
+          <div className="flex items-end justify-between">
+            <h2 className="font-display text-2xl uppercase">Em pauta</h2>
+            <span className="h-px flex-1 mx-6 bg-border" />
+            <span className="text-xs uppercase tracking-wider text-muted-foreground">
+              Leitura longa
+            </span>
           </div>
-          {secondary.map((a, i) => (
-            <div key={a.slug}>
+          {zigzag.map((a, i) => (
+            <article
+              key={a.slug}
+              className={`grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10 ${
+                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
+            >
               <ArticleCard article={a} size="md" spotlight={i === 0} />
-            </div>
+              <div className="flex flex-col justify-center gap-3">
+                <span className="text-xs uppercase tracking-[0.3em] text-ember">
+                  {a.category}
+                </span>
+                <h3 className="font-display text-2xl leading-tight md:text-3xl">
+                  {a.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">{a.excerpt}</p>
+                <Link
+                  to="/artigo/$slug"
+                  params={{ slug: a.slug }}
+                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-ember hover:underline"
+                >
+                  Ler matéria <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </article>
           ))}
         </section>
 
         {/* Categorias */}
-        <section className="mt-14">
-          <div className="flex items-end justify-between">
-            <h2 className="font-display text-2xl uppercase">Categorias</h2>
-          </div>
+        <section className="mt-16">
+          <h2 className="font-display text-2xl uppercase">Categorias</h2>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {categories.map((c) => (
               <Link
@@ -95,21 +153,24 @@ function Index() {
           </div>
         </section>
 
-        {/* Mais recentes */}
-        <section className="mt-14">
-          <div className="flex items-end justify-between">
-            <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">
-              {articles.length} artigos
-            </span>
-          </div>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {tertiary.map((a) => (
-              <ArticleCard key={a.slug} article={a} size="sm" />
-            ))}
-          </div>
-        </section>
+        {/* Grid mais recentes */}
+        {grid.length > 0 && (
+          <section className="mt-16">
+            <div className="flex items-end justify-between">
+              <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
+              <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                {articles.length} artigos
+              </span>
+            </div>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {grid.map((a) => (
+                <ArticleCard key={a.slug} article={a} size="sm" />
+              ))}
+            </div>
+          </section>
+        )}
       </main>
+
 
       <footer className="mt-20 border-t border-border/60">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">

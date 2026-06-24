@@ -43,30 +43,31 @@
 :root {
   --radius: 0.5rem;
 
-  /* Charcoal & Ember — dark by default */
-  --background: oklch(0.18 0 0);            /* #1a1a1a */
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.235 0 0);                 /* #2d2d2d */
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.235 0 0);
-  --popover-foreground: oklch(0.97 0 0);
-   --primary: oklch(0.62 0.19 256);          /* azul */
-   --primary-foreground: oklch(0.97 0 0);
-   --secondary: oklch(0.32 0 0);             /* #4a4a4a */
-   --secondary-foreground: oklch(0.97 0 0);
-   --muted: oklch(0.27 0 0);
-   --muted-foreground: oklch(0.72 0 0);
+  /* Light theme — paper & ember */
+  --background: oklch(0.985 0.003 80);
+  --foreground: oklch(0.18 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0 0);
+   --primary: oklch(0.62 0.19 256);
+   --primary-foreground: oklch(0.98 0 0);
+   --secondary: oklch(0.94 0.005 80);
+   --secondary-foreground: oklch(0.2 0 0);
+   --muted: oklch(0.95 0.005 80);
+   --muted-foreground: oklch(0.45 0 0);
    --accent: oklch(0.62 0.19 256);
-   --accent-foreground: oklch(0.97 0 0);
+   --accent-foreground: oklch(0.98 0 0);
    --destructive: oklch(0.6 0.22 27);
-   --destructive-foreground: oklch(0.97 0 0);
-   --border: oklch(0.32 0 0 / 60%);
-   --input: oklch(0.27 0 0);
+   --destructive-foreground: oklch(0.98 0 0);
+   --border: oklch(0.88 0.005 80);
+   --input: oklch(0.93 0.005 80);
    --ring: oklch(0.62 0.19 256);
-   --ember: oklch(0.72 0.18 310);
-   --ember-foreground: oklch(0.97 0 0);
-   --nav-glow-start: oklch(0.62 0.22 330);  /* fuchsia */
-   --nav-glow-end: oklch(0.58 0.22 280);    /* violet */
+   --ember: oklch(0.55 0.22 310);
+   --ember-foreground: oklch(0.98 0 0);
+   --nav-glow-start: oklch(0.62 0.22 330);
+   --nav-glow-end: oklch(0.58 0.22 280);
+
 }
 
 @layer base {

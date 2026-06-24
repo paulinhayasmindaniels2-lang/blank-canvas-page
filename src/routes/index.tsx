@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArticleCard } from "@/components/ArticleCard";
+import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
@@ -47,37 +48,7 @@ function Index() {
             <ArticleCard article={featured} size="lg" />
           </div>
 
-          <aside className="flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">
-            <div className="flex items-center justify-between">
-              <h2 className="font-display text-sm uppercase tracking-[0.3em] text-muted-foreground">
-                Últimas
-              </h2>
-              <span className="text-xs text-muted-foreground">ao vivo</span>
-            </div>
-            <ol className="flex flex-col divide-y divide-border">
-              {sidebarList.map((a, i) => (
-                <li key={a.slug} className="py-3 first:pt-0">
-                  <Link
-                    to="/artigo/$slug"
-                    params={{ slug: a.slug }}
-                    className="group flex gap-3"
-                  >
-                    <span className="font-display text-2xl text-ember/70 tabular-nums">
-                      {(i + 1).toString().padStart(2, "0")}
-                    </span>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                        {a.category}
-                      </span>
-                      <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-ember">
-                        {a.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </aside>
+          <LatestTicker items={sidebarList} />
         </section>
 
         {/* Vídeo em destaque */}

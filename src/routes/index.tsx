@@ -188,14 +188,6 @@ function Index() {
           <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
         </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {grid.map((a) => (
-                <ArticleCard key={a.slug} article={a} size="sm" />
-              ))}
-            </div>
-          </section>
-        )}
-      </main>
 
 
       <footer className="mt-20 border-t border-border/60">

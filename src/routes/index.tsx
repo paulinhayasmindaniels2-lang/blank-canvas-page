@@ -50,46 +50,59 @@ function Index() {
 
         {/* Hero split: featured story + sidebar list */}
         <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.6fr_1fr]">
-          <div className="flex flex-col gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-4"
+          >
             <span className="ember-shimmer-text text-xs uppercase tracking-[0.3em]">
               Manchete do dia
             </span>
             <ArticleCard article={featured} size="lg" />
-          </div>
+          </motion.div>
 
           <LatestTicker items={sidebarList} />
         </section>
 
         {/* Vídeo em destaque */}
-        <section className="mt-16 flex justify-center">
+        <motion.section {...fadeUp} className="mt-16 flex justify-center">
           <div className="relative w-full max-w-3xl">
             <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
               <div className="video-aurora absolute inset-0" />
               <div className="video-aurora-2 absolute inset-0" />
             </div>
-            <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+            >
               <video
                 src={estatuaVideo.url}
                 controls
                 playsInline
                 className="aspect-video w-full object-cover"
               />
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Zigzag editorial rows */}
         <section className="mt-16 flex flex-col gap-10">
-          <div className="flex items-end justify-between">
+          <motion.div {...fadeUp} className="flex items-end justify-between">
             <h2 className="font-display text-2xl uppercase">Em pauta</h2>
             <span className="h-px flex-1 mx-6 bg-border" />
             <span className="text-xs uppercase tracking-wider text-muted-foreground">
               Leitura longa
             </span>
-          </div>
+          </motion.div>
           {zigzag.map((a, i) => (
-            <article
+            <motion.article
               key={a.slug}
+              initial={{ opacity: 0, x: i % 2 === 1 ? 40 : -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               className={`grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10 ${
                 i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
               }`}
@@ -111,37 +124,70 @@ function Index() {
                   Ler matéria <ArrowRight className="size-4" />
                 </Link>
               </div>
-            </article>
+            </motion.article>
           ))}
         </section>
 
         {/* Categorias */}
-        <section className="mt-16">
+        <motion.section {...fadeUp} className="mt-16">
           <h2 className="font-display text-2xl uppercase">Categorias</h2>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
-            {categories.map((c) => (
-              <Link
+            {categories.map((c, i) => (
+              <motion.div
                 key={c.slug}
-                to="/categoria/$slug"
-                params={{ slug: c.slug }}
-                className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-colors hover:border-ember/60"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
               >
-                <span className="text-sm font-medium">{c.name}</span>
-                <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
-              </Link>
+                <Link
+                  to="/categoria/$slug"
+                  params={{ slug: c.slug }}
+                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-ember/60 hover:shadow-lg hover:shadow-ember/10"
+                >
+                  <span className="text-sm font-medium">{c.name}</span>
+                  <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
+                </Link>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* Grid mais recentes */}
         {grid.length > 0 && (
-          <section className="mt-16">
+          <motion.section {...fadeUp} className="mt-16">
             <div className="flex items-end justify-between">
               <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 {articles.length} artigos
               </span>
             </div>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {grid.map((a, i) => (
+                <motion.div
+                  key={a.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                >
+                  <ArticleCard article={a} size="sm" />
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
+      </main>
+
+
+      <footer className="mt-20 border-t border-border/60">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">
+          <span className="font-display uppercase tracking-wider text-foreground">
+            Ember<span className="text-red-500">.</span>News
+          </span>
+          <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
+        </div>
+
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {grid.map((a) => (
                 <ArticleCard key={a.slug} article={a} size="sm" />

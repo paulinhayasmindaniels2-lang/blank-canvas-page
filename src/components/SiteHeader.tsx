@@ -1,12 +1,27 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Search, Menu, X, Sun, Moon } from "lucide-react";
 import { categories } from "@/lib/articles";
 
 export function SiteHeader() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const light = stored === "light";
+    setIsLight(light);
+    document.documentElement.classList.toggle("light", light);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isLight;
+    setIsLight(next);
+    document.documentElement.classList.toggle("light", next);
+    localStorage.setItem("theme", next ? "light" : "dark");
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,8 +72,18 @@ export function SiteHeader() {
 
         <button
           type="button"
+          onClick={toggleTheme}
+          className="rounded-md border border-border/60 p-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          aria-label={isLight ? "Ativar modo escuro" : "Ativar modo claro"}
+          title={isLight ? "Modo escuro" : "Modo claro"}
+        >
+          {isLight ? <Moon className="size-4" /> : <Sun className="size-4" />}
+        </button>
+
+        <button
+          type="button"
           onClick={() => setOpen((v) => !v)}
-          className="ml-auto rounded-md p-2 text-foreground md:hidden"
+          className="rounded-md p-2 text-foreground md:hidden"
           aria-label="Menu"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}

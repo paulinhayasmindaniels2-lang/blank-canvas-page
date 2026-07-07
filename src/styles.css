@@ -305,3 +305,7 @@ html.light {
   mix-blend-mode: screen;
   animation: video-aurora-drift-2 18s ease-in-out infinite;
 }
+
+#lovable-badge {
+  display: none !important;
+}

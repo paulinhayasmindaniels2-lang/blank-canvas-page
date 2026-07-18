@@ -7,10 +7,24 @@ export function LatestTicker({ items }: { items: Article[] }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % items.length);
-    }, 3500);
-    return () => clearInterval(id);
+    let id: ReturnType<typeof setInterval> | null = null;
+    const start = () => {
+      if (id != null) return;
+      id = setInterval(() => setActive((i) => (i + 1) % items.length), 3500);
+    };
+    const stop = () => {
+      if (id != null) {
+        clearInterval(id);
+        id = null;
+      }
+    };
+    const onVis = () => (document.hidden ? stop() : start());
+    start();
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, [items.length]);
 
   return (

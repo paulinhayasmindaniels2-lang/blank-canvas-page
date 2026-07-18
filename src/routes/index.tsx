@@ -81,6 +81,7 @@ function Index() {
                 src={estatuaVideo.url}
                 controls
                 playsInline
+                preload="none"
                 className="aspect-video w-full object-cover"
               />
             </motion.div>

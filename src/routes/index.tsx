@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { useMemo } from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -35,11 +36,16 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const featured = articles.find((a) => a.featured) ?? articles[0];
-  const rest = articles.filter((a) => a.slug !== featured.slug);
-  const sidebarList = rest.slice(0, 5);
-  const zigzag = rest.slice(5, 9);
-  const grid = rest.slice(9, 13);
+  const { featured, sidebarList, zigzag, grid } = useMemo(() => {
+    const featured = articles.find((a) => a.featured) ?? articles[0];
+    const rest = articles.filter((a) => a.slug !== featured.slug);
+    return {
+      featured,
+      sidebarList: rest.slice(0, 5),
+      zigzag: rest.slice(5, 9),
+      grid: rest.slice(9, 13),
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -81,6 +87,7 @@ function Index() {
                 src={estatuaVideo.url}
                 controls
                 playsInline
+                preload="none"
                 className="aspect-video w-full object-cover"
               />
             </motion.div>

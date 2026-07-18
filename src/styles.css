@@ -110,9 +110,6 @@ html.light {
   }
 }
 
-#lovable-badge {
-  display: none !important;
-}
 
 @keyframes ember-glow {
   0%, 100% {

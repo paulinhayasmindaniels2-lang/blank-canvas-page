@@ -7,6 +7,7 @@ export function LatestTicker({ items }: { items: Article[] }) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (items.length <= 1) return;
     let id: ReturnType<typeof setInterval> | null = null;
     const start = () => {
       if (id != null) return;
@@ -26,6 +27,8 @@ export function LatestTicker({ items }: { items: Article[] }) {
       document.removeEventListener("visibilitychange", onVis);
     };
   }, [items.length]);
+
+  if (items.length === 0) return null;
 
   return (
     <aside className="flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">

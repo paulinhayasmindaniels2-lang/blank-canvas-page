@@ -13,7 +13,7 @@ export const Route = createFileRoute("/branco")({
 function BrancoPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
-      <h1 className="text-6xl font-bold text-black tracking-tight">Eriton</h1>
+      <h1 className="text-6xl font-bold text-foreground tracking-tight">Eriton</h1>
     </div>
   );
 }

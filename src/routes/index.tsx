@@ -130,13 +130,7 @@ function Index() {
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
               className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
             >
-              <video
-                src={estatuaVideo.url}
-                controls
-                playsInline
-                preload="none"
-                className="aspect-video w-full object-cover"
-              />
+              <LazyVideo src={estatuaVideo.url} />
             </motion.div>
           </div>
         </motion.section>

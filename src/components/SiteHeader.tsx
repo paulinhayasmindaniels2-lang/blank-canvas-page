@@ -36,7 +36,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 md:px-6">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
-          <span className="ember-word bg-gradient-to-r from-[#16A34A] via-[#22C55E] to-[#4ADE80] bg-clip-text font-display text-lg uppercase tracking-wider text-transparent">
+          <span className="ember-word bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F87171] bg-clip-text font-display text-lg uppercase tracking-wider text-transparent">
             Ember<span className="ember-accent">.</span>News
           </span>
         </Link>
@@ -53,7 +53,7 @@ export function SiteHeader() {
               <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
                 {c.name}
               </span>
-              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(217,70,239,0.6)]" />
+              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(220,38,38,0.6)]" />
             </Link>
           ))}
         </nav>
@@ -65,7 +65,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-56 rounded-[7px] border border-[#EC4899] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(236,72,153,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#F472B6] focus:shadow-[0_0_18px_rgba(236,72,153,0.8)] focus:outline-none"
+              className="w-56 rounded-[7px] border border-[#DC2626] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#EF4444] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
             />
           </div>
         </form>
@@ -100,7 +100,7 @@ export function SiteHeader() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar artigos..."
-                  className="w-full rounded-[7px] border border-[#EC4899] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(236,72,153,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#F472B6] focus:shadow-[0_0_18px_rgba(236,72,153,0.8)] focus:outline-none"
+                  className="w-full rounded-[7px] border border-[#DC2626] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#EF4444] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
                 />
               </div>
             </form>

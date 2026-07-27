@@ -1,12 +1,59 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
+
+function LazyVideo({ src }: { src: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [play, setPlay] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || visible) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [visible]);
+
+  return (
+    <div ref={ref} className="aspect-video w-full">
+      {visible && play ? (
+        <video
+          src={src}
+          controls
+          autoPlay
+          playsInline
+          preload="metadata"
+          className="aspect-video w-full object-cover"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlay(true)}
+          className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-black"
+          aria-label="Reproduzir vídeo"
+        >
+          <span className="flex size-16 items-center justify-center rounded-full bg-white/10 backdrop-blur transition-transform group-hover:scale-110">
+            <Play className="size-7 fill-white text-white" />
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },

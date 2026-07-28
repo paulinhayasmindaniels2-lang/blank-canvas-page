@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Clock } from "lucide-react";
+import { motion } from "motion/react";
 import { type Article, categories, formatDate } from "@/lib/articles";
+
+const MotionLink = motion.create(Link);
 
 type Size = "lg" | "md" | "sm";
 

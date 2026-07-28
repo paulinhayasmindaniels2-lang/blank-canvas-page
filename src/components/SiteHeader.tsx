@@ -36,6 +36,10 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <motion.div
+        style={{ scaleX }}
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F87171]"
+      />
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 md:px-6">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />

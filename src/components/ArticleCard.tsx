@@ -23,16 +23,21 @@ export function ArticleCard({
     <Link
       to="/artigo/$slug"
       params={{ slug: article.slug }}
-      className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all ${
+      className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 ${
         isLg
-          ? "min-h-[420px] border-[#EF4444]/40 p-7 shadow-[0_20px_60px_-20px_rgba(239,68,68,0.45)] hover:border-[#DC2626]/70 hover:shadow-[0_30px_80px_-20px_rgba(220,38,38,0.55)] md:min-h-[520px]"
+          ? "min-h-[420px] border-[#EF4444]/40 p-7 shadow-[0_20px_60px_-20px_rgba(239,68,68,0.45)] hover:border-[#DC2626]/70 hover:shadow-[0_35px_90px_-20px_rgba(220,38,38,0.6)] md:min-h-[520px]"
           : isSpot
-          ? "min-h-[260px] border-[#EF4444]/50 shadow-[0_12px_40px_-12px_rgba(239,68,68,0.5)] hover:border-[#DC2626]/70 hover:shadow-[0_18px_50px_-12px_rgba(220,38,38,0.6)]"
+          ? "min-h-[260px] border-[#EF4444]/50 shadow-[0_12px_40px_-12px_rgba(239,68,68,0.5)] hover:border-[#DC2626]/70 hover:shadow-[0_22px_60px_-12px_rgba(220,38,38,0.65)]"
           : isSm
-          ? "min-h-[200px] border-border hover:border-ember/60 hover:shadow-[0_0_0_1px_var(--color-ember)]"
-          : "min-h-[260px] border-border hover:border-ember/60 hover:shadow-[0_0_0_1px_var(--color-ember)]"
+          ? "min-h-[200px] border-border hover:border-ember/60 hover:shadow-[0_10px_30px_-10px_rgba(220,38,38,0.4)]"
+          : "min-h-[260px] border-border hover:border-ember/60 hover:shadow-[0_14px_40px_-10px_rgba(220,38,38,0.45)]"
       }`}
     >
+      {/* Shine sweep on hover */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
+      />
       {/* Decorative gradient */}
       <div
         aria-hidden

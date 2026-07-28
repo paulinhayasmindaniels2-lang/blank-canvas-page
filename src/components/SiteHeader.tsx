@@ -9,6 +9,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isLight, setIsLight] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 24, mass: 0.3 });
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");

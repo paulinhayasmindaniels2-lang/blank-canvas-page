@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "motion/react";
 import { Search, Menu, X, Sun, Moon } from "lucide-react";
 import { categories } from "@/lib/articles";
 

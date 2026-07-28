@@ -23,10 +23,13 @@ export function ArticleCard({
   const isSpot = spotlight && !isLg;
 
   return (
-    <Link
+    <MotionLink
       to="/artigo/$slug"
       params={{ slug: article.slug }}
-      className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all ${
+      whileHover={{ y: -6, rotate: isLg ? 0 : -0.3 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all will-change-transform ${
         isLg
           ? "min-h-[420px] border-[#EF4444]/40 p-7 shadow-[0_20px_60px_-20px_rgba(239,68,68,0.45)] hover:border-[#DC2626]/70 hover:shadow-[0_30px_80px_-20px_rgba(220,38,38,0.55)] md:min-h-[520px]"
           : isSpot
@@ -36,6 +39,11 @@ export function ArticleCard({
           : "min-h-[260px] border-border hover:border-ember/60 hover:shadow-[0_0_0_1px_var(--color-ember)]"
       }`}
     >
+      {/* Shine sweep on hover */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+      />
       {/* Decorative gradient */}
       <div
         aria-hidden

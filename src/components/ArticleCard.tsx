@@ -117,6 +117,6 @@ export function ArticleCard({
           </span>
         </div>
       </div>
-    </Link>
+    </MotionLink>
   );
 }

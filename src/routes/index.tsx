@@ -99,7 +99,7 @@ function Index() {
       <div className="sr-only">deixe animado</div>
       <SiteHeader />
 
-      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-12">
+      <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
         {/* Hero split: featured story + sidebar list */}
@@ -120,7 +120,7 @@ function Index() {
         </section>
 
         {/* Vídeo em destaque */}
-        <motion.section {...fadeUp} className="mt-16 flex justify-center">
+        <motion.section {...fadeUp} className="mt-8 flex justify-center">
           <div className="relative w-full max-w-3xl">
             <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
               <div className="video-aurora absolute inset-0" />
@@ -137,7 +137,7 @@ function Index() {
         </motion.section>
 
         {/* Zigzag editorial rows */}
-        <section className="mt-16 flex flex-col gap-10">
+        <section className="mt-8 flex flex-col gap-10">
           <motion.div {...fadeUp} className="flex items-end justify-between">
             <h2 className="font-display text-2xl uppercase">Em pauta</h2>
             <span className="h-px flex-1 mx-6 bg-border" />

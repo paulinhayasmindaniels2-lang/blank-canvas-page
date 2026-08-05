@@ -8,22 +8,22 @@ export function SiteHeader() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [isLight, setIsLight] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 24, mass: 0.3 });
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const light = stored === "light";
-    setIsLight(light);
-    document.documentElement.classList.toggle("light", light);
+    const dark = stored === "dark";
+    setIsDark(dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, []);
 
   const toggleTheme = () => {
-    const next = !isLight;
-    setIsLight(next);
-    document.documentElement.classList.toggle("light", next);
-    localStorage.setItem("theme", next ? "light" : "dark");
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -81,10 +81,10 @@ export function SiteHeader() {
           type="button"
           onClick={toggleTheme}
           className="rounded-md border border-border/60 p-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          aria-label={isLight ? "Ativar modo escuro" : "Ativar modo claro"}
-          title={isLight ? "Modo escuro" : "Modo claro"}
+          aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
+          title={isDark ? "Modo claro" : "Modo escuro"}
         >
-          {isLight ? <Moon className="size-4" /> : <Sun className="size-4" />}
+          {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </button>
 
         <button

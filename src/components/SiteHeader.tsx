@@ -81,10 +81,10 @@ export function SiteHeader() {
           type="button"
           onClick={toggleTheme}
           className="rounded-md border border-border/60 p-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          aria-label={isLight ? "Ativar modo escuro" : "Ativar modo claro"}
-          title={isLight ? "Modo escuro" : "Modo claro"}
+          aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
+          title={isDark ? "Modo claro" : "Modo escuro"}
         >
-          {isLight ? <Moon className="size-4" /> : <Sun className="size-4" />}
+          {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </button>
 
         <button

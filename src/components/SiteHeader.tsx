@@ -40,10 +40,10 @@ export function SiteHeader() {
         style={{ scaleX }}
         className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F87171]"
       />
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 md:px-6">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2 md:px-6">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
-          <span className="ember-word bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F87171] bg-clip-text font-display text-lg uppercase tracking-wider text-transparent">
+          <span className="ember-word bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F87171] bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
             Ember<span className="ember-accent">.</span>News
           </span>
         </Link>
@@ -72,7 +72,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-56 rounded-[7px] border border-[#DC2626] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#EF4444] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
+              className="w-48 rounded-[7px] border border-[#DC2626] bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#EF4444] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
             />
           </div>
         </form>

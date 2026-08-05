@@ -8,22 +8,22 @@ export function SiteHeader() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [isLight, setIsLight] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 24, mass: 0.3 });
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const light = stored === "light";
-    setIsLight(light);
-    document.documentElement.classList.toggle("light", light);
+    const dark = stored === "dark";
+    setIsDark(dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, []);
 
   const toggleTheme = () => {
-    const next = !isLight;
-    setIsLight(next);
-    document.documentElement.classList.toggle("light", next);
-    localStorage.setItem("theme", next ? "light" : "dark");
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
   };
 
   const handleSearch = (e: React.FormEvent) => {

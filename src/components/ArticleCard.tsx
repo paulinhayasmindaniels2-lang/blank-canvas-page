@@ -72,8 +72,8 @@ export function ArticleCard({
         {(isLg || isSpot) && (
           <div className="mb-1 flex items-center gap-2">
             <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-[#065F46] to-[#059669] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(16,185,129,0.6)]">
-              <span className="inline-block size-1.5 animate-pulse rounded-full bg-white" />
-              <span className="relative z-10">Destaque</span>
+              <span className="inline-block size-1.5 animate-pulse rounded-full bg-emerald-200" />
+              <span className="relative z-10">DESTAQUE</span>
               <span aria-hidden className="badge-destaque__shine" />
             </span>
           </div>

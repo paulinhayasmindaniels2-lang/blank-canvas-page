@@ -79,7 +79,7 @@ export function ArticleCard({
           </div>
         )}
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full border border-ember/40 bg-ember/10 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-ember">
+          <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/5 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             {cat?.name}
           </span>
           <span className="text-xs text-muted-foreground">{formatDate(article.date)}</span>

@@ -25,12 +25,12 @@ export function ArticleCard({
       params={{ slug: article.slug }}
       className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 ${
         isLg
-          ? "min-h-[420px] border-[#EF4444]/40 p-7 shadow-[0_20px_60px_-20px_rgba(239,68,68,0.45)] hover:border-[#DC2626]/70 hover:shadow-[0_35px_90px_-20px_rgba(220,38,38,0.6)] md:min-h-[520px]"
+          ? "min-h-[420px] border-emerald-500/40 p-7 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.45)] hover:border-emerald-600/70 hover:shadow-[0_35px_90px_-20px_rgba(5,150,105,0.6)] md:min-h-[520px]"
           : isSpot
-          ? "min-h-[260px] border-[#EF4444]/50 shadow-[0_12px_40px_-12px_rgba(239,68,68,0.5)] hover:border-[#DC2626]/70 hover:shadow-[0_22px_60px_-12px_rgba(220,38,38,0.65)]"
+          ? "min-h-[260px] border-emerald-500/50 shadow-[0_12px_40px_-12px_rgba(16,185,129,0.5)] hover:border-emerald-600/70 hover:shadow-[0_22px_60px_-12px_rgba(5,150,105,0.65)]"
           : isSm
-          ? "min-h-[200px] border-border hover:border-ember/60 hover:shadow-[0_10px_30px_-10px_rgba(220,38,38,0.4)]"
-          : "min-h-[260px] border-border hover:border-ember/60 hover:shadow-[0_14px_40px_-10px_rgba(220,38,38,0.45)]"
+          ? "min-h-[200px] border-border hover:border-emerald-500/60 hover:shadow-[0_10px_30px_-10px_rgba(5,150,105,0.4)]"
+          : "min-h-[260px] border-border hover:border-emerald-500/60 hover:shadow-[0_14px_40px_-10px_rgba(5,150,105,0.45)]"
       }`}
     >
       {/* Shine sweep on hover */}
@@ -47,7 +47,7 @@ export function ArticleCard({
         style={{
           background:
             isLg || isSpot
-              ? "radial-gradient(120% 90% at 0% 100%, rgba(185,28,28,0.30), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(220,38,38,0.25), transparent 55%)"
+              ? "radial-gradient(120% 90% at 0% 100%, rgba(5,150,105,0.30), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(16,185,129,0.25), transparent 55%)"
               : "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--color-ember) 22%, transparent), transparent 60%)",
         }}
       />
@@ -57,29 +57,29 @@ export function ArticleCard({
           className="pointer-events-none absolute inset-0 rounded-xl"
           style={{
             background:
-              "linear-gradient(135deg, rgba(185,28,28,0.0) 0%, rgba(185,28,28,0.0) 60%, rgba(220,38,38,0.08) 100%)",
+              "linear-gradient(135deg, rgba(5,150,105,0.0) 0%, rgba(5,150,105,0.0) 60%, rgba(16,185,129,0.08) 100%)",
           }}
         />
       )}
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${
-          isLg || isSpot ? "from-[#B91C1C] via-[#EF4444] to-[#DC2626]" : "from-transparent via-ember/40 to-transparent"
+          isLg || isSpot ? "from-[#065F46] via-[#10B981] to-[#059669]" : "from-transparent via-emerald-500/40 to-transparent"
         }`}
       />
 
       <div className="relative flex flex-col gap-3">
         {(isLg || isSpot) && (
           <div className="mb-1 flex items-center gap-2">
-            <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-[#B91C1C] to-[#DC2626] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(239,68,68,0.6)]">
-              <span className="inline-block size-1.5 animate-pulse rounded-full bg-white" />
-              <span className="relative z-10">Destaque</span>
+            <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-[#065F46] to-[#059669] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-[0_4px_20px_-4px_rgba(16,185,129,0.6)]">
+              <span className="inline-block size-1.5 animate-pulse rounded-full bg-emerald-200" />
+              <span className="relative z-10">DESTAQUE</span>
               <span aria-hidden className="badge-destaque__shine" />
             </span>
           </div>
         )}
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center rounded-full border border-ember/40 bg-ember/10 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-ember">
+          <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/5 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             {cat?.name}
           </span>
           <span className="text-xs text-muted-foreground">{formatDate(article.date)}</span>

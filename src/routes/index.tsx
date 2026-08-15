@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">mude pra verde</div>
+      <div className="sr-only">deixe mais escuro</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">

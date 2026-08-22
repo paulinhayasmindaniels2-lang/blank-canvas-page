@@ -15,6 +15,7 @@ import { Route as BrancoRouteImport } from './routes/branco'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 import { Route as ArtigoSlugRouteImport } from './routes/artigo.$slug'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -46,12 +47,18 @@ const ArtigoSlugRoute = ArtigoSlugRouteImport.update({
   path: '/artigo/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
   '/login': typeof LoginRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
   '/login': typeof LoginRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
   '/login': typeof LoginRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/branco'
     | '/buscar'
     | '/login'
+    | '/admin/login'
     | '/artigo/$slug'
     | '/categoria/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/branco'
     | '/buscar'
     | '/login'
+    | '/admin/login'
     | '/artigo/$slug'
     | '/categoria/$slug'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/branco'
     | '/buscar'
     | '/login'
+    | '/admin/login'
     | '/artigo/$slug'
     | '/categoria/$slug'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   BrancoRoute: typeof BrancoRoute
   BuscarRoute: typeof BuscarRoute
   LoginRoute: typeof LoginRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   ArtigoSlugRoute: typeof ArtigoSlugRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
 }
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtigoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrancoRoute: BrancoRoute,
   BuscarRoute: BuscarRoute,
   LoginRoute: LoginRoute,
+  AdminLoginRoute: AdminLoginRoute,
   ArtigoSlugRoute: ArtigoSlugRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
 }

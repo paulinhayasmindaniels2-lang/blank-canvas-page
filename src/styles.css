@@ -43,56 +43,56 @@
 :root {
   --radius: 0.5rem;
 
-  /* Deep Ember Dark — Black background with emerald accents */
+  /* Blood Red Theme - Deep black backgrounds with intense blood red accents */
   --background: oklch(0 0 0);
   --foreground: oklch(0.96 0 0);
   --card: oklch(0.05 0 0);
   --card-foreground: oklch(0.96 0 0);
   --popover: oklch(0.05 0 0);
   --popover-foreground: oklch(0.96 0 0);
-  --primary: oklch(0.62 0.17 145);
+  --primary: oklch(0.45 0.25 25);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.12 0.005 145);
+  --secondary: oklch(0.12 0.05 25);
   --secondary-foreground: oklch(0.96 0 0);
-  --muted: oklch(0.12 0.005 145);
-  --muted-foreground: oklch(0.65 0.01 145);
-  --accent: oklch(0.62 0.17 145);
+  --muted: oklch(0.12 0.05 25);
+  --muted-foreground: oklch(0.55 0.15 25);
+  --accent: oklch(0.45 0.25 25);
   --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.62 0.17 145);
+  --destructive: oklch(0.45 0.25 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.15 0.005 145);
-  --input: oklch(0.12 0.005 145);
-  --ring: oklch(0.62 0.17 145);
-  --ember: oklch(0.62 0.17 145);
+  --border: oklch(0.15 0.08 25);
+  --input: oklch(0.12 0.05 25);
+  --ring: oklch(0.45 0.25 25);
+  --ember: oklch(0.45 0.25 25);
   --ember-foreground: oklch(0.99 0 0);
-  --nav-glow-start: oklch(0.67 0.17 145);
-  --nav-glow-end: oklch(0.52 0.17 145);
+  --nav-glow-start: oklch(0.5 0.25 25);
+  --nav-glow-end: oklch(0.35 0.25 25);
 }
 
 html.dark {
   --background: oklch(0 0 0);
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.08 0 0);
+  --card: oklch(0.08 0.02 25);
   --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.08 0 0);
+  --popover: oklch(0.08 0.02 25);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.67 0.17 145);
+  --primary: oklch(0.5 0.25 25);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.15 0 0);
+  --secondary: oklch(0.15 0.05 25);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.15 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.67 0.17 145);
+  --muted: oklch(0.15 0.05 25);
+  --muted-foreground: oklch(0.6 0.1 25);
+  --accent: oklch(0.5 0.25 25);
   --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.62 0.17 145);
+  --destructive: oklch(0.45 0.25 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.18 0 0);
-  --input: oklch(0.15 0 0);
-  --ring: oklch(0.67 0.17 145);
-  --ember: oklch(0.67 0.17 145);
+  --border: oklch(0.18 0.08 25);
+  --input: oklch(0.15 0.05 25);
+  --ring: oklch(0.5 0.25 25);
+  --ember: oklch(0.5 0.25 25);
   --ember-foreground: oklch(0.99 0 0);
-  --nav-glow-start: oklch(0.70 0.17 145);
-  --nav-glow-end: oklch(0.55 0.17 145);
+  --nav-glow-start: oklch(0.55 0.25 25);
+  --nav-glow-end: oklch(0.4 0.25 25);
 }
 
 @layer base {
@@ -154,7 +154,7 @@ html.dark {
 
 .ember-logo .ember-word {
   display: inline-block;
-  background-image: linear-gradient(90deg, #059669 0%, #10B981 25%, #34D399 50%, #10B981 75%, #059669 100%);
+  background-image: linear-gradient(90deg, #991B1B 0%, #DC2626 25%, #EF4444 50%, #DC2626 75%, #991B1B 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -174,7 +174,7 @@ html.dark {
 
 
 .ember-shimmer-text {
-  background-image: linear-gradient(90deg, #059669 0%, #10B981 25%, #34D399 50%, #10B981 75%, #059669 100%);
+  background-image: linear-gradient(90deg, #991B1B 0%, #DC2626 25%, #EF4444 50%, #DC2626 75%, #991B1B 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -184,12 +184,12 @@ html.dark {
 
 @keyframes ember-search-glow {
   0%, 100% {
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4),
-                0 0 12px -2px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.4),
+                0 0 12px -2px rgba(220, 38, 38, 0.35);
   }
   50% {
-    box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.55),
-                0 0 22px 0px rgba(52, 211, 153, 0.5);
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.55),
+                0 0 22px 0px rgba(239, 68, 68, 0.5);
   }
 }
 
@@ -202,7 +202,7 @@ html.dark {
   position: relative;
   border-radius: 0.5rem;
   padding: 1px;
-  background: linear-gradient(90deg, #059669, #10B981, #34D399, #10B981, #059669);
+  background: linear-gradient(90deg, #991B1B, #DC2626, #EF4444, #DC2626, #991B1B);
   background-size: 200% 100%;
   animation: ember-search-border 4s linear infinite, ember-search-glow 3s ease-in-out infinite;
 }
@@ -223,11 +223,11 @@ html.dark {
 
 @keyframes badge-destaque-pulse {
   0%, 100% {
-    box-shadow: 0 4px 20px -4px rgba(16, 185, 129, 0.6), 0 0 0 0 rgba(5, 150, 105, 0.45);
+    box-shadow: 0 4px 20px -4px rgba(220, 38, 38, 0.6), 0 0 0 0 rgba(153, 27, 27, 0.45);
     transform: translateY(0);
   }
   50% {
-    box-shadow: 0 8px 28px -4px rgba(16, 185, 129, 0.85), 0 0 0 6px rgba(5, 150, 105, 0);
+    box-shadow: 0 8px 28px -4px rgba(220, 38, 38, 0.85), 0 0 0 6px rgba(153, 27, 27, 0);
     transform: translateY(-1px);
   }
 }
@@ -261,8 +261,8 @@ html.dark {
     100deg,
     hsl(var(--foreground)) 0%,
     hsl(var(--foreground)) 40%,
-    #10B981 50%,
-    #059669 55%,
+    #DC2626 50%,
+    #991B1B 55%,
     hsl(var(--foreground)) 65%,
     hsl(var(--foreground)) 100%
   );
@@ -288,15 +288,15 @@ html.dark {
 }
 
 .video-aurora {
-  background: conic-gradient(from 0deg at 50% 50%, #10B981, #059669, #065F46, #10B981);
+  background: conic-gradient(from 0deg at 50% 50%, #DC2626, #991B1B, #7F1D1D, #DC2626);
   filter: blur(60px);
   opacity: 0.55;
   animation: video-aurora-drift 14s linear infinite;
 }
 
 .video-aurora-2 {
-  background: radial-gradient(circle at 30% 30%, #059669 0%, transparent 55%),
-              radial-gradient(circle at 70% 70%, #064E3B 0%, transparent 55%);
+  background: radial-gradient(circle at 30% 30%, #991B1B 0%, transparent 55%),
+              radial-gradient(circle at 70% 70%, #7F1D1D 0%, transparent 55%);
   filter: blur(50px);
   opacity: 0.6;
   mix-blend-mode: screen;
@@ -332,5 +332,5 @@ main > section {
 
 .article-card-hover:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1), 0 10px 10px -5px rgba(16, 185, 129, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.1), 0 10px 10px -5px rgba(220, 38, 38, 0.04);
 }

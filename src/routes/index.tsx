@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">oi</div>
+      <div className="sr-only">mude toda a cor do site para vermelho sangue</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">

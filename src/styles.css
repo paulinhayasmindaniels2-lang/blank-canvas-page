@@ -288,7 +288,7 @@ html.dark {
 }
 
 .video-aurora {
-  background: conic-gradient(from 0deg at 50% 50%, #10B981, #059669, #065F46, #10B981);
+  background: conic-gradient(from 0deg at 50% 50%, #DC2626, #991B1B, #7F1D1D, #DC2626);
   filter: blur(60px);
   opacity: 0.55;
   animation: video-aurora-drift 14s linear infinite;

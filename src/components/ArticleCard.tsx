@@ -57,7 +57,7 @@ export function ArticleCard({
           className="pointer-events-none absolute inset-0 rounded-xl"
           style={{
             background:
-              "linear-gradient(135deg, rgba(153,27,27,0.0) 0%, rgba(153,27,27,0.0) 60%, rgba(220,38,38,0.08) 100%)",
+              "linear-gradient(135deg, rgba(64,64,64,0.0) 0%, rgba(64,64,64,0.0) 60%, rgba(255,255,255,0.02) 100%)",
           }}
         />
       )}

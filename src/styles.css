@@ -202,7 +202,7 @@ html.dark {
   position: relative;
   border-radius: 0.5rem;
   padding: 1px;
-  background: linear-gradient(90deg, #059669, #10B981, #34D399, #10B981, #059669);
+  background: linear-gradient(90deg, #991B1B, #DC2626, #EF4444, #DC2626, #991B1B);
   background-size: 200% 100%;
   animation: ember-search-border 4s linear infinite, ember-search-glow 3s ease-in-out infinite;
 }

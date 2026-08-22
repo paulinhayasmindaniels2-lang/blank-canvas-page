@@ -38,12 +38,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <motion.div
         style={{ scaleX }}
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-neutral-600 via-white to-neutral-600"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-ember via-white to-ember"
       />
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2 md:px-6">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
-          <span className="ember-word bg-gradient-to-r from-neutral-400 via-white to-neutral-400 bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
+          <span className="ember-word bg-gradient-to-r from-ember via-primary to-ember bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
             Ember<span className="ember-accent">.</span>News
           </span>
         </Link>

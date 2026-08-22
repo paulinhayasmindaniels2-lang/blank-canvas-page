@@ -202,14 +202,14 @@ html.dark {
   position: relative;
   border-radius: 0.5rem;
   padding: 1px;
-  background: linear-gradient(90deg, #404040, oklch(0.65 0.15 300), #404040);
+  background: linear-gradient(90deg, oklch(0.3 0.08 250), oklch(0.6 0.15 250), oklch(0.3 0.08 250));
   background-size: 200% 100%;
   animation: ember-search-border 4s linear infinite, ember-search-glow 3s ease-in-out infinite;
 }
 
 .ember-search > input {
   border: none !important;
-  background: #0a0a0a !important;
+  background: var(--background) !important;
 }
 
 .ember-search > svg {

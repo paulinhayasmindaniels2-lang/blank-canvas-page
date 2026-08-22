@@ -64,7 +64,7 @@ export function ArticleCard({
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r ${
-          isLg || isSpot ? "from-[#7F1D1D] via-[#DC2626] to-[#991B1B]" : "from-transparent via-red-500/40 to-transparent"
+          isLg || isSpot ? "from-neutral-800 via-neutral-400 to-neutral-800" : "from-transparent via-neutral-500/30 to-transparent"
         }`}
       />
 

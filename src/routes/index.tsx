@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">oi</div>
+      <div className="sr-only">mude toda a cor do site para branco e preto</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
@@ -232,7 +232,7 @@ function Index() {
       <footer className="mt-20 border-t border-border/60">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">
           <span className="font-display uppercase tracking-wider text-foreground">
-            Ember<span className="text-red-600">.</span>News
+            Ember<span className="text-white">.</span>News
           </span>
           <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
         </div>

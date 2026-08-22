@@ -34,7 +34,7 @@ export const articles: Article[] = [
     excerpt:
       "Pesquisadores apresentam uma arquitetura que combina texto, imagem e áudio com latência reduzida e menor custo de inferência.",
     category: "ia",
-    author: "JOAO COSTA",
+    author: "BETINA",
     date: "2026-05-18",
     readMinutes: 6,
     featured: true,
@@ -107,7 +107,7 @@ export const articles: Article[] = [
     title: "Agentes autônomos ganham espaço no suporte técnico",
     excerpt: "Empresas relatam queda no tempo médio de resposta após implantação de agentes baseados em LLMs.",
     category: "ia",
-    author: "JOAO COSTA",
+    author: "BETINA",
     date: "2026-05-13",
     readMinutes: 5,
     size: "md",

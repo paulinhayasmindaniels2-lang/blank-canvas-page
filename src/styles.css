@@ -287,15 +287,15 @@ html.dark {
 }
 
 .video-aurora {
-  background: conic-gradient(from 0deg at 50% 50%, #404040, #171717, #404040);
+  background: conic-gradient(from 0deg at 50% 50%, oklch(0.2 0.05 250), oklch(0.1 0.03 250), oklch(0.2 0.05 250));
   filter: blur(60px);
   opacity: 0.35;
   animation: video-aurora-drift 14s linear infinite;
 }
 
 .video-aurora-2 {
-  background: radial-gradient(circle at 30% 30%, #262626 0%, transparent 55%),
-              radial-gradient(circle at 70% 70%, #171717 0%, transparent 55%);
+  background: radial-gradient(circle at 30% 30%, oklch(0.25 0.06 250) 0%, transparent 55%),
+              radial-gradient(circle at 70% 70%, oklch(0.15 0.04 250) 0%, transparent 55%);
   filter: blur(50px);
   opacity: 0.4;
   mix-blend-mode: screen;

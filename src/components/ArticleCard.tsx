@@ -47,7 +47,7 @@ export function ArticleCard({
         style={{
           background:
             isLg || isSpot
-              ? "radial-gradient(120% 90% at 0% 100%, rgba(153,27,27,0.30), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(220,38,38,0.25), transparent 55%)"
+              ? "radial-gradient(120% 90% at 0% 100%, rgba(64,64,64,0.30), transparent 55%), radial-gradient(120% 90% at 100% 0%, rgba(38,38,38,0.25), transparent 55%)"
               : "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--color-ember) 22%, transparent), transparent 60%)",
         }}
       />

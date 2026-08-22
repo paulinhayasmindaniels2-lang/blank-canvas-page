@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">MUDE PARA BETINA</div>
+      <div className="sr-only">remova essa cor verde do site que ainda ficou</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
@@ -158,7 +158,7 @@ function Index() {
             >
               <ArticleCard article={a} size="md" spotlight={i === 0} />
               <div className="flex flex-col justify-center gap-3">
-                <span className="text-xs uppercase tracking-[0.3em] text-ember">
+                <span className="text-xs uppercase tracking-[0.3em] text-primary">
                   {a.category}
                 </span>
                 <h3 className="font-display text-2xl leading-tight md:text-3xl">
@@ -168,7 +168,7 @@ function Index() {
                 <Link
                   to="/artigo/$slug"
                   params={{ slug: a.slug }}
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-ember hover:underline"
+                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
                   Ler matéria <ArrowRight className="size-4" />
                 </Link>
@@ -192,7 +192,7 @@ function Index() {
                 <Link
                   to="/categoria/$slug"
                   params={{ slug: c.slug }}
-                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-ember/60 hover:shadow-lg hover:shadow-ember/10"
+                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/10"
                 >
                   <span className="text-sm font-medium">{c.name}</span>
                   <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
@@ -232,7 +232,7 @@ function Index() {
       <footer className="mt-20 border-t border-border/60">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">
           <span className="font-display uppercase tracking-wider text-foreground">
-            Ember<span className="text-emerald-500">.</span>News
+            Ember<span className="text-red-600">.</span>News
           </span>
           <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
         </div>

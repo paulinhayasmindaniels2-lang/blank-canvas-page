@@ -72,8 +72,8 @@ export function LatestTicker({ items }: { items: Article[] }) {
                 animate={{
                   color:
                     active === i
-                      ? "var(--ember, oklch(0.55 0.22 310))"
-                      : "color-mix(in oklab, var(--ember, oklch(0.55 0.22 310)) 70%, transparent)",
+                      ? "var(--ember, oklch(0.45 0.25 25))"
+                      : "color-mix(in oklab, var(--ember, oklch(0.45 0.25 25)) 70%, transparent)",
                   scale: active === i ? 1.08 : 1,
                 }}
                 transition={{ duration: 0.35 }}

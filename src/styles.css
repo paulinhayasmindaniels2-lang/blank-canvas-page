@@ -261,8 +261,8 @@ html.dark {
     100deg,
     hsl(var(--foreground)) 0%,
     hsl(var(--foreground)) 40%,
-    #10B981 50%,
-    #059669 55%,
+    #DC2626 50%,
+    #991B1B 55%,
     hsl(var(--foreground)) 65%,
     hsl(var(--foreground)) 100%
   );

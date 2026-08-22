@@ -38,12 +38,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <motion.div
         style={{ scaleX }}
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-[#991B1B] via-[#DC2626] to-[#EF4444]"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-neutral-600 via-white to-neutral-600"
       />
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2 md:px-6">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
-          <span className="ember-word bg-gradient-to-r from-[#991B1B] via-[#DC2626] to-[#EF4444] bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
+          <span className="ember-word bg-gradient-to-r from-neutral-400 via-white to-neutral-400 bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
             Ember<span className="ember-accent">.</span>News
           </span>
         </Link>
@@ -60,7 +60,7 @@ export function SiteHeader() {
               <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
                 {c.name}
               </span>
-              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(220,38,38,0.6)]" />
+              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
             </Link>
           ))}
         </nav>
@@ -72,7 +72,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-48 rounded-[7px] border border-[#991B1B] bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#DC2626] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
+              className="w-48 rounded-[7px] border border-neutral-700 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,255,255,0.15)] placeholder:text-muted-foreground transition-shadow focus:border-neutral-500 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] focus:outline-none"
             />
           </div>
         </form>
@@ -107,7 +107,7 @@ export function SiteHeader() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar artigos..."
-                  className="w-full rounded-[7px] border border-[#991B1B] bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#DC2626] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
+                  className="w-full rounded-[7px] border border-neutral-700 bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,255,255,0.15)] placeholder:text-muted-foreground transition-shadow focus:border-neutral-500 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] focus:outline-none"
                 />
               </div>
             </form>

@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">oi</div>
+      <div className="sr-only">mude toda a cor do site para branco e preto</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
@@ -192,7 +192,7 @@ function Index() {
                 <Link
                   to="/categoria/$slug"
                   params={{ slug: c.slug }}
-                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/10"
+                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-neutral-500 hover:shadow-lg hover:shadow-white/5"
                 >
                   <span className="text-sm font-medium">{c.name}</span>
                   <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
@@ -232,7 +232,7 @@ function Index() {
       <footer className="mt-20 border-t border-border/60">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:px-6">
           <span className="font-display uppercase tracking-wider text-foreground">
-            Ember<span className="text-red-600">.</span>News
+            Ember<span className="text-white">.</span>News
           </span>
           <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
         </div>

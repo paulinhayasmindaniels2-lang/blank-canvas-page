@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as BuscarRouteImport } from './routes/buscar'
 import { Route as BrancoRouteImport } from './routes/branco'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 import { Route as ArtigoSlugRouteImport } from './routes/artigo.$slug'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BuscarRoute = BuscarRouteImport.update({
   id: '/buscar',
   path: '/buscar',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
+  '/login': typeof LoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
+  '/login': typeof LoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
@@ -60,19 +68,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/branco': typeof BrancoRoute
   '/buscar': typeof BuscarRoute
+  '/login': typeof LoginRoute
   '/artigo/$slug': typeof ArtigoSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/branco' | '/buscar' | '/artigo/$slug' | '/categoria/$slug'
+  fullPaths:
+    | '/'
+    | '/branco'
+    | '/buscar'
+    | '/login'
+    | '/artigo/$slug'
+    | '/categoria/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/branco' | '/buscar' | '/artigo/$slug' | '/categoria/$slug'
+  to:
+    | '/'
+    | '/branco'
+    | '/buscar'
+    | '/login'
+    | '/artigo/$slug'
+    | '/categoria/$slug'
   id:
     | '__root__'
     | '/'
     | '/branco'
     | '/buscar'
+    | '/login'
     | '/artigo/$slug'
     | '/categoria/$slug'
   fileRoutesById: FileRoutesById
@@ -81,12 +103,20 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrancoRoute: typeof BrancoRoute
   BuscarRoute: typeof BuscarRoute
+  LoginRoute: typeof LoginRoute
   ArtigoSlugRoute: typeof ArtigoSlugRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/buscar': {
       id: '/buscar'
       path: '/buscar'
@@ -129,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrancoRoute: BrancoRoute,
   BuscarRoute: BuscarRoute,
+  LoginRoute: LoginRoute,
   ArtigoSlugRoute: ArtigoSlugRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
 }

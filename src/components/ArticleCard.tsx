@@ -25,12 +25,12 @@ export function ArticleCard({
       params={{ slug: article.slug }}
       className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 ${
         isLg
-          ? "min-h-[420px] border-red-500/40 p-7 shadow-[0_20px_60px_-20px_rgba(220,38,38,0.45)] hover:border-red-600/70 hover:shadow-[0_35px_90px_-20px_rgba(153,27,27,0.6)] md:min-h-[520px]"
+          ? "min-h-[420px] border-neutral-700/60 p-7 shadow-[0_20px_60px_-20px_rgba(255,255,255,0.08)] hover:border-neutral-500/80 hover:shadow-[0_35px_90px_-20px_rgba(255,255,255,0.12)] md:min-h-[520px]"
           : isSpot
-          ? "min-h-[260px] border-red-500/50 shadow-[0_12px_40px_-12px_rgba(220,38,38,0.5)] hover:border-red-600/70 hover:shadow-[0_22px_60px_-12px_rgba(153,27,27,0.65)]"
+          ? "min-h-[260px] border-neutral-700/70 shadow-[0_12px_40px_-12px_rgba(255,255,255,0.08)] hover:border-neutral-500/80 hover:shadow-[0_22px_60px_-12px_rgba(255,255,255,0.15)]"
           : isSm
-          ? "min-h-[200px] border-border hover:border-red-500/60 hover:shadow-[0_10px_30px_-10px_rgba(153,27,27,0.4)]"
-          : "min-h-[260px] border-border hover:border-red-500/60 hover:shadow-[0_14px_40px_-10px_rgba(153,27,27,0.45)]"
+          ? "min-h-[200px] border-border hover:border-neutral-600/70 hover:shadow-[0_10px_30px_-10px_rgba(255,255,255,0.08)]"
+          : "min-h-[260px] border-border hover:border-neutral-600/70 hover:shadow-[0_14px_40px_-10px_rgba(255,255,255,0.1)]"
       }`}
     >
       {/* Shine sweep on hover */}

@@ -332,5 +332,5 @@ main > section {
 
 .article-card-hover:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1), 0 10px 10px -5px rgba(16, 185, 129, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.1), 0 10px 10px -5px rgba(220, 38, 38, 0.04);
 }

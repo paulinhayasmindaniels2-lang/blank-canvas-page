@@ -72,7 +72,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-48 rounded-[7px] border border-[#991B1B] bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(220,38,38,0.55)] placeholder:text-muted-foreground transition-shadow focus:border-[#DC2626] focus:shadow-[0_0_18px_rgba(220,38,38,0.8)] focus:outline-none"
+              className="w-48 rounded-[7px] border border-neutral-700 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,255,255,0.15)] placeholder:text-muted-foreground transition-shadow focus:border-neutral-500 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] focus:outline-none"
             />
           </div>
         </form>

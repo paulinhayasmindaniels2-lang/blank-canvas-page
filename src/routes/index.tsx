@@ -158,7 +158,7 @@ function Index() {
             >
               <ArticleCard article={a} size="md" spotlight={i === 0} />
               <div className="flex flex-col justify-center gap-3">
-                <span className="text-xs uppercase tracking-[0.3em] text-ember">
+                <span className="text-xs uppercase tracking-[0.3em] text-primary">
                   {a.category}
                 </span>
                 <h3 className="font-display text-2xl leading-tight md:text-3xl">
@@ -168,7 +168,7 @@ function Index() {
                 <Link
                   to="/artigo/$slug"
                   params={{ slug: a.slug }}
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-ember hover:underline"
+                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
                   Ler matéria <ArrowRight className="size-4" />
                 </Link>

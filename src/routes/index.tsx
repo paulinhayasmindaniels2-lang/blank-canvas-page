@@ -96,7 +96,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="sr-only">Crie uma tela de login pra cadastro de usuarios</div>
+      <div className="sr-only">qual modelo de IA vc ta usando ?</div>
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">

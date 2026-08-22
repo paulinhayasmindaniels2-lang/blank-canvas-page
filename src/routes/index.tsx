@@ -192,7 +192,7 @@ function Index() {
                 <Link
                   to="/categoria/$slug"
                   params={{ slug: c.slug }}
-                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/10"
+                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-neutral-500 hover:shadow-lg hover:shadow-white/5"
                 >
                   <span className="text-sm font-medium">{c.name}</span>
                   <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />

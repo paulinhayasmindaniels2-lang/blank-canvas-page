@@ -79,7 +79,7 @@ export function SiteHeader() {
 
         <Link
           to="/login"
-          className="hidden items-center gap-2 rounded-md border border-border/60 bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:bg-neutral-200 md:flex"
+          className="hidden items-center gap-2 rounded-md border border-border/60 bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 md:flex"
         >
           Entrar
         </Link>

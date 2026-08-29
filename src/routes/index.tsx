@@ -6,7 +6,52 @@ import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight, Check } from "lucide-react";
+
+const pricingPlans = [
+  {
+    name: "Leitor",
+    price: "Grátis",
+    period: "",
+    description: "Para acompanhar o essencial da tecnologia.",
+    features: [
+      "Acesso a todas as matérias",
+      "Newsletter semanal",
+      "Busca ilimitada",
+    ],
+    highlighted: false,
+    cta: "Começar agora",
+  },
+  {
+    name: "Assinante",
+    price: "R$ 19",
+    period: "/mês",
+    description: "Para quem quer profundidade e antecipação.",
+    features: [
+      "Tudo do plano Leitor",
+      "Reportagens exclusivas",
+      "Sem anúncios",
+      "Newsletter diária",
+      "Acesso antecipado a pautas",
+    ],
+    highlighted: true,
+    cta: "Assinar agora",
+  },
+  {
+    name: "Empresa",
+    price: "R$ 89",
+    period: "/mês",
+    description: "Para times que acompanham o mercado de perto.",
+    features: [
+      "Tudo do plano Assinante",
+      "Até 10 usuários",
+      "Relatórios setoriais",
+      "Suporte prioritário",
+    ],
+    highlighted: false,
+    cta: "Falar com vendas",
+  },
+];
 
 function LazyVideo({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -254,6 +299,70 @@ function Index() {
                   <span className="text-sm font-medium">{c.name}</span>
                   <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
                 </Link>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Tabela de preços */}
+        <motion.section {...fadeUp} className="mt-16">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <h2 className="font-display text-2xl uppercase">Planos</h2>
+            <p className="max-w-md text-sm text-muted-foreground">
+              Escolha o plano ideal para acompanhar o que importa em tecnologia.
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {pricingPlans.map((plan, i) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`relative flex flex-col gap-6 rounded-2xl border p-6 ${
+                  plan.highlighted
+                    ? "border-primary bg-card shadow-xl shadow-primary/10 md:-translate-y-2"
+                    : "border-border bg-card/40"
+                }`}
+              >
+                {plan.highlighted && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary-foreground">
+                    Mais popular
+                  </span>
+                )}
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                    {plan.name}
+                  </span>
+                  <div className="flex items-end gap-1">
+                    <span className="font-display text-3xl">{plan.price}</span>
+                    {plan.period && (
+                      <span className="pb-1 text-sm text-muted-foreground">{plan.period}</span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
+                </div>
+
+                <ul className="flex flex-1 flex-col gap-3">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm">
+                      <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span className="text-foreground">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  type="button"
+                  className={`w-full rounded-lg py-2.5 text-sm font-medium transition-all ${
+                    plan.highlighted
+                      ? "bg-primary text-primary-foreground hover:opacity-90"
+                      : "border border-border bg-transparent text-foreground hover:border-primary/60 hover:bg-accent"
+                  }`}
+                >
+                  {plan.cta}
+                </button>
               </motion.div>
             ))}
           </div>

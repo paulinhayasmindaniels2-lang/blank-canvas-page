@@ -25,7 +25,7 @@ export function ArticleCard({
       params={{ slug: article.slug }}
       className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 ${
         isLg
-          ? "min-h-[420px] border-neutral-700/60 p-7 shadow-[0_20px_60px_-20px_rgba(255,255,255,0.08)] hover:border-neutral-500/80 hover:shadow-[0_35px_90px_-20px_rgba(255,255,255,0.12)] md:min-h-[520px]"
+          ? "min-h-[280px] border-neutral-700/60 p-6 shadow-[0_20px_60px_-20px_rgba(255,255,255,0.08)] hover:border-neutral-500/80 hover:shadow-[0_35px_90px_-20px_rgba(255,255,255,0.12)] md:min-h-[340px]"
           : isSpot
           ? "min-h-[260px] border-neutral-700/70 shadow-[0_12px_40px_-12px_rgba(255,255,255,0.08)] hover:border-neutral-500/80 hover:shadow-[0_22px_60px_-12px_rgba(255,255,255,0.15)]"
           : isSm
@@ -88,7 +88,7 @@ export function ArticleCard({
         <h3
           className={`font-display uppercase leading-tight transition-colors ${
             isLg
-              ? "headline-shimmer text-4xl text-foreground md:text-5xl lg:text-6xl"
+              ? "headline-shimmer text-3xl text-foreground md:text-4xl lg:text-5xl"
               : isSm
               ? "text-base text-foreground group-hover:text-ember"
               : "text-xl text-foreground group-hover:text-ember md:text-2xl"

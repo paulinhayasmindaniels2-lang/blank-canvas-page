@@ -102,21 +102,60 @@ function Index() {
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
-        {/* Hero split: featured story + sidebar list */}
-        <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.6fr_1fr]">
+        {/* Hero editorial principal */}
+        <section className="flex flex-col gap-6 py-2">
+          {/* Trending Bar Topo Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-4"
+            transition={{ duration: 0.5 }}
+            className="flex flex-wrap items-center gap-3 rounded-full border border-border/80 bg-card/60 px-4 py-2 text-xs backdrop-blur-md"
           >
-            <span className="ember-shimmer-text text-xs uppercase tracking-[0.3em]">
-              Manchete do dia
+            <span className="flex items-center gap-1.5 font-bold uppercase tracking-widest text-primary">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-primary" />
+              </span>
+              Em Alta
             </span>
-            <ArticleCard article={featured} size="lg" />
+            <span className="hidden h-3 w-px bg-border sm:block" />
+            <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
+              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#IA Multimodal</span>
+              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#Cibersegurança</span>
+              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#Startups US$ 80M</span>
+              <span className="hidden rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground md:inline-block">#Chips 3nm</span>
+            </div>
           </motion.div>
 
-          <LatestTicker items={sidebarList} />
+          {/* Grid Split Hero */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.7fr_1fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-4"
+            >
+              <div className="flex items-center justify-between">
+                <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
+                  <span className="inline-block size-1.5 rounded-full bg-primary" />
+                  Manchete do Dia
+                </span>
+                <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                  Edição Especial
+                </span>
+              </div>
+              <ArticleCard article={featured} size="lg" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col rounded-2xl border border-border/80 bg-card/40 p-5 backdrop-blur-sm shadow-lg"
+            >
+              <LatestTicker items={sidebarList} />
+            </motion.div>
+          </div>
         </section>
 
         {/* Vídeo em destaque */}

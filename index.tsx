@@ -6,7 +6,7 @@ import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Play, Twitter, Linkedin, Instagram, Rss } from "lucide-react";
 
 function LazyVideo({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -286,7 +286,8 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-24 overflow-hidden border-t border-border/60 bg-gradient-to-b from-transparent to-black/40">
+      <footer className="relative mt-32 overflow-hidden border-t border-border/60">
+        {/* glow decorativo */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
@@ -296,125 +297,135 @@ function Index() {
           className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-6">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
             {/* Marca */}
-            <div className="lg:col-span-1">
-              <span className="font-display text-lg uppercase tracking-wider text-foreground">
+            <div className="max-w-[38ch]">
+              <span className="font-display text-xl uppercase tracking-wider text-foreground">
                 Ember<span className="text-primary">.</span>News
               </span>
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de tecnologia com curadoria editorial. IA, startups, cibersegurança e mais — sem ruído.
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Cobertura diária de tecnologia com curadoria editorial: IA, startups,
+                cibersegurança, hardware e software — sem ruído, direto ao ponto.
               </p>
-              <div className="mt-5 flex items-center gap-3">
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Twitter"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  <Twitter className="size-4" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  <Linkedin className="size-4" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  <Instagram className="size-4" />
-                </a>
+              <div className="mt-6 flex items-center gap-3">
+                {[
+                  { Icon: Twitter, label: "Twitter" },
+                  { Icon: Linkedin, label: "LinkedIn" },
+                  { Icon: Instagram, label: "Instagram" },
+                  { Icon: Rss, label: "RSS" },
+                ].map(({ Icon, label }) => (
+                  <a
+                    key={label}
+                    href="#"
+                    aria-label={label}
+                    className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <Icon className="size-4" />
+                  </a>
+                ))}
               </div>
             </div>
 
             {/* Categorias */}
-            <div>
-              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Categorias</h3>
-              <ul className="mt-4 space-y-2.5">
-                {categories.slice(0, 6).map((c) => (
+            <nav aria-label="Categorias">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                Categorias
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {categories.map((c) => (
                   <li key={c.slug}>
                     <Link
                       to="/categoria/$slug"
                       params={{ slug: c.slug }}
-                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+                      className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
                     >
-                      <span className="border-b border-transparent group-hover:border-primary/40">{c.name}</span>
+                      {c.name}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
 
             {/* Institucional */}
-            <div>
-              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Institucional</h3>
-              <ul className="mt-4 space-y-2.5">
-                {[
-                  { label: "Sobre nós", to: "/" },
-                  { label: "Nossa equipe", to: "/" },
-                  { label: "Carreiras", to: "/" },
-                  { label: "Contato", to: "/" },
-                  { label: "Anuncie", to: "/" },
-                ].map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      to={item.to}
-                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      <span className="border-b border-transparent group-hover:border-primary/40">{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
+            <nav aria-label="Institucional">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                Institucional
+              </h3>
+              <ul className="mt-4 space-y-3">
+                <li>
+                  <Link
+                    to="/buscar"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Buscar
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Sobre nós
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Contato
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Trabalhe conosco
+                  </a>
+                </li>
               </ul>
-            </div>
+            </nav>
 
-            {/* Legal + Newsletter */}
-            <div>
-              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Legal</h3>
-              <ul className="mt-4 space-y-2.5">
-                {[
-                  { label: "Termos de uso", to: "/" },
-                  { label: "Privacidade", to: "/" },
-                  { label: "Cookies", to: "/" },
-                  { label: "Ética editorial", to: "/" },
-                ].map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      to={item.to}
-                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      <span className="border-b border-transparent group-hover:border-primary/40">{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
+            {/* Legal */}
+            <nav aria-label="Legal">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                Legal
+              </h3>
+              <ul className="mt-4 space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Termos de uso
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Privacidade
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground"
+                  >
+                    Cookies
+                  </a>
+                </li>
               </ul>
-              <Link
-                to="/"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
-              >
-                Fale conosco
-                <ArrowUpRight className="size-3.5" />
-              </Link>
-            </div>
+            </nav>
           </div>
 
-          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-6 text-xs text-muted-foreground sm:flex-row">
-            <span>© {new Date().getFullYear().toString()} Ember.News — Todos os direitos reservados.</span>
-            <span className="flex items-center gap-1.5">
-              Feito com precisão editorial
-              <span className="size-1 rounded-full bg-primary" />
-              Tecnologia, sem ruído
-            </span>
+          {/* linha inferior */}
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
+            <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
+            <span className="text-muted-foreground/70">Feito com curadoria editorial humana.</span>
           </div>
         </div>
       </footer>

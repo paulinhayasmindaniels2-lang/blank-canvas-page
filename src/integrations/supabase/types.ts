@@ -14,7 +14,124 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      plans: {
+        Row: {
+          id: string
+          slug: string
+          nome: string
+          descricao: string | null
+          preco_centavos: number
+          periodo: 'mensal' | 'anual' | 'vitalicio'
+          destaque: boolean
+          ativo: boolean
+          ordem: number
+          criado_em: string
+          atualizado_em: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          nome: string
+          descricao?: string | null
+          preco_centavos?: number
+          periodo?: 'mensal' | 'anual' | 'vitalicio'
+          destaque?: boolean
+          ativo?: boolean
+          ordem?: number
+          criado_em?: string
+          atualizado_em?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          nome?: string
+          descricao?: string | null
+          preco_centavos?: number
+          periodo?: 'mensal' | 'anual' | 'vitalicio'
+          destaque?: boolean
+          ativo?: boolean
+          ordem?: number
+          criado_em?: string
+          atualizado_em?: string
+        }
+        Relationships: []
+      }
+      plan_features: {
+        Row: {
+          id: string
+          plan_id: string
+          descricao: string
+          incluido: boolean
+          ordem: number
+          criado_em: string
+        }
+        Insert: {
+          id?: string
+          plan_id: string
+          descricao: string
+          incluido?: boolean
+          ordem?: number
+          criado_em?: string
+        }
+        Update: {
+          id?: string
+          plan_id?: string
+          descricao?: string
+          incluido?: boolean
+          ordem?: number
+          criado_em?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plan_features_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscriptions: {
+        Row: {
+          id: string
+          user_id: string
+          plan_id: string
+          status: 'ativa' | 'cancelada' | 'expirada' | 'pendente'
+          iniciado_em: string
+          expira_em: string | null
+          criado_em: string
+          atualizado_em: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          plan_id: string
+          status?: 'ativa' | 'cancelada' | 'expirada' | 'pendente'
+          iniciado_em?: string
+          expira_em?: string | null
+          criado_em?: string
+          atualizado_em?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          plan_id?: string
+          status?: 'ativa' | 'cancelada' | 'expirada' | 'pendente'
+          iniciado_em?: string
+          expira_em?: string | null
+          criado_em?: string
+          atualizado_em?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -6,14 +6,7 @@ import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight, Play, Twitter, Linkedin, Instagram } from "lucide-react";
-
-function SocialIcon({ name }: { name: string }) {
-  const className = "size-4";
-  if (name === "twitter") return <Twitter className={className} />;
-  if (name === "linkedin") return <Linkedin className={className} />;
-  return <Instagram className={className} />;
-}
+import { ArrowRight, Play, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
 
 function LazyVideo({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -293,61 +286,70 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-32 overflow-hidden border-t border-border/60 bg-card/30">
+      <footer className="relative mt-24 overflow-hidden border-t border-border/60 bg-card/20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-primary/10 blur-3xl"
+          className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
         />
 
-        <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 md:px-6 md:pt-20">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-            {/* Marca + assinatura editorial */}
+        <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-6">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+            {/* Marca */}
             <div className="flex flex-col gap-4">
-              <Link to="/" className="flex items-center gap-2">
-                <span className="inline-block size-2.5 rounded-full bg-primary" />
-                <span className="font-display text-lg uppercase tracking-wider text-foreground">
-                  Ember<span className="text-primary">.</span>News
-                </span>
-              </Link>
-              <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial e sem ruído.
+              <span className="font-display text-lg uppercase tracking-wider text-foreground">
+                Ember<span className="text-primary">.</span>News
+              </span>
+              <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+                Cobertura diária de IA, startups, cibersegurança, hardware e software — com curadoria editorial e sem ruído.
               </p>
               <div className="flex items-center gap-3 pt-1">
-                {[
-                  { label: "X / Twitter", href: "https://x.com", icon: "twitter" },
-                  { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-                  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-                ].map((s) => (
-                  <a
-                    key={s.icon}
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={s.label}
-                    className="flex size-9 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors duration-200 hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <SocialIcon name={s.icon} />
-                  </a>
-                ))}
+                <a
+                  href="#"
+                  aria-label="Twitter"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                >
+                  <Twitter className="size-4" />
+                </a>
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                >
+                  <Linkedin className="size-4" />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                >
+                  <Instagram className="size-4" />
+                </a>
+                <a
+                  href="mailto:contato@ember.news"
+                  aria-label="E-mail"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                >
+                  <Mail className="size-4" />
+                </a>
               </div>
             </div>
 
             {/* Categorias */}
-            <div className="flex flex-col gap-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
                 Categorias
-              </h3>
-              <nav className="flex flex-col gap-2.5">
+              </span>
+              <nav className="flex flex-col gap-2">
                 {categories.map((c) => (
                   <Link
                     key={c.slug}
                     to="/categoria/$slug"
                     params={{ slug: c.slug }}
-                    className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
                   >
                     {c.name}
                   </Link>
@@ -356,55 +358,48 @@ function Index() {
             </div>
 
             {/* Institucional */}
-            <div className="flex flex-col gap-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
                 Institucional
-              </h3>
-              <nav className="flex flex-col gap-2.5">
-                <Link to="/buscar" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Buscar artigos
+              </span>
+              <nav className="flex flex-col gap-2">
+                <Link to="/" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
+                  Início
                 </Link>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Sobre a Ember.News
+                <Link to="/buscar" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
+                  Buscar
+                </Link>
+                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
+                  Sobre nós
                 </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Anuncie conosco
-                </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Trabalhe conosco
+                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
+                  Contato
                 </a>
               </nav>
             </div>
 
-            {/* Legal + Newsletter */}
-            <div className="flex flex-col gap-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+            {/* Legal */}
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
                 Legal
-              </h3>
-              <nav className="flex flex-col gap-2.5">
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              </span>
+              <nav className="flex flex-col gap-2">
+                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
                   Termos de uso
                 </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
                   Privacidade
                 </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Ética editorial
+                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
+                  Cookies
                 </a>
               </nav>
             </div>
           </div>
 
-          {/* Linha inferior */}
-          <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
-            <span>
-              © {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.
-            </span>
-            <span className="flex items-center gap-1.5">
-              Feito com
-              <span className="inline-block size-1.5 rounded-full bg-primary" />
-              para quem lê tecnologia todos os dias.
-            </span>
+          <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
+            <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
+            <span className="text-muted-foreground/70">Feito com curadoria editorial humana.</span>
           </div>
         </div>
       </footer>

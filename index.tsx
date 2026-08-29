@@ -6,7 +6,7 @@ import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight, Play, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 
 function LazyVideo({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -286,120 +286,135 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-24 overflow-hidden border-t border-border/60 bg-card/20">
+      <footer className="relative mt-24 overflow-hidden border-t border-border/60 bg-gradient-to-b from-transparent to-black/40">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
+          className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-6">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Marca */}
-            <div className="flex flex-col gap-4">
+            <div className="lg:col-span-1">
               <span className="font-display text-lg uppercase tracking-wider text-foreground">
                 Ember<span className="text-primary">.</span>News
               </span>
-              <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de IA, startups, cibersegurança, hardware e software — com curadoria editorial e sem ruído.
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                Cobertura diária de tecnologia com curadoria editorial. IA, startups, cibersegurança e mais — sem ruído.
               </p>
-              <div className="flex items-center gap-3 pt-1">
+              <div className="mt-5 flex items-center gap-3">
                 <a
-                  href="#"
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label="Twitter"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   <Twitter className="size-4" />
                 </a>
                 <a
-                  href="#"
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   <Linkedin className="size-4" />
                 </a>
                 <a
-                  href="#"
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label="Instagram"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+                  className="flex size-9 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   <Instagram className="size-4" />
-                </a>
-                <a
-                  href="mailto:contato@ember.news"
-                  aria-label="E-mail"
-                  className="flex size-9 items-center justify-center rounded-full border border-border/80 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
-                >
-                  <Mail className="size-4" />
                 </a>
               </div>
             </div>
 
             {/* Categorias */}
-            <div className="flex flex-col gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-                Categorias
-              </span>
-              <nav className="flex flex-col gap-2">
-                {categories.map((c) => (
-                  <Link
-                    key={c.slug}
-                    to="/categoria/$slug"
-                    params={{ slug: c.slug }}
-                    className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
-                  >
-                    {c.name}
-                  </Link>
+            <div>
+              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Categorias</h3>
+              <ul className="mt-4 space-y-2.5">
+                {categories.slice(0, 6).map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      to="/categoria/$slug"
+                      params={{ slug: c.slug }}
+                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      <span className="border-b border-transparent group-hover:border-primary/40">{c.name}</span>
+                    </Link>
+                  </li>
                 ))}
-              </nav>
+              </ul>
             </div>
 
             {/* Institucional */}
-            <div className="flex flex-col gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-                Institucional
-              </span>
-              <nav className="flex flex-col gap-2">
-                <Link to="/" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Início
-                </Link>
-                <Link to="/buscar" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Buscar
-                </Link>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Sobre nós
-                </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Contato
-                </a>
-              </nav>
+            <div>
+              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Institucional</h3>
+              <ul className="mt-4 space-y-2.5">
+                {[
+                  { label: "Sobre nós", to: "/" },
+                  { label: "Nossa equipe", to: "/" },
+                  { label: "Carreiras", to: "/" },
+                  { label: "Contato", to: "/" },
+                  { label: "Anuncie", to: "/" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
+                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      <span className="border-b border-transparent group-hover:border-primary/40">{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Legal */}
-            <div className="flex flex-col gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-                Legal
-              </span>
-              <nav className="flex flex-col gap-2">
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Termos de uso
-                </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Privacidade
-                </a>
-                <a href="#" className="w-fit border-b border-transparent text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
-                  Cookies
-                </a>
-              </nav>
+            {/* Legal + Newsletter */}
+            <div>
+              <h3 className="font-display text-xs uppercase tracking-wider text-foreground">Legal</h3>
+              <ul className="mt-4 space-y-2.5">
+                {[
+                  { label: "Termos de uso", to: "/" },
+                  { label: "Privacidade", to: "/" },
+                  { label: "Cookies", to: "/" },
+                  { label: "Ética editorial", to: "/" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
+                      className="group inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      <span className="border-b border-transparent group-hover:border-primary/40">{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+              >
+                Fale conosco
+                <ArrowUpRight className="size-3.5" />
+              </Link>
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-            <span>© {new Date().getFullYear().toString()} Ember.News — Tecnologia, sem ruído.</span>
-            <span className="text-muted-foreground/70">Feito com curadoria editorial humana.</span>
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-6 text-xs text-muted-foreground sm:flex-row">
+            <span>© {new Date().getFullYear().toString()} Ember.News — Todos os direitos reservados.</span>
+            <span className="flex items-center gap-1.5">
+              Feito com precisão editorial
+              <span className="size-1 rounded-full bg-primary" />
+              Tecnologia, sem ruído
+            </span>
           </div>
         </div>
       </footer>

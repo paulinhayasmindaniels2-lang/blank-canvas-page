@@ -1,14 +1,19 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
-import { Search, Menu, X, Sun, Moon } from "lucide-react";
+import { Search, Menu, X, Sun, Moon, User as UserIcon, ChevronDown, LogOut } from "lucide-react";
 import { categories } from "@/lib/articles";
+import { supabase } from "@/integrations/supabase/client";
+import type { User } from "@supabase/supabase-js";
+import { toast } from "sonner";
 
 export function SiteHeader() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isDark, setIsDark] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 24, mass: 0.3 });
 
@@ -18,6 +23,30 @@ export function SiteHeader() {
     setIsDark(dark);
     document.documentElement.classList.toggle("dark", dark);
   }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null);
+    });
+    const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUserMenuOpen(false);
+    toast.success("Você saiu da sua conta.");
+    navigate({ to: "/" });
+  };
+
+  const displayName =
+    (user?.user_metadata?.full_name as string | undefined) ||
+    (user?.user_metadata?.name as string | undefined) ||
+    user?.email?.split("@")[0] ||
+    "";
+  const avatarUrl = user?.user_metadata?.avatar_url as string | undefined;
 
   const toggleTheme = () => {
     const next = !isDark;
@@ -77,12 +106,58 @@ export function SiteHeader() {
           </div>
         </form>
 
-        <Link
-          to="/login"
-          className="hidden items-center gap-2 rounded-md border border-border/60 bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 md:flex"
-        >
-          Entrar
-        </Link>
+        {user ? (
+          <div className="relative hidden md:block">
+            <button
+              type="button"
+              onClick={() => setUserMenuOpen((v) => !v)}
+              className="flex items-center gap-2 rounded-md border border-border/60 bg-card px-2.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            >
+              {avatarUrl ? (
+                <img src={avatarUrl} alt={displayName} className="size-6 rounded-full object-cover" />
+              ) : (
+                <span className="flex size-6 items-center justify-center rounded-full bg-ember/15 text-ember">
+                  <UserIcon className="size-3.5" />
+                </span>
+              )}
+              <span className="max-w-[110px] truncate">{displayName}</span>
+              <ChevronDown className={`size-3.5 text-muted-foreground transition-transform ${userMenuOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {userMenuOpen && (
+              <div className="absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+                <div className="flex items-center gap-3 border-b border-border px-4 py-3">
+                  {avatarUrl ? (
+                    <img src={avatarUrl} alt={displayName} className="size-9 rounded-full object-cover" />
+                  ) : (
+                    <span className="flex size-9 items-center justify-center rounded-full bg-ember/15 text-ember">
+                      <UserIcon className="size-4" />
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-foreground">{displayName}</p>
+                    <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                >
+                  <LogOut className="size-4" />
+                  Sair
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="hidden items-center gap-2 rounded-md border border-border/60 bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 md:flex"
+          >
+            Entrar
+          </Link>
+        )}
 
         <button
           type="button"
@@ -134,6 +209,45 @@ export function SiteHeader() {
                   <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100 group-[.active]:inset-x-3 group-[.active]:w-auto group-[.active]:opacity-100" />
                 </Link>
               ))}
+            </div>
+
+            <div className="border-t border-border/60 pt-3">
+              {user ? (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+                    {avatarUrl ? (
+                      <img src={avatarUrl} alt={displayName} className="size-9 rounded-full object-cover" />
+                    ) : (
+                      <span className="flex size-9 items-center justify-center rounded-full bg-ember/15 text-ember">
+                        <UserIcon className="size-4" />
+                      </span>
+                    )}
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-foreground">{displayName}</p>
+                      <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      handleLogout();
+                    }}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-border/60 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  >
+                    <LogOut className="size-4" />
+                    Sair
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90"
+                >
+                  Entrar
+                </Link>
+              )}
             </div>
           </div>
         </div>

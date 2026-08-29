@@ -104,6 +104,24 @@ function Index() {
 
         {/* Hero editorial principal */}
         <section className="flex flex-col gap-6 py-2">
+          {/* Banner do pássaro no topo da hero */}
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-2xl border border-border/80 shadow-lg"
+          >
+            <img
+              src="/bird-banner.svg"
+              alt="Ilustração de um pássaro estilizado pousado em um galho ao entardecer"
+              className="h-40 w-full object-cover md:h-56 lg:h-64"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-background/0 to-transparent"
+            />
+          </motion.div>
+
           {/* Trending Bar Topo Hero */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}

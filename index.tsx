@@ -286,14 +286,14 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-32 overflow-hidden border-t border-border/60 bg-card">
+      <footer className="relative mt-32 overflow-hidden border-t border-white/10 bg-black">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-ember to-transparent"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-40 left-1/2 size-80 -translate-x-1/2 rounded-full bg-ember/10 blur-3xl"
+          className="pointer-events-none absolute -top-40 left-1/2 size-80 -translate-x-1/2 rounded-full bg-ember/20 blur-3xl"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
@@ -346,7 +346,7 @@ function Index() {
                     <Link
                       to="/categoria/$slug"
                       params={{ slug: c.slug }}
-                      className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                      className="text-base font-medium text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
                     >
                       {c.name}
                     </Link>

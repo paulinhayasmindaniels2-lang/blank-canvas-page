@@ -103,7 +103,7 @@ function Index() {
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
         {/* Hero editorial principal */}
-        <section className="flex flex-col gap-4 py-1">
+        <section className="flex flex-col gap-6 py-2">
           {/* Trending Bar Topo Hero */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -144,7 +144,15 @@ function Index() {
                   Edição Especial
                 </span>
               </div>
-              <ArticleCard article={featured} size="md" />
+              <div className="relative overflow-hidden rounded-xl border border-neutral-700/60 shadow-[0_20px_60px_-20px_rgba(255,255,255,0.08)]">
+                <img
+                  src="/bird-banner.svg"
+                  alt="Ilustração de um pássaro ao entardecer"
+                  className="h-48 w-full object-cover md:h-64"
+                  loading="lazy"
+                />
+              </div>
+              <ArticleCard article={featured} size="lg" />
             </motion.div>
 
             <motion.div

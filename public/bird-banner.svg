@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Ilustração de um pássaro estilizado ao entardecer">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f0f10"/>
+      <stop offset="45%" stop-color="#3a2a1e"/>
+      <stop offset="75%" stop-color="#c76b2e"/>
+      <stop offset="100%" stop-color="#f2a154"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe9c7"/>
+      <stop offset="60%" stop-color="#ffb15e"/>
+      <stop offset="100%" stop-color="rgba(255,177,94,0)"/>
+    </radialGradient>
+    <linearGradient id="birdBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b2b2e"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3f3f42"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <circle cx="600" cy="150" r="140" fill="url(#sun)"/>
+  <circle cx="600" cy="150" r="70" fill="#ffd8a1"/>
+
+  <!-- Silhuetas de pássaros ao fundo -->
+  <g fill="#1a1210" opacity="0.6">
+    <path d="M120 90 q14 -16 28 0 q14 -16 28 0" stroke="#1a1210" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M180 120 q12 -14 24 0 q12 -14 24 0" stroke="#1a1210" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M520 80 q10 -12 20 0 q10 -12 20 0" stroke="#1a1210" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pássaro principal em primeiro plano, pousado em um galho -->
+  <g transform="translate(230,190)">
+    <!-- galho -->
+    <path d="M-60 190 Q 120 160 340 200" stroke="#1c130d" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+    <!-- cauda -->
+    <path d="M60 120 L 150 170 L 60 150 Z" fill="url(#wing)"/>
+
+    <!-- corpo -->
+    <ellipse cx="60" cy="90" rx="70" ry="55" fill="url(#birdBody)"/>
+
+    <!-- asa -->
+    <path d="M20 60 Q 90 40 110 110 Q 60 100 20 90 Z" fill="url(#wing)"/>
+
+    <!-- cabeça -->
+    <circle cx="-10" cy="30" r="38" fill="url(#birdBody)"/>
+
+    <!-- crista -->
+    <path d="M-20 -6 L -6 -30 L 4 -4 Z" fill="#050505"/>
+
+    <!-- bico -->
+    <path d="M-46 30 L -82 22 L -46 14 Z" fill="#f2a154"/>
+
+    <!-- olho -->
+    <circle cx="-14" cy="24" r="5" fill="#ffe9c7"/>
+    <circle cx="-13" cy="24" r="2.2" fill="#050505"/>
+
+    <!-- pernas -->
+    <path d="M40 140 L 34 175" stroke="#050505" stroke-width="4" stroke-linecap="round"/>
+    <path d="M80 140 L 88 175" stroke="#050505" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

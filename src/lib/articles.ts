@@ -24,6 +24,7 @@ export type Article = {
   readMinutes: number;
   featured?: boolean;
   size?: "lg" | "md" | "sm";
+  image?: string;
   body: string[];
 };
 
@@ -39,6 +40,7 @@ export const articles: Article[] = [
     readMinutes: 6,
     featured: true,
     size: "lg",
+    image: "/bird-banner.svg",
     body: [
       "Um grupo de pesquisadores publicou nesta semana os resultados de um novo modelo multimodal capaz de superar benchmarks consolidados de raciocínio visual e linguagem natural simultaneamente.",
       "Segundo o paper, a arquitetura introduz um mecanismo de atenção esparsa que reduz drasticamente o custo de inferência sem prejudicar a precisão em tarefas complexas.",

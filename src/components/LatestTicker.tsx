@@ -83,7 +83,7 @@ export function LatestTicker({ items }: { items: Article[] }) {
                 <span className="text-xs uppercase tracking-wider text-muted-foreground">
                   {a.category}
                 </span>
-                <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-primary">
+                <h3 className="text-sm font-medium leading-snug text-latest-title transition-colors group-hover:text-latest-title/80">
                   {a.title}
                 </h3>
               </div>

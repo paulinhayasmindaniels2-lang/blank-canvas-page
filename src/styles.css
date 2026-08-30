@@ -95,8 +95,12 @@ html.dark {
   --nav-glow-end: oklch(0.78 0.29 29 / 0.1);
 }
 
-/* Escopo de tema verde "Matrix" — aplicado apenas na página inicial (.theme-matrix-green) */
-.theme-matrix-green {
+/* Escopo de tema verde "Matrix" — aplicado apenas na página inicial (.theme-matrix-green).
+   O bloco é repetido com o prefixo "html.dark" porque html.dark sozinho tem
+   especificidade maior que .theme-matrix-green e venceria a cascata, deixando
+   os tokens laranja originais vazarem quando o modo escuro está ativo. */
+.theme-matrix-green,
+html.dark .theme-matrix-green {
   --background: oklch(0.08 0.006 148);
   --foreground: oklch(0.88 0.22 148);
   --card: oklch(0.11 0.016 148);
@@ -355,15 +359,15 @@ body::after {
 }
 
 .video-aurora {
-  background: conic-gradient(from 0deg at 50% 50%, oklch(0.14 0.03 29), oklch(0.05 0.01 29), oklch(0.14 0.03 29));
+  background: conic-gradient(from 0deg at 50% 50%, color-mix(in oklab, var(--primary) 25%, var(--background)), color-mix(in oklab, var(--primary) 8%, var(--background)), color-mix(in oklab, var(--primary) 25%, var(--background)));
   filter: blur(60px);
   opacity: 0.4;
   animation: video-aurora-drift 14s linear infinite;
 }
 
 .video-aurora-2 {
-  background: radial-gradient(circle at 30% 30%, oklch(0.2 0.06 29) 0%, transparent 55%),
-              radial-gradient(circle at 70% 70%, oklch(0.1 0.02 29) 0%, transparent 55%);
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primary) 40%, transparent) 0%, transparent 55%),
+              radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--primary) 15%, transparent) 0%, transparent 55%);
   filter: blur(50px);
   opacity: 0.45;
   mix-blend-mode: screen;

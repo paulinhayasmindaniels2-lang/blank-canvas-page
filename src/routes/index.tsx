@@ -141,9 +141,8 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="theme-matrix-green relative min-h-screen bg-background">
       <MatrixRain />
-      <div className="sr-only">oi</div>
       <div className="relative z-10">
       <SiteHeader />
 

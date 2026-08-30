@@ -38,8 +38,8 @@ export function LatestTicker({ items }: { items: Article[] }) {
         </h2>
         <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
           <span className="relative flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-ember" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+            <span className="relative inline-flex size-2 rounded-full bg-primary" />
           </span>
           ao vivo
         </span>
@@ -58,7 +58,7 @@ export function LatestTicker({ items }: { items: Article[] }) {
               {active === i && (
                 <motion.span
                   layoutId="latest-active"
-                  className="pointer-events-none absolute inset-x-0 inset-y-1 -z-10 rounded-md bg-ember/5"
+                  className="pointer-events-none absolute inset-x-0 inset-y-1 -z-10 rounded-md bg-primary/5"
                   transition={{ type: "spring", stiffness: 280, damping: 30 }}
                 />
               )}
@@ -70,14 +70,12 @@ export function LatestTicker({ items }: { items: Article[] }) {
             >
               <motion.span
                 animate={{
-                  color:
-                    active === i
-                      ? "var(--ember, oklch(0.98 0 0))"
-                      : "color-mix(in oklab, var(--ember, oklch(0.98 0 0)) 70%, transparent)",
                   scale: active === i ? 1.08 : 1,
                 }}
                 transition={{ duration: 0.35 }}
-                className="font-display text-2xl tabular-nums"
+                className={`font-display text-2xl tabular-nums ${
+                  active === i ? "text-primary" : "text-primary/70"
+                }`}
               >
                 {(i + 1).toString().padStart(2, "0")}
               </motion.span>
@@ -85,7 +83,7 @@ export function LatestTicker({ items }: { items: Article[] }) {
                 <span className="text-xs uppercase tracking-wider text-muted-foreground">
                   {a.category}
                 </span>
-                <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-ember">
+                <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-primary">
                   {a.title}
                 </h3>
               </div>

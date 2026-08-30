@@ -355,10 +355,10 @@ function Index() {
 
                 <button
                   type="button"
-                  className={`w-full rounded-lg py-2.5 text-sm font-medium transition-all ${
+                  className={`w-full rounded-lg py-2.5 text-sm font-semibold transition-all focus-visible:outline-none ${
                     plan.highlighted
-                      ? "bg-primary text-primary-foreground hover:opacity-90"
-                      : "border border-border bg-transparent text-foreground hover:border-primary/60 hover:bg-accent"
+                      ? "btn-neon-subscribe text-primary-foreground"
+                      : "border border-border bg-transparent text-foreground transition-colors duration-200 hover:border-primary/60 hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
                   }`}
                 >
                   {plan.cta}

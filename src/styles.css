@@ -43,56 +43,56 @@
 :root {
   --radius: 0.5rem;
 
-  /* Pink Theme */
-  --background: oklch(0.15 0.05 350);
-  --foreground: oklch(0.98 0.01 350);
-  --card: oklch(0.18 0.06 350);
-  --card-foreground: oklch(0.98 0.01 350);
-  --popover: oklch(0.18 0.06 350);
-  --popover-foreground: oklch(0.98 0.01 350);
-  --primary: oklch(0.65 0.2 350);
-  --primary-foreground: oklch(0.98 0.01 350);
-  --secondary: oklch(0.25 0.08 350);
-  --secondary-foreground: oklch(0.98 0.01 350);
-  --muted: oklch(0.25 0.08 350);
-  --muted-foreground: oklch(0.7 0.05 350);
-  --accent: oklch(0.65 0.2 350);
-  --accent-foreground: oklch(0.98 0.01 350);
+  /* Neon Green Theme */
+  --background: oklch(0.15 0.03 145);
+  --foreground: oklch(0.98 0.01 145);
+  --card: oklch(0.18 0.035 145);
+  --card-foreground: oklch(0.98 0.01 145);
+  --popover: oklch(0.18 0.035 145);
+  --popover-foreground: oklch(0.98 0.01 145);
+  --primary: oklch(0.8 0.27 145);
+  --primary-foreground: oklch(0.12 0.02 145);
+  --secondary: oklch(0.25 0.05 145);
+  --secondary-foreground: oklch(0.98 0.01 145);
+  --muted: oklch(0.25 0.05 145);
+  --muted-foreground: oklch(0.7 0.04 145);
+  --accent: oklch(0.8 0.27 145);
+  --accent-foreground: oklch(0.12 0.02 145);
   --destructive: oklch(0.45 0.2 25);
-  --destructive-foreground: oklch(0.98 0.01 350);
-  --border: oklch(0.3 0.08 350);
-  --input: oklch(0.25 0.08 350);
-  --ring: oklch(0.65 0.2 350);
-  --ember: oklch(0.65 0.2 350);
-  --ember-foreground: oklch(0.98 0.01 350);
-  --nav-glow-start: oklch(0.65 0.2 350 / 0.4);
-  --nav-glow-end: oklch(0.65 0.2 350 / 0.1);
+  --destructive-foreground: oklch(0.98 0.01 145);
+  --border: oklch(0.3 0.05 145);
+  --input: oklch(0.25 0.05 145);
+  --ring: oklch(0.8 0.27 145);
+  --ember: oklch(0.8 0.27 145);
+  --ember-foreground: oklch(0.12 0.02 145);
+  --nav-glow-start: oklch(0.8 0.27 145 / 0.4);
+  --nav-glow-end: oklch(0.8 0.27 145 / 0.1);
 }
 
 html.dark {
-  --background: oklch(0.1 0.04 350);
-  --foreground: oklch(0.98 0.01 350);
-  --card: oklch(0.13 0.05 350);
-  --card-foreground: oklch(0.98 0.01 350);
-  --popover: oklch(0.13 0.05 350);
-  --popover-foreground: oklch(0.98 0.01 350);
-  --primary: oklch(0.65 0.2 350);
-  --primary-foreground: oklch(0.98 0.01 350);
-  --secondary: oklch(0.2 0.07 350);
-  --secondary-foreground: oklch(0.98 0.01 350);
-  --muted: oklch(0.2 0.07 350);
-  --muted-foreground: oklch(0.65 0.05 350);
-  --accent: oklch(0.65 0.2 350);
-  --accent-foreground: oklch(0.98 0.01 350);
+  --background: oklch(0.1 0.025 145);
+  --foreground: oklch(0.98 0.01 145);
+  --card: oklch(0.13 0.03 145);
+  --card-foreground: oklch(0.98 0.01 145);
+  --popover: oklch(0.13 0.03 145);
+  --popover-foreground: oklch(0.98 0.01 145);
+  --primary: oklch(0.8 0.27 145);
+  --primary-foreground: oklch(0.12 0.02 145);
+  --secondary: oklch(0.2 0.045 145);
+  --secondary-foreground: oklch(0.98 0.01 145);
+  --muted: oklch(0.2 0.045 145);
+  --muted-foreground: oklch(0.65 0.04 145);
+  --accent: oklch(0.8 0.27 145);
+  --accent-foreground: oklch(0.12 0.02 145);
   --destructive: oklch(0.4 0.2 25);
-  --destructive-foreground: oklch(0.98 0.01 350);
-  --border: oklch(0.25 0.07 350);
-  --input: oklch(0.2 0.07 350);
-  --ring: oklch(0.65 0.2 350);
-  --ember: oklch(0.65 0.2 350);
-  --ember-foreground: oklch(0.98 0.01 350);
-  --nav-glow-start: oklch(0.65 0.2 350 / 0.4);
-  --nav-glow-end: oklch(0.65 0.2 350 / 0.1);
+  --destructive-foreground: oklch(0.98 0.01 145);
+  --border: oklch(0.25 0.045 145);
+  --input: oklch(0.2 0.045 145);
+  --ring: oklch(0.8 0.27 145);
+  --ember: oklch(0.8 0.27 145);
+  --ember-foreground: oklch(0.12 0.02 145);
+  --nav-glow-start: oklch(0.8 0.27 145 / 0.4);
+  --nav-glow-end: oklch(0.8 0.27 145 / 0.1);
 }
 
 @layer base {
@@ -154,7 +154,7 @@ html.dark {
 
 .ember-logo .ember-word {
   display: inline-block;
-  background-image: linear-gradient(90deg, oklch(0.65 0.2 350) 0%, oklch(0.8 0.14 350) 50%, oklch(0.65 0.2 350) 100%);
+  background-image: linear-gradient(90deg, oklch(0.8 0.27 145) 0%, oklch(0.9 0.2 145) 50%, oklch(0.8 0.27 145) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -202,7 +202,7 @@ html.dark {
   position: relative;
   border-radius: 0.5rem;
   padding: 1px;
-  background: linear-gradient(90deg, oklch(0.3 0.08 350), oklch(0.65 0.2 350), oklch(0.3 0.08 350));
+  background: linear-gradient(90deg, oklch(0.3 0.05 145), oklch(0.8 0.27 145), oklch(0.3 0.05 145));
   background-size: 200% 100%;
   animation: ember-search-border 4s linear infinite, ember-search-glow 3s ease-in-out infinite;
 }
@@ -245,7 +245,7 @@ html.dark {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent 0%, oklch(0.65 0.2 350 / 0.5) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, oklch(0.8 0.27 145 / 0.5) 50%, transparent 100%);
   width: 40%;
   animation: badge-destaque-shine 2.8s ease-in-out infinite;
 }
@@ -287,15 +287,15 @@ html.dark {
 }
 
 .video-aurora {
-  background: conic-gradient(from 0deg at 50% 50%, oklch(0.25 0.08 350), oklch(0.12 0.04 350), oklch(0.25 0.08 350));
+  background: conic-gradient(from 0deg at 50% 50%, oklch(0.25 0.05 145), oklch(0.12 0.025 145), oklch(0.25 0.05 145));
   filter: blur(60px);
   opacity: 0.35;
   animation: video-aurora-drift 14s linear infinite;
 }
 
 .video-aurora-2 {
-  background: radial-gradient(circle at 30% 30%, oklch(0.3 0.09 350) 0%, transparent 55%),
-              radial-gradient(circle at 70% 70%, oklch(0.18 0.05 350) 0%, transparent 55%);
+  background: radial-gradient(circle at 30% 30%, oklch(0.3 0.06 145) 0%, transparent 55%),
+              radial-gradient(circle at 70% 70%, oklch(0.18 0.035 145) 0%, transparent 55%);
   filter: blur(50px);
   opacity: 0.4;
   mix-blend-mode: screen;

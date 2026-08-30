@@ -78,7 +78,7 @@ function ArticlePage() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
-      <main className="mx-auto max-w-3xl px-4 py-10 md:px-6">
+      <main className="mx-auto max-w-3xl px-4 py-10 md:px-6 md:py-14">
         <Link
           to="/categoria/$slug"
           params={{ slug: article.category }}
@@ -168,9 +168,9 @@ function ArticlePage() {
         </article>
 
         {related.length > 0 && (
-          <section className="mt-16">
+          <section className="mt-16 md:mt-20">
             <h2 className="font-display text-xl uppercase">Relacionados</h2>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
               {related.map((a) => (
                 <ArticleCard key={a.slug} article={a} size="sm" />
               ))}

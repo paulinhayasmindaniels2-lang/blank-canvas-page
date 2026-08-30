@@ -41,14 +41,14 @@ function CategoryPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto max-w-7xl px-4 py-12 md:px-6">
-        <div className="flex flex-col gap-2">
+      <main className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
+        <div className="flex flex-col gap-3">
           <span className="text-xs uppercase tracking-[0.3em] text-ember">Categoria</span>
           <h1 className="font-display text-4xl uppercase md:text-5xl">{category.name}</h1>
           <p className="max-w-2xl text-muted-foreground">{category.description}</p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
           {list.length === 0 ? (
             <p className="text-muted-foreground">Nenhum artigo nesta categoria ainda.</p>
           ) : (

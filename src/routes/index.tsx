@@ -144,11 +144,11 @@ function Index() {
       <div className="sr-only">oi</div>
       <SiteHeader />
 
-      <main className="mx-auto max-w-7xl px-4 py-4 md:px-6 md:py-6">
+      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
         {/* Hero editorial principal */}
-        <section className="flex flex-col gap-6 py-2">
+        <section className="flex flex-col gap-6">
           {/* Banner do pássaro no topo da hero */}
           <motion.div
             initial={{ opacity: 0, y: -16 }}
@@ -222,7 +222,7 @@ function Index() {
         </section>
 
         {/* Vídeo em destaque */}
-        <motion.section {...fadeUp} className="mt-8 flex justify-center">
+        <motion.section {...fadeUp} className="mt-16 flex justify-center md:mt-24">
           <div className="relative w-full max-w-3xl">
             <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
               <div className="video-aurora absolute inset-0" />
@@ -239,7 +239,7 @@ function Index() {
         </motion.section>
 
         {/* Zigzag editorial rows */}
-        <section className="mt-8 flex flex-col gap-10">
+        <section className="mt-16 flex flex-col gap-10 md:mt-24">
           <motion.div {...fadeUp} className="flex items-end justify-between">
             <h2 className="font-display text-2xl uppercase">Em pauta</h2>
             <span className="h-px flex-1 mx-6 bg-border" />
@@ -280,9 +280,9 @@ function Index() {
         </section>
 
         {/* Categorias */}
-        <motion.section {...fadeUp} className="mt-16">
+        <motion.section {...fadeUp} className="mt-16 md:mt-24">
           <h2 className="font-display text-2xl uppercase">Categorias</h2>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {categories.map((c, i) => (
               <motion.div
                 key={c.slug}
@@ -305,14 +305,14 @@ function Index() {
         </motion.section>
 
         {/* Tabela de preços */}
-        <motion.section {...fadeUp} className="mt-16">
+        <motion.section {...fadeUp} className="mt-16 md:mt-24">
           <div className="flex flex-col items-center gap-2 text-center">
             <h2 className="font-display text-2xl uppercase">Planos</h2>
             <p className="max-w-md text-sm text-muted-foreground">
               Escolha o plano ideal para acompanhar o que importa em tecnologia.
             </p>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {pricingPlans.map((plan, i) => (
               <motion.div
                 key={plan.name}
@@ -370,14 +370,14 @@ function Index() {
 
         {/* Grid mais recentes */}
         {grid.length > 0 && (
-          <motion.section {...fadeUp} className="mt-16">
+          <motion.section {...fadeUp} className="mt-16 md:mt-24">
             <div className="flex items-end justify-between">
               <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 {articles.length} artigos
               </span>
             </div>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {grid.map((a, i) => (
                 <motion.div
                   key={a.slug}
@@ -395,7 +395,7 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-32 overflow-hidden border-t border-border/60 bg-card/40">
+      <footer className="relative mt-16 overflow-hidden border-t border-border/60 bg-card/40 md:mt-24 lg:mt-32">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
@@ -405,8 +405,8 @@ function Index() {
           className="pointer-events-none absolute -top-40 left-1/2 size-96 -translate-x-1/2 rounded-full bg-ember/10 blur-3xl"
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
             {/* Marca */}
             <div className="flex flex-col gap-4">
               <span className="font-display text-xl uppercase tracking-wider text-foreground">
@@ -537,7 +537,7 @@ function Index() {
             </nav>
           </div>
 
-          <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
+          <div className="mt-12 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:mt-16 md:flex-row md:items-center">
             <span>© {new Date().getFullYear().toString()} Ember.News. Todos os direitos reservados.</span>
             <span className="uppercase tracking-wider">Tecnologia, sem ruído.</span>
           </div>

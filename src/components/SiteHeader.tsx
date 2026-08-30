@@ -69,7 +69,7 @@ export function SiteHeader() {
         style={{ scaleX }}
         className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-ember via-white to-ember"
       />
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-2 md:px-6">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:gap-4 md:px-6 lg:px-8">
         <Link to="/" className="ember-logo group flex items-center gap-2">
           <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
           <span className="ember-word bg-gradient-to-r from-ember via-primary to-ember bg-clip-text font-display text-base uppercase tracking-wider text-transparent">

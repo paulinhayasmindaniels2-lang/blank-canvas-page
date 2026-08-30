@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
+import { MatrixRain } from "@/components/MatrixRain";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
 import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight, Check } from "lucide-react";
@@ -140,8 +141,10 @@ function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      <MatrixRain />
       <div className="sr-only">oi</div>
+      <div className="relative z-10">
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
@@ -543,6 +546,7 @@ function Index() {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }

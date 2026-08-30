@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      preco: {
+        Row: {
+          created_at: string
+          descricao: string | null
+          id: string
+          nome: string
+          updated_at: string
+          user_id: string
+          valor: number
+        }
+        Insert: {
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          nome: string
+          updated_at?: string
+          user_id?: string
+          valor: number
+        }
+        Update: {
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          nome?: string
+          updated_at?: string
+          user_id?: string
+          valor?: number
+        }
+        Relationships: []
+      }
       teste: {
         Row: {
           created_at: string
@@ -36,6 +66,30 @@ export type Database = {
           descricao?: string | null
           id?: string
           nome?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      teste_2: {
+        Row: {
+          created_at: string
+          id: string
+          nome: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nome?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nome?: string | null
           updated_at?: string
           user_id?: string
         }

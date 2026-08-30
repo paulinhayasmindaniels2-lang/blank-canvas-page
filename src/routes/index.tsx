@@ -471,6 +471,7 @@ function Index() {
                 <li>
                   <Link
                     to="/buscar"
+                    search={{ q: "" }}
                     className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
                   >
                     Buscar

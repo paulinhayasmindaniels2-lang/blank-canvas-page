@@ -1,4 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
@@ -41,7 +42,13 @@ function CategoryPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8">
+      <motion.main
+        key={category.slug}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-7xl px-4 py-12 md:px-6 md:py-16 lg:px-8"
+      >
         <div className="flex flex-col gap-3">
           <span className="text-xs uppercase tracking-[0.3em] text-ember">Categoria</span>
           <h1 className="font-display text-4xl uppercase md:text-5xl">{category.name}</h1>
@@ -55,7 +62,7 @@ function CategoryPage() {
             list.map((a) => <ArticleCard key={a.slug} article={a} size="md" />)
           )}
         </div>
-      </main>
+      </motion.main>
     </div>
   );
 }

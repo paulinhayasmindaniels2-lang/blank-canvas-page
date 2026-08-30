@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { Search, Menu, X, Sun, Moon, User as UserIcon, ChevronDown, LogOut } from "lucide-react";
@@ -9,6 +9,7 @@ import { toast } from "sonner";
 
 export function SiteHeader() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isDark, setIsDark] = useState(false);
@@ -78,20 +79,31 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
-          {categories.map((c) => (
-            <Link
-              key={c.slug}
-              to="/categoria/$slug"
-              params={{ slug: c.slug }}
-              className="group relative px-5 py-2"
-              activeProps={{ className: "active" }}
-            >
-              <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
-                {c.name}
-              </span>
-              <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100 group-[.active]:inset-x-4 group-[.active]:w-auto group-[.active]:opacity-100 group-[.active]:shadow-[0_0_12px_rgba(255,255,255,0.4)]" />
-            </Link>
-          ))}
+          {categories.map((c) => {
+            const isActive = location.pathname === `/categoria/${c.slug}`;
+            return (
+              <Link
+                key={c.slug}
+                to="/categoria/$slug"
+                params={{ slug: c.slug }}
+                className="group relative px-5 py-2"
+                activeProps={{ className: "active" }}
+              >
+                <span className="relative z-10 whitespace-nowrap text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
+                  {c.name}
+                </span>
+                {isActive ? (
+                  <motion.span
+                    layoutId="nav-tab-indicator"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    className="absolute inset-x-4 -bottom-1 h-0.5 w-auto bg-gradient-to-r from-nav-glow-start to-nav-glow-end shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+                  />
+                ) : (
+                  <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         <form onSubmit={handleSearch} className="ml-auto hidden md:block">
@@ -194,21 +206,36 @@ export function SiteHeader() {
               </div>
             </form>
             <div className="grid grid-cols-1 gap-1">
-              {categories.map((c) => (
-                <Link
-                  key={c.slug}
-                  to="/categoria/$slug"
-                  params={{ slug: c.slug }}
-                  onClick={() => setOpen(false)}
-                  className="group relative px-3 py-2"
-                  activeProps={{ className: "active" }}
-                >
-                  <span className="relative z-10 text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground">
-                    {c.name}
-                  </span>
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100 group-[.active]:inset-x-3 group-[.active]:w-auto group-[.active]:opacity-100" />
-                </Link>
-              ))}
+              {categories.map((c) => {
+                const isActive = location.pathname === `/categoria/${c.slug}`;
+                return (
+                  <Link
+                    key={c.slug}
+                    to="/categoria/$slug"
+                    params={{ slug: c.slug }}
+                    onClick={() => setOpen(false)}
+                    className="group relative px-3 py-2"
+                    activeProps={{ className: "active" }}
+                  >
+                    <span
+                      className={`relative z-10 block text-sm font-medium uppercase tracking-wider text-muted-foreground transition-all duration-300 group-hover:text-foreground group-[.active]:font-semibold group-[.active]:text-foreground ${
+                        isActive ? "translate-x-1.5" : ""
+                      }`}
+                    >
+                      {c.name}
+                    </span>
+                    {isActive ? (
+                      <motion.span
+                        layoutId="nav-tab-indicator-mobile"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                        className="absolute inset-y-1 left-0 w-1 rounded-full bg-gradient-to-b from-nav-glow-start to-nav-glow-end"
+                      />
+                    ) : (
+                      <span className="absolute inset-x-3 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-24px)] group-hover:opacity-100" />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="border-t border-border/60 pt-3">

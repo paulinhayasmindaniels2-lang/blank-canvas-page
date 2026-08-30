@@ -149,7 +149,7 @@ function Index() {
 
         {/* Hero editorial principal */}
         <section className="flex flex-col gap-6">
-          {/* Banner do pássaro no topo da hero */}
+          {/* Banner principal no topo da hero */}
           <motion.div
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,8 +157,8 @@ function Index() {
             className="relative overflow-hidden rounded-2xl border border-border/80 shadow-lg"
           >
             <img
-              src="/bird-banner.svg"
-              alt="Ilustração de um pássaro estilizado pousado em um galho ao entardecer"
+              src="/breaking-news-banner.jpg"
+              alt="Banner de notícias de última hora"
               className="h-40 w-full object-cover md:h-56 lg:h-64"
             />
             <div

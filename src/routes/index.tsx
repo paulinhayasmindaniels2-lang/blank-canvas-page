@@ -176,7 +176,7 @@ function Index() {
             <img
               src="/breaking-news-banner.jpg"
               alt="Banner de notícias de última hora"
-              className="h-40 w-full object-cover md:h-56 lg:h-64"
+              className="h-28 w-full object-cover md:h-40 lg:h-48"
             />
             <div
               aria-hidden

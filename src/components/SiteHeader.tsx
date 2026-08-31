@@ -68,7 +68,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <motion.div
         style={{ scaleX }}
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-ember via-white to-ember"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-ember via-primary/60 to-ember"
       />
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:gap-4 md:px-6 lg:px-8">
         <Link to="/" className="ember-logo group flex items-center gap-2">
@@ -96,7 +96,7 @@ export function SiteHeader() {
                   <motion.span
                     layoutId="nav-tab-indicator"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    className="absolute inset-x-4 -bottom-1 h-0.5 w-auto bg-gradient-to-r from-nav-glow-start to-nav-glow-end shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+                    className="absolute inset-x-4 -bottom-1 h-0.5 w-auto bg-gradient-to-r from-nav-glow-start to-nav-glow-end shadow-[0_0_12px_rgba(190,90,255,0.5)]"
                   />
                 ) : (
                   <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100" />
@@ -113,7 +113,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-48 rounded-[7px] border border-neutral-700 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,255,255,0.15)] placeholder:text-muted-foreground transition-shadow focus:border-neutral-500 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] focus:outline-none"
+              className="w-48 rounded-[7px] border border-primary/30 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(190,90,255,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(190,90,255,0.35)] focus:outline-none"
             />
           </div>
         </form>
@@ -201,7 +201,7 @@ export function SiteHeader() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar artigos..."
-                  className="w-full rounded-[7px] border border-neutral-700 bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,255,255,0.15)] placeholder:text-muted-foreground transition-shadow focus:border-neutral-500 focus:shadow-[0_0_18px_rgba(255,255,255,0.25)] focus:outline-none"
+                  className="w-full rounded-[7px] border border-primary/30 bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(190,90,255,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(190,90,255,0.35)] focus:outline-none"
                 />
               </div>
             </form>

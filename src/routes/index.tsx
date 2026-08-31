@@ -151,6 +151,21 @@ function Index() {
 
         {/* Hero editorial principal */}
         <section className="flex flex-col gap-6">
+          {/* Botão de destaque vermelho */}
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center"
+          >
+            <button
+              type="button"
+              className="rounded-lg bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-600/30 transition-all duration-200 hover:bg-red-700 hover:shadow-red-600/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background active:bg-red-800"
+            >
+              Última Hora
+            </button>
+          </motion.div>
+
           {/* Banner principal no topo da hero */}
           <motion.div
             initial={{ opacity: 0, y: -16 }}

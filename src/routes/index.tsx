@@ -129,14 +129,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { featured, sidebarList, zigzag, grid } = useMemo(() => {
+  const { featured, bentoSecondary, sidebarList, zigzag, grid } = useMemo(() => {
     const featured = articles.find((a) => a.featured) ?? articles[0];
     const rest = articles.filter((a) => a.slug !== featured.slug);
     return {
       featured,
-      sidebarList: rest.slice(0, 5),
-      zigzag: rest.slice(5, 9),
-      grid: rest.slice(9, 13),
+      bentoSecondary: rest.slice(0, 2),
+      sidebarList: rest.slice(2, 7),
+      zigzag: rest.slice(7, 11),
+      grid: rest.slice(11, 15),
     };
   }, []);
 
@@ -149,74 +150,56 @@ function Index() {
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
-        {/* Hero editorial principal */}
-        <section className="flex flex-col gap-6">
-          {/* Banner principal no topo da hero */}
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-2xl border border-border/80 shadow-lg"
-          >
-            <img
-              src="/breaking-news-banner.jpg"
-              alt="Banner de notícias de última hora"
-              className="h-28 w-full object-cover md:h-40 lg:h-48"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-background/0 to-transparent"
-            />
-          </motion.div>
-
-          {/* Trending Bar Topo Hero */}
+        {/* Hero editorial principal — layout bento */}
+        <section className="flex flex-col gap-4">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-wrap items-center gap-3 rounded-full border border-border/80 bg-card/60 px-4 py-2 text-xs backdrop-blur-md"
+            className="flex flex-wrap items-center justify-between gap-3"
           >
-            <span className="flex items-center gap-1.5 font-bold uppercase tracking-widest text-primary">
+            <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-primary" />
               </span>
-              Em Alta
+              Edição de Hoje
             </span>
-            <span className="hidden h-3 w-px bg-border sm:block" />
-            <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#IA Multimodal</span>
               <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#Cibersegurança</span>
-              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#Startups US$ 80M</span>
-              <span className="hidden rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground md:inline-block">#Chips 3nm</span>
+              <span className="hidden rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground sm:inline-block">#Chips 3nm</span>
             </div>
           </motion.div>
 
-          {/* Grid Split Hero */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.7fr_1fr]">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-2">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-4"
+              className="lg:col-span-2 lg:row-span-2"
             >
-              <div className="flex items-center justify-between">
-                <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
-                  <span className="inline-block size-1.5 rounded-full bg-primary" />
-                  Manchete do Dia
-                </span>
-                <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                  Edição Especial
-                </span>
-              </div>
               <ArticleCard article={featured} size="lg" />
             </motion.div>
+
+            {bentoSecondary.map((a, i) => (
+              <motion.div
+                key={a.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:col-start-3"
+                style={{ gridRow: i + 1 }}
+              >
+                <ArticleCard article={a} size="sm" />
+              </motion.div>
+            ))}
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col rounded-2xl border border-border/80 bg-card/40 p-5 backdrop-blur-sm shadow-lg"
+              className="flex flex-col rounded-2xl border border-border/80 bg-card/40 p-5 backdrop-blur-sm shadow-lg lg:col-start-4 lg:row-span-2"
             >
               <LatestTicker items={sidebarList} />
             </motion.div>
@@ -283,8 +266,11 @@ function Index() {
 
         {/* Categorias */}
         <motion.section {...fadeUp} className="mt-16 md:mt-24">
-          <h2 className="font-display text-2xl uppercase">Categorias</h2>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+          <div className="flex items-end justify-between">
+            <h2 className="font-display text-2xl uppercase">Categorias</h2>
+            <span className="text-xs uppercase tracking-wider text-muted-foreground">Explore por tema</span>
+          </div>
+          <div className="mt-6 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((c, i) => (
               <motion.div
                 key={c.slug}
@@ -292,14 +278,16 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="shrink-0"
               >
                 <Link
                   to="/categoria/$slug"
                   params={{ slug: c.slug }}
-                  className="group flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:border-neutral-500 hover:shadow-lg hover:shadow-white/5"
+                  className="group flex items-center gap-3 rounded-full border border-border bg-card px-5 py-2.5 transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/10"
                 >
-                  <span className="text-sm font-medium">{c.name}</span>
-                  <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
+                  <span className="font-display text-xs text-primary">{(i + 1).toString().padStart(2, "0")}</span>
+                  <span className="whitespace-nowrap text-sm font-medium">{c.name}</span>
+                  <ArrowRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
                 </Link>
               </motion.div>
             ))}

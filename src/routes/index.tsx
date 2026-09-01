@@ -5,6 +5,7 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MatrixRain } from "@/components/MatrixRain";
+import { NewsletterModal } from "@/components/NewsletterModal";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
 import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight, Check } from "lucide-react";
@@ -144,6 +145,7 @@ function Index() {
   return (
     <div className="theme-matrix-green relative min-h-screen bg-background">
       <MatrixRain />
+      <NewsletterModal />
       <div className="relative z-10">
       <SiteHeader />
 

@@ -65,7 +65,14 @@ function LoginComponent() {
   };
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="relative flex min-h-screen overflow-hidden bg-background">
+      {/* Fundo animado — auroras neon derivadas do token primary */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="video-aurora absolute -left-1/4 -top-1/3 size-[70vw] rounded-full" />
+        <div className="video-aurora-2 absolute -bottom-1/3 -right-1/4 size-[65vw] rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,transparent_0%,var(--background)_75%)]" />
+      </div>
+
       {/* Painel visual — vídeo com overlay, oculto em telas pequenas */}
       <div className="relative hidden w-[45%] overflow-hidden lg:block">
         <video

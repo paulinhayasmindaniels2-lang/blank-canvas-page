@@ -48,8 +48,14 @@ function AdminLoginComponent() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black px-4 py-12">
-      <div className="w-full max-w-md space-y-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 shadow-2xl backdrop-blur-sm">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-12">
+      {/* Fundo animado — auroras neon */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="video-aurora absolute -left-1/4 -top-1/3 size-[800px] rounded-full" />
+        <div className="video-aurora-2 absolute -right-1/4 -bottom-1/3 size-[800px] rounded-full" />
+      </div>
+
+      <div className="relative w-full max-w-md space-y-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 shadow-2xl backdrop-blur-sm">
         <div className="text-center">
           <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
             <ShieldCheck className="size-6" />
@@ -125,11 +131,7 @@ function AdminLoginComponent() {
         </div>
       </div>
       
-      {/* Subtle glowing backgrounds */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -left-1/4 -top-1/4 size-[800px] rounded-full bg-primary/5 blur-[120px]" />
-        <div className="absolute -right-1/4 -bottom-1/4 size-[800px] rounded-full bg-primary/5 blur-[120px]" />
-      </div>
+
     </div>
   );
 }

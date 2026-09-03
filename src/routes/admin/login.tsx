@@ -53,6 +53,7 @@ function AdminLoginComponent() {
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
         <div className="video-aurora absolute -left-1/4 -top-1/3 size-[800px] rounded-full" />
         <div className="video-aurora-2 absolute -right-1/4 -bottom-1/3 size-[800px] rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.85)_80%)]" />
       </div>
 
       <div className="relative w-full max-w-md space-y-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 shadow-2xl backdrop-blur-sm">

@@ -51,8 +51,9 @@ function AdminLoginComponent() {
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-12">
       {/* Fundo animado — auroras neon */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="video-aurora absolute -left-1/4 -top-1/3 size-[800px] rounded-full" />
-        <div className="video-aurora-2 absolute -right-1/4 -bottom-1/3 size-[800px] rounded-full" />
+        <div className="video-aurora absolute -left-1/4 -top-1/3 size-[800px] rounded-full will-change-transform" />
+        <div className="video-aurora-2 absolute -right-1/4 -bottom-1/3 size-[800px] rounded-full will-change-transform" />
+        <div className="video-aurora absolute left-1/3 top-1/2 size-[500px] rounded-full opacity-30 [animation-duration:20s] will-change-transform" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.85)_80%)]" />
       </div>
 

@@ -36,7 +36,7 @@ function AdminLoginComponent() {
       // Aqui poderíamos verificar se o usuário tem a role 'admin' no banco
       // Por enquanto, apenas confirmamos o login e redirecionamos
       toast.success("Acesso administrativo autorizado!");
-      
+
       // Simulação de redirecionamento para o dashboard
       // window.location.href = "/admin/dashboard";
       toast.info("Redirecionando para o painel de controle...");
@@ -48,30 +48,30 @@ function AdminLoginComponent() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-12">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-12">
       {/* Fundo animado — auroras neon */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
         <div className="video-aurora absolute -left-1/4 -top-1/3 size-[800px] rounded-full will-change-transform" />
         <div className="video-aurora-2 absolute -right-1/4 -bottom-1/3 size-[800px] rounded-full will-change-transform" />
         <div className="video-aurora absolute left-1/3 top-1/2 size-[500px] rounded-full opacity-30 [animation-duration:20s] will-change-transform" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.85)_80%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,var(--background)_80%)]" />
       </div>
 
-      <div className="relative w-full max-w-md space-y-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 shadow-2xl backdrop-blur-sm">
+      <div className="relative w-full max-w-md space-y-8 rounded-2xl border border-border bg-card/50 p-8 shadow-2xl backdrop-blur-sm">
         <div className="text-center">
           <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
             <ShieldCheck className="size-6" />
           </div>
-          
+
           <Link to="/" className="inline-flex items-center gap-2 font-display text-xl uppercase tracking-widest text-foreground">
             <span className="size-2 rounded-full bg-primary" />
-            Ember<span className="text-white">.</span>Admin
+            Ember<span className="text-foreground">.</span>Admin
           </Link>
-          
-          <h2 className="mt-6 text-2xl font-bold tracking-tight text-white">
+
+          <h1 className="mt-6 text-2xl font-bold tracking-tight text-foreground">
             Painel de Controle
-          </h2>
-          <p className="mt-2 text-sm text-neutral-400">
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
             Insira suas credenciais de administrador para continuar.
           </p>
         </div>
@@ -79,30 +79,31 @@ function AdminLoginComponent() {
         <form className="mt-8 space-y-6" onSubmit={handleAdminAuth}>
           <div className="space-y-4">
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-neutral-500" />
+              <Mail className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="E-mail admin"
-                className="w-full rounded-xl border border-neutral-800 bg-black py-3 pl-11 pr-4 text-sm text-white placeholder:text-neutral-600 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="w-full rounded-xl border border-border bg-background py-3 pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
               />
             </div>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-neutral-500" />
+              <Lock className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
               <input
                 type={showPassword ? "text" : "password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Senha mestra"
-                className="w-full rounded-xl border border-neutral-800 bg-black py-3 pl-11 pr-12 text-sm text-white placeholder:text-neutral-600 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="w-full rounded-xl border border-border bg-background py-3 pl-11 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/50"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
                 {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
               </button>
@@ -122,18 +123,16 @@ function AdminLoginComponent() {
           </button>
         </form>
 
-        <div className="mt-8 flex flex-col items-center gap-4 border-t border-neutral-800 pt-6">
+        <div className="mt-8 flex flex-col items-center gap-4 border-t border-border pt-6">
           <Link
             to="/"
-            className="group flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-white"
+            className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
             Voltar para o site
           </Link>
         </div>
       </div>
-      
-
     </div>
   );
 }

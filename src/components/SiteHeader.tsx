@@ -72,8 +72,8 @@ export function SiteHeader() {
       />
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:gap-4 md:px-6 lg:px-8">
         <Link to="/" className="ember-logo group flex items-center gap-2">
-          <span className="ember-dot inline-block size-2.5 rounded-full bg-ember" />
-          <span className="ember-word bg-gradient-to-r from-ember via-primary to-ember bg-clip-text font-display text-base uppercase tracking-wider text-transparent">
+          <span className="ember-dot logo-green-dot inline-block size-2.5 rounded-full" />
+          <span className="ember-word logo-green-word font-display text-base uppercase tracking-wider">
             Ember<span className="ember-accent">.</span>News
           </span>
         </Link>

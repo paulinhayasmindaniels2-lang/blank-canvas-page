@@ -8,7 +8,17 @@ import { MatrixRain } from "@/components/MatrixRain";
 import { NewsletterModal } from "@/components/NewsletterModal";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
-import { ArrowRight, Play, Twitter, Linkedin, Instagram, ArrowUpRight, Check } from "lucide-react";
+import {
+  ArrowRight,
+  Play,
+  Twitter,
+  Linkedin,
+  Instagram,
+  ArrowUpRight,
+  Check,
+  Terminal,
+  Zap,
+} from "lucide-react";
 
 const pricingPlans = [
   {
@@ -152,35 +162,117 @@ function Index() {
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
         <h1 className="sr-only">Notícias de tecnologia</h1>
 
-        {/* Hero editorial principal — layout bento */}
-        <section className="flex flex-col gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-wrap items-center justify-between gap-3"
-          >
-            <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-primary" />
-              </span>
-              Edição de Hoje
-            </span>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#IA Multimodal</span>
-              <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground">#Cibersegurança</span>
-              <span className="hidden rounded-full bg-secondary/80 px-2.5 py-0.5 text-[11px] font-medium text-foreground sm:inline-block">#Chips 3nm</span>
-            </div>
-          </motion.div>
+        {/* Hero principal — bloco de abertura full-bleed com HUD e terminal */}
+        <section className="relative -mx-4 -mt-8 overflow-hidden px-4 pb-10 pt-10 md:-mx-6 md:-mt-10 md:px-6 md:pb-14 md:pt-14 lg:-mx-8 lg:px-8 lg:pt-16">
+          <div aria-hidden className="hero-grid-bg" />
+          <div aria-hidden className="hero-aurora-a" />
+          <div aria-hidden className="hero-aurora-b" />
 
+          <div className="relative z-10 flex flex-col gap-12">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-wrap items-center justify-between gap-3"
+            >
+              <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                </span>
+                Edição de Hoje
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm">#IA Multimodal</span>
+                <span className="rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm">#Cibersegurança</span>
+                <span className="hidden rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm sm:inline-block">#Chips 3nm</span>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-end">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col gap-6"
+              >
+                <span className="flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.35em] text-primary/80">
+                  <Terminal className="size-3.5" />
+                  root@ember:~$ cobertura --hoje --live
+                  <span aria-hidden className="terminal-cursor" />
+                </span>
+                <h2 className="headline-shimmer font-display text-5xl uppercase leading-[0.95] sm:text-6xl lg:text-[5.2rem]">
+                  Sinal claro
+                  <br />
+                  no ruído digital
+                </h2>
+                <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  Cobertura diária de IA, startups, cibersegurança, hardware e software — curadoria editorial sem ruído, direto ao ponto.
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-4">
+                  <a
+                    href="#planos"
+                    className="btn-neon-subscribe inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-primary-foreground"
+                  >
+                    Assinar agora <ArrowRight className="size-4" />
+                  </a>
+                  <a
+                    href="#em-pauta"
+                    className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/60 hover:bg-accent"
+                  >
+                    Ver pauta de hoje
+                  </a>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex flex-col gap-5 rounded-2xl border border-border/70 bg-card/50 p-6 backdrop-blur-sm"
+              >
+                <span aria-hidden className="hud-corner hud-corner-tl" />
+                <span aria-hidden className="hud-corner hud-corner-tr" />
+                <span aria-hidden className="hud-corner hud-corner-bl" />
+                <span aria-hidden className="hud-corner hud-corner-br" />
+                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                  <Zap className="size-3.5 text-primary" />
+                  Painel ao vivo
+                </div>
+                <div className="grid grid-cols-2 gap-5">
+                  <div>
+                    <p className="font-display text-3xl text-foreground">{articles.length}+</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Matérias hoje</p>
+                  </div>
+                  <div>
+                    <p className="font-display text-3xl text-foreground">{categories.length}</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Editorias</p>
+                  </div>
+                  <div>
+                    <p className="font-display text-3xl text-foreground">24/7</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Cobertura</p>
+                  </div>
+                  <div>
+                    <p className="font-display text-3xl text-primary">Live</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Atualização</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bento de destaques do dia */}
+        <section className="mt-10 flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-2">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-2 lg:row-span-2"
+              className="relative lg:col-span-2 lg:row-span-2"
             >
+              <span aria-hidden className="hud-corner hud-corner-tl" />
+              <span aria-hidden className="hud-corner hud-corner-br" />
               <ArticleCard article={featured} size="lg" />
             </motion.div>
 
@@ -226,7 +318,7 @@ function Index() {
         </motion.section>
 
         {/* Zigzag editorial rows */}
-        <section className="mt-16 flex flex-col gap-10 md:mt-24">
+        <section id="em-pauta" className="mt-16 flex flex-col gap-10 md:mt-24">
           <motion.div {...fadeUp} className="flex items-end justify-between">
             <h2 className="font-display text-2xl uppercase">Em pauta</h2>
             <span className="h-px flex-1 mx-6 bg-border" />
@@ -297,7 +389,7 @@ function Index() {
         </motion.section>
 
         {/* Tabela de preços */}
-        <motion.section {...fadeUp} className="mt-16 md:mt-24">
+        <motion.section {...fadeUp} id="planos" className="mt-16 md:mt-24">
           <div className="flex flex-col items-center gap-2 text-center">
             <h2 className="font-display text-2xl uppercase">Planos</h2>
             <p className="max-w-md text-sm text-muted-foreground">

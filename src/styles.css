@@ -184,6 +184,24 @@ body::after {
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
 }
 
+@keyframes google-neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 25%, transparent), 0 0 10px color-mix(in oklab, var(--primary) 20%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 65%, transparent), 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+}
+
+.google-neon-button {
+  animation: google-neon-pulse 2.2s ease-in-out infinite;
+}
+
+.google-neon-button:hover {
+  animation-duration: 0.9s;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 80%, transparent), 0 0 30px color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
 @keyframes ember-glow {
   0%, 100% {
     box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 70%, transparent),
@@ -382,6 +400,10 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .google-neon-button {
+    animation: none;
+  }
+
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;

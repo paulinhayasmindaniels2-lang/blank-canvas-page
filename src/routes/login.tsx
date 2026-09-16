@@ -221,7 +221,7 @@ function LoginComponent() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={isGoogleLoading}
-            className="flex h-11 w-full items-center justify-center gap-3 rounded-xl border border-border bg-card text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            className="google-neon-button group flex h-11 w-full items-center justify-center gap-3 rounded-xl border border-primary/60 bg-card text-sm font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isGoogleLoading ? (
               <Loader2 className="size-4 animate-spin" />

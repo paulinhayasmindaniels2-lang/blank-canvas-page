@@ -478,12 +478,12 @@ function Index() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                  <Link
+                    to="/contato"
+                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Contato
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

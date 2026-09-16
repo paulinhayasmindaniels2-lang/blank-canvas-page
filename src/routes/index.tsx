@@ -90,7 +90,7 @@ function LazyVideo({ src }: { src: string }) {
         <button
           type="button"
           onClick={() => setPlay(true)}
-          className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-black"
+          className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted to-card"
           aria-label="Reproduzir vídeo"
         >
           <span className="flex size-16 items-center justify-center rounded-full bg-white/10 backdrop-blur transition-transform group-hover:scale-110">

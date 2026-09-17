@@ -70,6 +70,7 @@
   --nav-glow-end: oklch(0.72 0.24 85 / 0.1);
   --latest-title: oklch(0.8 0.2 85);
   --logo-green: oklch(0.78 0.22 145);
+  --subscribe-green: oklch(0.7 0.19 145);
 }
 
 html.dark {
@@ -98,6 +99,7 @@ html.dark {
   --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
   --latest-title: oklch(0.82 0.2 85);
   --logo-green: oklch(0.8 0.22 145);
+  --subscribe-green: oklch(0.72 0.19 145);
 }
 
 /* Escopo de tema dourado — aplicado apenas na página inicial (.theme-matrix-green).
@@ -566,7 +568,7 @@ main > section {
               0 0 24px -4px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 
-/* Botão neon — CTA de assinatura em destaque (tema hacker/matrix) */
+/* Botão neon — CTA de assinatura em destaque (tema hacker/matrix), agora em verde */
 .btn-neon-subscribe {
   position: relative;
   isolation: isolate;
@@ -574,12 +576,12 @@ main > section {
   font-family: var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 85%, white), color-mix(in oklab, var(--primary) 75%, black));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--subscribe-green) 85%, white), color-mix(in oklab, var(--subscribe-green) 75%, black));
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--primary) 70%, white) inset,
-    0 1px 0 0 color-mix(in oklab, var(--primary) 25%, white) inset,
-    0 4px 14px -2px color-mix(in oklab, var(--primary) 50%, transparent),
-    0 0 24px -4px color-mix(in oklab, var(--primary) 45%, transparent);
+    0 0 0 1px color-mix(in oklab, var(--subscribe-green) 70%, white) inset,
+    0 1px 0 0 color-mix(in oklab, var(--subscribe-green) 25%, white) inset,
+    0 4px 14px -2px color-mix(in oklab, var(--subscribe-green) 50%, transparent),
+    0 0 24px -4px color-mix(in oklab, var(--subscribe-green) 45%, transparent);
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
 }
 
@@ -588,7 +590,7 @@ main > section {
   position: absolute;
   inset: -40%;
   z-index: -1;
-  background: conic-gradient(from 0deg, color-mix(in oklab, var(--primary) 0%, transparent), color-mix(in oklab, var(--primary) 95%, white), color-mix(in oklab, var(--primary) 0%, transparent));
+  background: conic-gradient(from 0deg, color-mix(in oklab, var(--subscribe-green) 0%, transparent), color-mix(in oklab, var(--subscribe-green) 95%, white), color-mix(in oklab, var(--subscribe-green) 0%, transparent));
   animation: btn-neon-spin 3.2s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -599,7 +601,7 @@ main > section {
   position: absolute;
   inset: 1.5px;
   border-radius: inherit;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 85%, white), color-mix(in oklab, var(--primary) 75%, black));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--subscribe-green) 85%, white), color-mix(in oklab, var(--subscribe-green) 75%, black));
   z-index: -1;
 }
 
@@ -607,11 +609,11 @@ main > section {
   transform: translateY(-2px) scale(1.015);
   filter: brightness(1.1);
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--primary) 85%, white) inset,
-    0 1px 0 0 color-mix(in oklab, var(--primary) 30%, white) inset,
-    0 8px 22px -4px color-mix(in oklab, var(--primary) 60%, transparent),
-    0 0 36px -2px color-mix(in oklab, var(--primary) 60%, transparent),
-    0 0 64px 4px color-mix(in oklab, var(--primary) 30%, transparent);
+    0 0 0 1px color-mix(in oklab, var(--subscribe-green) 85%, white) inset,
+    0 1px 0 0 color-mix(in oklab, var(--subscribe-green) 30%, white) inset,
+    0 8px 22px -4px color-mix(in oklab, var(--subscribe-green) 60%, transparent),
+    0 0 36px -2px color-mix(in oklab, var(--subscribe-green) 60%, transparent),
+    0 0 64px 4px color-mix(in oklab, var(--subscribe-green) 30%, transparent);
 }
 
 .btn-neon-subscribe:hover::before {
@@ -627,8 +629,8 @@ main > section {
   outline: none;
   box-shadow:
     0 0 0 2px var(--background),
-    0 0 0 4px color-mix(in oklab, var(--primary) 85%, transparent),
-    0 0 24px -4px color-mix(in oklab, var(--primary) 50%, transparent);
+    0 0 0 4px color-mix(in oklab, var(--subscribe-green) 85%, transparent),
+    0 0 24px -4px color-mix(in oklab, var(--subscribe-green) 50%, transparent);
 }
 
 @keyframes btn-neon-spin {

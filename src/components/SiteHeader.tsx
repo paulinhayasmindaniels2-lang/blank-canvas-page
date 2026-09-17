@@ -96,7 +96,7 @@ export function SiteHeader() {
                   <motion.span
                     layoutId="nav-tab-indicator"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    className="absolute inset-x-4 -bottom-1 h-0.5 w-auto bg-gradient-to-r from-nav-glow-start to-nav-glow-end shadow-[0_0_12px_rgba(255,45,146,0.5)]"
+                    className="absolute inset-x-4 -bottom-1 h-0.5 w-auto bg-gradient-to-r from-nav-glow-start to-nav-glow-end shadow-[0_0_12px_rgba(255,191,0,0.5)]"
                   />
                 ) : (
                   <span className="absolute inset-x-5 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-nav-glow-start to-nav-glow-end opacity-0 transition-all duration-300 group-hover:w-[calc(100%-40px)] group-hover:opacity-100" />
@@ -113,7 +113,7 @@ export function SiteHeader() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar artigos..."
-              className="w-48 rounded-[7px] border border-primary/30 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,45,146,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(255,45,146,0.35)] focus:outline-none"
+              className="w-48 rounded-[7px] border border-primary/30 bg-card py-1.5 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,191,0,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(255,191,0,0.35)] focus:outline-none"
             />
           </div>
         </form>
@@ -201,7 +201,7 @@ export function SiteHeader() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar artigos..."
-                  className="w-full rounded-[7px] border border-primary/30 bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,45,146,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(255,45,146,0.35)] focus:outline-none"
+                  className="w-full rounded-[7px] border border-primary/30 bg-card py-2 pl-9 pr-3 text-sm shadow-[0_0_12px_rgba(255,191,0,0.2)] placeholder:text-muted-foreground transition-shadow focus:border-primary/60 focus:shadow-[0_0_18px_rgba(255,191,0,0.35)] focus:outline-none"
                 />
               </div>
             </form>

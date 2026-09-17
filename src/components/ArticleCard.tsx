@@ -25,12 +25,12 @@ export function ArticleCard({
       params={{ slug: article.slug }}
       className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-xl border bg-card p-5 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 ${
         isLg
-          ? "min-h-[280px] border-primary/30 p-6 shadow-[0_20px_60px_-20px_rgba(255,45,146,0.25)] hover:border-primary/60 hover:shadow-[0_35px_90px_-20px_rgba(255,45,146,0.35)] md:min-h-[340px]"
+          ? "min-h-[280px] border-primary/30 p-6 shadow-[0_20px_60px_-20px_rgba(255,191,0,0.25)] hover:border-primary/60 hover:shadow-[0_35px_90px_-20px_rgba(255,191,0,0.35)] md:min-h-[340px]"
           : isSpot
-          ? "min-h-[260px] border-primary/25 shadow-[0_12px_40px_-12px_rgba(255,45,146,0.2)] hover:border-primary/55 hover:shadow-[0_22px_60px_-12px_rgba(255,45,146,0.35)]"
+          ? "min-h-[260px] border-primary/25 shadow-[0_12px_40px_-12px_rgba(255,191,0,0.2)] hover:border-primary/55 hover:shadow-[0_22px_60px_-12px_rgba(255,191,0,0.35)]"
           : isSm
-          ? "min-h-[200px] border-border hover:border-primary/40 hover:shadow-[0_10px_30px_-10px_rgba(255,45,146,0.2)]"
-          : "min-h-[260px] border-border hover:border-primary/40 hover:shadow-[0_14px_40px_-10px_rgba(255,45,146,0.25)]"
+          ? "min-h-[200px] border-border hover:border-primary/40 hover:shadow-[0_10px_30px_-10px_rgba(255,191,0,0.2)]"
+          : "min-h-[260px] border-border hover:border-primary/40 hover:shadow-[0_14px_40px_-10px_rgba(255,191,0,0.25)]"
       }`}
     >
       {/* Shine sweep on hover */}
@@ -57,7 +57,7 @@ export function ArticleCard({
           className="pointer-events-none absolute inset-0 rounded-xl"
           style={{
             background:
-              "linear-gradient(135deg, rgba(255,45,146,0.0) 0%, rgba(255,45,146,0.0) 60%, rgba(255,190,225,0.05) 100%)",
+              "linear-gradient(135deg, rgba(255,191,0,0.0) 0%, rgba(255,191,0,0.0) 60%, rgba(255,238,190,0.05) 100%)",
           }}
         />
       )}
@@ -71,7 +71,7 @@ export function ArticleCard({
       <div className="relative flex flex-col gap-3">
         {(isLg || isSpot) && (
           <div className="mb-1 flex items-center gap-2">
-            <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-primary to-primary/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-primary-foreground shadow-[0_4px_20px_-4px_rgba(255,45,146,0.4)]">
+            <span className="badge-destaque relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-primary to-primary/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-primary-foreground shadow-[0_4px_20px_-4px_rgba(255,191,0,0.4)]">
               <span className="inline-block size-1.5 animate-pulse rounded-full bg-primary-foreground" />
               <span className="relative z-10">DESTAQUE</span>
               <span aria-hidden className="badge-destaque__shine" />

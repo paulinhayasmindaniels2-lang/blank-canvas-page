@@ -45,90 +45,90 @@
 :root {
   --radius: 0.25rem;
 
-  --background: oklch(0.09 0.008 340);
-  --foreground: oklch(0.9 0.14 340);
-  --card: oklch(0.13 0.02 340);
-  --card-foreground: oklch(0.9 0.14 340);
-  --popover: oklch(0.12 0.02 340);
-  --popover-foreground: oklch(0.9 0.14 340);
-  --primary: oklch(0.72 0.24 340);
-  --primary-foreground: oklch(0.08 0.01 25);
-  --secondary: oklch(0.2 0.05 340);
-  --secondary-foreground: oklch(0.9 0.14 340);
-  --muted: oklch(0.17 0.035 340);
-  --muted-foreground: oklch(0.62 0.13 340);
-  --accent: oklch(0.72 0.24 340);
-  --accent-foreground: oklch(0.08 0.01 340);
+  --background: oklch(0.09 0.008 85);
+  --foreground: oklch(0.9 0.14 85);
+  --card: oklch(0.13 0.02 85);
+  --card-foreground: oklch(0.9 0.14 85);
+  --popover: oklch(0.12 0.02 85);
+  --popover-foreground: oklch(0.9 0.14 85);
+  --primary: oklch(0.72 0.24 85);
+  --primary-foreground: oklch(0.08 0.01 85);
+  --secondary: oklch(0.2 0.05 85);
+  --secondary-foreground: oklch(0.9 0.14 85);
+  --muted: oklch(0.17 0.035 85);
+  --muted-foreground: oklch(0.62 0.13 85);
+  --accent: oklch(0.72 0.24 85);
+  --accent-foreground: oklch(0.08 0.01 85);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.95 0.02 25);
-  --border: oklch(0.4 0.1 340 / 0.35);
-  --input: oklch(0.17 0.035 340);
-  --ring: oklch(0.72 0.24 340);
-  --ember: oklch(0.72 0.24 340);
-  --ember-foreground: oklch(0.08 0.01 340);
-  --nav-glow-start: oklch(0.72 0.24 340 / 0.4);
-  --nav-glow-end: oklch(0.72 0.24 340 / 0.1);
-  --latest-title: oklch(0.8 0.2 340);
+  --border: oklch(0.4 0.1 85 / 0.35);
+  --input: oklch(0.17 0.035 85);
+  --ring: oklch(0.72 0.24 85);
+  --ember: oklch(0.72 0.24 85);
+  --ember-foreground: oklch(0.08 0.01 85);
+  --nav-glow-start: oklch(0.72 0.24 85 / 0.4);
+  --nav-glow-end: oklch(0.72 0.24 85 / 0.1);
+  --latest-title: oklch(0.8 0.2 85);
   --logo-green: oklch(0.78 0.22 145);
 }
 
 html.dark {
-  --background: oklch(0.06 0.006 340);
-  --foreground: oklch(0.9 0.14 340);
-  --card: oklch(0.1 0.018 340);
-  --card-foreground: oklch(0.9 0.14 340);
-  --popover: oklch(0.09 0.018 340);
-  --popover-foreground: oklch(0.9 0.14 340);
-  --primary: oklch(0.74 0.24 340);
-  --primary-foreground: oklch(0.06 0.01 340);
-  --secondary: oklch(0.16 0.035 340);
-  --secondary-foreground: oklch(0.9 0.14 340);
-  --muted: oklch(0.14 0.03 340);
-  --muted-foreground: oklch(0.6 0.12 340);
-  --accent: oklch(0.74 0.24 340);
-  --accent-foreground: oklch(0.06 0.01 340);
+  --background: oklch(0.06 0.006 85);
+  --foreground: oklch(0.9 0.14 85);
+  --card: oklch(0.1 0.018 85);
+  --card-foreground: oklch(0.9 0.14 85);
+  --popover: oklch(0.09 0.018 85);
+  --popover-foreground: oklch(0.9 0.14 85);
+  --primary: oklch(0.74 0.24 85);
+  --primary-foreground: oklch(0.06 0.01 85);
+  --secondary: oklch(0.16 0.035 85);
+  --secondary-foreground: oklch(0.9 0.14 85);
+  --muted: oklch(0.14 0.03 85);
+  --muted-foreground: oklch(0.6 0.12 85);
+  --accent: oklch(0.74 0.24 85);
+  --accent-foreground: oklch(0.06 0.01 85);
   --destructive: oklch(0.5 0.22 25);
   --destructive-foreground: oklch(0.95 0.02 25);
-  --border: oklch(0.38 0.1 340 / 0.3);
-  --input: oklch(0.14 0.03 340);
-  --ring: oklch(0.74 0.24 340);
-  --ember: oklch(0.74 0.24 340);
-  --ember-foreground: oklch(0.06 0.01 340);
-  --nav-glow-start: oklch(0.74 0.24 340 / 0.4);
-  --nav-glow-end: oklch(0.74 0.24 340 / 0.1);
-  --latest-title: oklch(0.82 0.2 340);
+  --border: oklch(0.38 0.1 85 / 0.3);
+  --input: oklch(0.14 0.03 85);
+  --ring: oklch(0.74 0.24 85);
+  --ember: oklch(0.74 0.24 85);
+  --ember-foreground: oklch(0.06 0.01 85);
+  --nav-glow-start: oklch(0.74 0.24 85 / 0.4);
+  --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
+  --latest-title: oklch(0.82 0.2 85);
   --logo-green: oklch(0.8 0.22 145);
 }
 
-/* Escopo de tema rosa — aplicado apenas na página inicial (.theme-matrix-green).
+/* Escopo de tema dourado — aplicado apenas na página inicial (.theme-matrix-green).
    O bloco é repetido com o prefixo "html.dark" porque html.dark sozinho tem
    especificidade maior que .theme-matrix-green e venceria a cascata, deixando
    os tokens originais vazarem quando o modo escuro está ativo. */
 .theme-matrix-green,
 html.dark .theme-matrix-green {
-  --background: oklch(0.08 0.01 340);
-  --foreground: oklch(0.9 0.14 340);
-  --card: oklch(0.12 0.022 340);
-  --card-foreground: oklch(0.9 0.14 340);
-  --popover: oklch(0.11 0.022 340);
-  --popover-foreground: oklch(0.9 0.14 340);
-  --primary: oklch(0.74 0.24 340);
-  --primary-foreground: oklch(0.08 0.01 340);
-  --secondary: oklch(0.2 0.045 340);
-  --secondary-foreground: oklch(0.9 0.14 340);
-  --muted: oklch(0.16 0.035 340);
-  --muted-foreground: oklch(0.6 0.12 340);
-  --accent: oklch(0.74 0.24 340);
-  --accent-foreground: oklch(0.08 0.01 340);
+  --background: oklch(0.08 0.01 85);
+  --foreground: oklch(0.9 0.14 85);
+  --card: oklch(0.12 0.022 85);
+  --card-foreground: oklch(0.9 0.14 85);
+  --popover: oklch(0.11 0.022 85);
+  --popover-foreground: oklch(0.9 0.14 85);
+  --primary: oklch(0.74 0.24 85);
+  --primary-foreground: oklch(0.08 0.01 85);
+  --secondary: oklch(0.2 0.045 85);
+  --secondary-foreground: oklch(0.9 0.14 85);
+  --muted: oklch(0.16 0.035 85);
+  --muted-foreground: oklch(0.6 0.12 85);
+  --accent: oklch(0.74 0.24 85);
+  --accent-foreground: oklch(0.08 0.01 85);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.95 0.02 25);
-  --border: oklch(0.4 0.1 340 / 0.35);
-  --input: oklch(0.16 0.035 340);
-  --ring: oklch(0.74 0.24 340);
-  --ember: oklch(0.74 0.24 340);
-  --ember-foreground: oklch(0.08 0.01 340);
-  --nav-glow-start: oklch(0.74 0.24 340 / 0.4);
-  --nav-glow-end: oklch(0.74 0.24 340 / 0.1);
+  --border: oklch(0.4 0.1 85 / 0.35);
+  --input: oklch(0.16 0.035 85);
+  --ring: oklch(0.74 0.24 85);
+  --ember: oklch(0.74 0.24 85);
+  --ember-foreground: oklch(0.08 0.01 85);
+  --nav-glow-start: oklch(0.74 0.24 85 / 0.4);
+  --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
 }
 
 @layer base {
@@ -276,7 +276,7 @@ body::after {
   animation: ember-shimmer 4s linear infinite;
 }
 
-/* Logo piscando em verde — sobrescreve o gradiente rosa padrão da logo */
+/* Logo piscando em verde — sobrescreve o gradiente dourado padrão da logo */
 @keyframes logo-blink-green {
   0%, 100% {
     opacity: 1;

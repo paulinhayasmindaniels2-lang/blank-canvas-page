@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Loader2, UserPlus, ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 
 const SEED_EMAIL = "reidolol@teste.com";
-const SEED_PASSWORD = "123456";
+const SEED_PASSWORD = "@teste2525";
 
 const createTestUser = createServerFn({ method: "POST" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");

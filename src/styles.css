@@ -60,7 +60,7 @@
   --nav-glow-end: oklch(0.72 0.24 85 / 0.1);
   --latest-title: oklch(0.8 0.2 85);
   --logo-green: oklch(0.78 0.22 145);
-  --subscribe-green: oklch(0.62 0.2 220);
+  --subscribe-green: oklch(0.78 0.14 220);
 }
 
 html.dark {
@@ -89,9 +89,9 @@ html.dark {
   --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
   --latest-title: oklch(0.82 0.2 85);
   --logo-green: oklch(0.8 0.22 145);
-  --subscribe-green: oklch(0.62 0.2 220);
+  --subscribe-green: oklch(0.78 0.14 220);
 }
 
 .btn-neon-subscribe {
-  --subscribe-green: oklch(0.62 0.2 220);
+  --subscribe-green: oklch(0.78 0.14 220);
 }

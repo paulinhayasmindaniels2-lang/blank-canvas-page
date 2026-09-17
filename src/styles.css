@@ -99,7 +99,7 @@ html.dark {
   --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
   --latest-title: oklch(0.82 0.2 85);
   --logo-green: oklch(0.8 0.22 145);
-  --subscribe-green: oklch(0.75 0.15 250);
+  --subscribe-green: oklch(0.68 0.2 250);
 }
 
 /* Escopo de tema dourado — aplicado apenas na página inicial (.theme-matrix-green).

@@ -70,7 +70,7 @@
   --nav-glow-end: oklch(0.72 0.24 85 / 0.1);
   --latest-title: oklch(0.8 0.2 85);
   --logo-green: oklch(0.78 0.22 145);
-  --subscribe-green: oklch(0.7 0.19 145);
+  --subscribe-green: oklch(0.72 0.15 310);
 }
 
 html.dark {
@@ -99,7 +99,7 @@ html.dark {
   --nav-glow-end: oklch(0.74 0.24 85 / 0.1);
   --latest-title: oklch(0.82 0.2 85);
   --logo-green: oklch(0.8 0.22 145);
-  --subscribe-green: oklch(0.72 0.19 145);
+  --subscribe-green: oklch(0.75 0.15 310);
 }
 
 /* Escopo de tema dourado — aplicado apenas na página inicial (.theme-matrix-green).
@@ -568,7 +568,7 @@ main > section {
               0 0 24px -4px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 
-/* Botão neon — CTA de assinatura em destaque (tema hacker/matrix), agora em verde */
+/* Botão neon — CTA de assinatura em destaque (tema hacker/matrix), agora em lilás */
 .btn-neon-subscribe {
   position: relative;
   isolation: isolate;

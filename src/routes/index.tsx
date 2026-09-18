@@ -196,7 +196,7 @@ function Index() {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col gap-6"
               >
-                <span className="flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.35em] text-primary/80">
+                <span className="flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.35em] text-emerald-400/80">
                   <Terminal className="size-3.5" />
                   root@ember:~$ cobertura --hoje --live
                   <span aria-hidden className="terminal-cursor" />

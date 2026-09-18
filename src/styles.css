@@ -92,6 +92,35 @@ html.dark {
   --subscribe-green: oklch(0.78 0.14 220);
 }
 
+.ember-logo {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.ember-dot.logo-green-dot {
+  background-color: var(--logo-green);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--logo-green) 55%, transparent);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.ember-logo:hover .logo-green-dot {
+  box-shadow: 0 0 16px color-mix(in oklab, var(--logo-green) 75%, transparent);
+  transform: scale(1.15);
+}
+
+.ember-word.logo-green-word {
+  color: var(--foreground);
+  transition: color 200ms ease;
+}
+
+.ember-logo:hover .logo-green-word {
+  color: var(--logo-green);
+}
+
+.ember-word .ember-accent {
+  color: var(--logo-green);
+}
+
 .btn-neon-subscribe {
   --subscribe-blue: oklch(0.62 0.19 250);
   background: var(--subscribe-blue);

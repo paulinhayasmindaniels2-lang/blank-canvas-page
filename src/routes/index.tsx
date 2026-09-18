@@ -218,7 +218,7 @@ function Index() {
                   </a>
                   <a
                     href="#em-pauta"
-                    className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/60 hover:bg-accent"
+                    className="link-outline-green inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium transition-colors duration-200"
                   >
                     Ver pauta de hoje
                   </a>

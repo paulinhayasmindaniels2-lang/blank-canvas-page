@@ -141,3 +141,23 @@ html.dark {
     0 0 0 2px oklch(0.09 0.008 85),
     0 0 0 4px oklch(0.6 0.18 145 / 0.7);
 }
+
+.link-outline-green {
+  border-color: oklch(0.6 0.18 145 / 0.5);
+  color: oklch(0.7 0.18 145);
+  background-color: transparent;
+  transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+
+.link-outline-green:hover {
+  border-color: oklch(0.66 0.18 145 / 0.8);
+  background-color: oklch(0.6 0.18 145 / 0.12);
+  color: oklch(0.76 0.18 145);
+}
+
+.link-outline-green:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px oklch(0.09 0.008 85),
+    0 0 0 4px oklch(0.6 0.18 145 / 0.6);
+}

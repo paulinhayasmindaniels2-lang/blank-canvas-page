@@ -97,12 +97,6 @@ export function ArticleCard({
           {article.title}
         </h3>
 
-        {!isSm && (
-          <p className={`text-muted-foreground ${isLg ? "max-w-2xl text-base line-clamp-3" : "line-clamp-2 text-sm"}`}>
-            {article.excerpt}
-          </p>
-        )}
-
         <div className={`mt-2 flex items-center justify-between text-muted-foreground ${isLg ? "text-sm" : "text-xs"}`}>
           <span className={isLg ? "font-medium text-foreground" : ""}>{article.author}</span>
           <span className="inline-flex items-center gap-1">

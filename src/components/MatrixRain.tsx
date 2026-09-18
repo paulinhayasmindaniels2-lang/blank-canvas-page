@@ -47,7 +47,7 @@ export function MatrixRain() {
       // controla a velocidade (desenha a cada 2 frames)
       if (frame % 2 !== 0) return;
 
-      ctx.fillStyle = "rgba(10, 4, 14, 0.06)";
+      ctx.fillStyle = "rgba(2, 12, 7, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
@@ -58,11 +58,11 @@ export function MatrixRain() {
         const y = drops[i] * fontSize;
 
         // caractere líder mais brilhante
-        ctx.fillStyle = "rgba(220, 170, 255, 0.95)";
+        ctx.fillStyle = "rgba(180, 255, 200, 0.95)";
         ctx.fillText(char, x, y);
 
-        // rastro lilás neon
-        ctx.fillStyle = "rgba(190, 90, 255, 0.4)";
+        // rastro verde neon
+        ctx.fillStyle = "rgba(30, 220, 100, 0.4)";
         ctx.fillText(char, x, y - fontSize);
 
         if (y > canvas.height && Math.random() > 0.975) {

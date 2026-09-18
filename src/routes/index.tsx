@@ -206,7 +206,7 @@ function Index() {
                   <br />
                   no ruído digital
                 </h2>
-                <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="max-w-xl text-base leading-relaxed text-red-500 md:text-lg">
                   Cobertura diária de IA, startups, cibersegurança, hardware e software — curadoria editorial sem ruído, direto ao ponto.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-4">

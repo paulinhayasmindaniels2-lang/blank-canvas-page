@@ -6,6 +6,10 @@ import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MatrixRain } from "@/components/MatrixRain";
 import { NewsletterModal } from "@/components/NewsletterModal";
+import UrgencyBanner from "@/components/UrgencyBanner";
+import SocialProofBar from "@/components/SocialProofBar";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import GuaranteeSection from "@/components/GuaranteeSection";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
 import {
@@ -18,50 +22,55 @@ import {
   Check,
   Terminal,
   Zap,
+  Flame,
 } from "lucide-react";
 
 const pricingPlans = [
   {
     name: "Leitor",
     price: "Grátis",
+    originalPrice: "",
     period: "",
-    description: "Para acompanhar o essencial da tecnologia.",
+    description: "Pra testar o gosto — mas quem fica só aqui, fica pra trás.",
     features: [
       "Acesso a todas as matérias",
       "Newsletter semanal",
       "Busca ilimitada",
     ],
     highlighted: false,
-    cta: "Começar agora",
+    cta: "COMEÇAR SEM PAGAR",
   },
   {
-    name: "Assinante",
+    name: "Assinante Fundador",
     price: "R$ 19",
+    originalPrice: "R$ 39",
     period: "/mês",
-    description: "Para quem quer profundidade e antecipação.",
+    description: "O plano que separa quem sabe de quem descobre depois.",
     features: [
       "Tudo do plano Leitor",
-      "Reportagens exclusivas",
-      "Sem anúncios",
-      "Newsletter diária",
-      "Acesso antecipado a pautas",
+      "Reportagens exclusivas antes de todo mundo",
+      "Zero anúncios, zero distração",
+      "Newsletter diária com furos reais",
+      "Acesso antecipado a pautas quentes",
+      "Preço travado pra sempre como fundador",
     ],
     highlighted: true,
-    cta: "Assinar agora",
+    cta: "QUERO SER ASSINANTE FUNDADOR",
   },
   {
     name: "Empresa",
     price: "R$ 89",
+    originalPrice: "",
     period: "/mês",
-    description: "Para times que acompanham o mercado de perto.",
+    description: "Pra times que não podem se dar ao luxo de saber depois.",
     features: [
       "Tudo do plano Assinante",
       "Até 10 usuários",
-      "Relatórios setoriais",
-      "Suporte prioritário",
+      "Relatórios setoriais sob medida",
+      "Suporte prioritário dedicado",
     ],
     highlighted: false,
-    cta: "Falar com vendas",
+    cta: "FALAR COM VENDAS AGORA",
   },
 ];
 
@@ -123,16 +132,16 @@ const fadeUp = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ember.News — Notícias de tecnologia" },
+      { title: "Ember.News — Assine antes que o furo vire notícia velha" },
       {
         name: "description",
         content:
-          "Cobertura diária de IA, startups, cibersegurança, hardware e software. Notícias de tecnologia com curadoria editorial.",
+          "+50.000 leitores já saem na frente com cobertura diária de IA, startups, cibersegurança, hardware e software. Assine agora com garantia de 7 dias.",
       },
-      { property: "og:title", content: "Ember.News — Notícias de tecnologia" },
+      { property: "og:title", content: "Ember.News — Assine antes que o furo vire notícia velha" },
       {
         property: "og:description",
-        content: "Cobertura diária de IA, startups, cibersegurança, hardware e software.",
+        content: "Cobertura diária de tecnologia sem ruído. Vagas de fundador limitadas. Garantia de 7 dias.",
       },
     ],
   }),
@@ -154,13 +163,14 @@ function Index() {
 
   return (
     <div className="theme-matrix-green relative min-h-screen bg-background">
+      <UrgencyBanner />
       <MatrixRain />
       <NewsletterModal />
       <div className="relative z-10">
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
-        <h1 className="sr-only">Notícias de tecnologia</h1>
+        <h1 className="sr-only">Notícias de tecnologia — assine antes que seja tarde</h1>
 
         {/* Hero principal — bloco de abertura full-bleed com HUD e terminal */}
         <section className="relative -mx-4 -mt-8 overflow-hidden px-4 pb-10 pt-10 md:-mx-6 md:-mt-10 md:px-6 md:pb-14 md:pt-14 lg:-mx-8 lg:px-8 lg:pt-16">
@@ -180,7 +190,7 @@ function Index() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-primary" />
                 </span>
-                Edição de Hoje
+                Edição de Hoje — ao vivo
               </span>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm">#IA Multimodal</span>
@@ -198,23 +208,23 @@ function Index() {
               >
                 <span className="flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.35em] text-fuchsia-400/80">
                   <Terminal className="size-3.5" />
-                  root@ember:~$ cobertura --hoje --live
+                  root@ember:~$ assinar --agora --sem-desculpa
                   <span aria-hidden className="terminal-cursor" />
                 </span>
                 <h2 className="headline-shimmer font-display text-5xl uppercase leading-[0.95] sm:text-6xl lg:text-[5.2rem]">
-                  Sinal claro
+                  Quem demora
                   <br />
-                  no ruído digital
+                  perde o furo
                 </h2>
-                <p className="max-w-xl text-base leading-relaxed text-red-500 md:text-lg">
-                  Cobertura diária de IA, startups, cibersegurança, hardware e software — curadoria editorial sem ruído, direto ao ponto.
+                <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  Enquanto você hesita, <strong className="text-foreground">+50.000 leitores</strong> já estão 3 passos à frente com furos exclusivos de IA, cibersegurança e hardware. Assine agora e nunca mais chegue atrasado numa decisão importante.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-4">
                   <a
                     href="#planos"
-                    className="btn-hero-green inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold"
+                    className="btn-hero-green inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-bold uppercase tracking-wide"
                   >
-                    Assinar agora <ArrowRight className="size-4" />
+                    Quero ser assinante fundador <ArrowRight className="size-4" />
                   </a>
                   <a
                     href="#em-pauta"
@@ -223,6 +233,10 @@ function Index() {
                     Ver pauta de hoje
                   </a>
                 </div>
+                <p className="urgency-pulse inline-flex w-fit items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
+                  <Flame className="size-3.5" />
+                  Vagas de fundador limitadas — preço sobe depois desse lote
+                </p>
               </motion.div>
 
               <motion.div
@@ -241,19 +255,19 @@ function Index() {
                 </div>
                 <div className="grid grid-cols-2 gap-5">
                   <div>
-                    <p className="font-display text-3xl text-foreground">{articles.length}+</p>
+                    <p className="stat-counter font-display text-3xl">{articles.length}+</p>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground">Matérias hoje</p>
                   </div>
                   <div>
-                    <p className="font-display text-3xl text-foreground">{categories.length}</p>
+                    <p className="stat-counter font-display text-3xl">{categories.length}</p>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground">Editorias</p>
                   </div>
                   <div>
-                    <p className="font-display text-3xl text-foreground">24/7</p>
+                    <p className="stat-counter font-display text-3xl">24/7</p>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground">Cobertura</p>
                   </div>
                   <div>
-                    <p className="font-display text-3xl text-primary">Live</p>
+                    <p className="stat-counter font-display text-3xl">Live</p>
                     <p className="text-xs uppercase tracking-wider text-muted-foreground">Atualização</p>
                   </div>
                 </div>
@@ -261,6 +275,11 @@ function Index() {
             </div>
           </div>
         </section>
+
+        {/* Prova social logo abaixo do hero */}
+        <div className="-mx-4 mt-10 md:-mx-6 lg:-mx-8">
+          <SocialProofBar />
+        </div>
 
         {/* Bento de destaques do dia */}
         <section className="mt-10 flex flex-col gap-4">
@@ -319,12 +338,17 @@ function Index() {
 
         {/* Zigzag editorial rows */}
         <section id="em-pauta" className="mt-16 flex flex-col gap-10 md:mt-24">
-          <motion.div {...fadeUp} className="flex items-end justify-between">
-            <h2 className="font-display text-2xl uppercase">Em pauta</h2>
-            <span className="h-px flex-1 mx-6 bg-border" />
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">
-              Leitura longa
-            </span>
+          <motion.div {...fadeUp} className="flex flex-col gap-2">
+            <div className="flex items-end justify-between">
+              <h2 className="font-display text-2xl uppercase">Em pauta agora</h2>
+              <span className="h-px flex-1 mx-6 bg-border" />
+              <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                Leitura obrigatória
+              </span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Enquanto você lê isso, alguém já está agindo com base nessas informações. Não seja o último a saber.
+            </p>
           </motion.div>
           {zigzag.map((a, i) => (
             <motion.article
@@ -351,18 +375,40 @@ function Index() {
                   params={{ slug: a.slug }}
                   className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
-                  Ler matéria <ArrowRight className="size-4" />
+                  Ler matéria agora <ArrowRight className="size-4" />
                 </Link>
               </div>
             </motion.article>
           ))}
         </section>
 
+        {/* CTA intermediário de alta densidade */}
+        <motion.section {...fadeUp} className="mt-16 md:mt-24">
+          <div className="flex flex-col items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-6 py-10 text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive urgency-pulse">
+              <Flame className="size-3.5" />
+              Vagas de fundador acabando
+            </span>
+            <h3 className="font-display text-2xl uppercase sm:text-3xl">
+              Ainda vai continuar chegando depois de todo mundo?
+            </h3>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              Cada dia sem assinar é um furo que você não viu, uma vantagem que perdeu. Trave seu preço de fundador agora.
+            </p>
+            <a
+              href="#planos"
+              className="btn-neon-subscribe inline-flex items-center gap-2 rounded-lg px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
+            >
+              Garantir minha vaga agora <ArrowRight className="size-4" />
+            </a>
+          </div>
+        </motion.section>
+
         {/* Categorias */}
         <motion.section {...fadeUp} className="mt-16 md:mt-24">
           <div className="flex items-end justify-between">
-            <h2 className="font-display text-2xl uppercase">Categorias</h2>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">Explore por tema</span>
+            <h2 className="font-display text-2xl uppercase">Escolha seu campo de batalha</h2>
+            <span className="text-xs uppercase tracking-wider text-muted-foreground">Cada editoria é uma vantagem</span>
           </div>
           <div className="mt-6 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((c, i) => (
@@ -376,7 +422,7 @@ function Index() {
               >
                 <Link
                   to="/categoria/$slug"
-                  params={{ slug: c.slug }}
+                  params={{slug: c.slug }}
                   className="group flex items-center gap-3 rounded-full border border-border bg-card px-5 py-2.5 transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/10"
                 >
                   <span className="font-display text-xs text-primary">{(i + 1).toString().padStart(2, "0")}</span>
@@ -388,12 +434,21 @@ function Index() {
           </div>
         </motion.section>
 
+        {/* Depoimentos após categorias */}
+        <div className="-mx-4 mt-16 md:-mx-6 md:mt-24 lg:-mx-8">
+          <TestimonialsSection />
+        </div>
+
         {/* Tabela de preços */}
         <motion.section {...fadeUp} id="planos" className="mt-16 md:mt-24">
-          <div className="flex flex-col items-center gap-2 text-center">
-            <h2 className="font-display text-2xl uppercase">Planos</h2>
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="urgency-pulse inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
+              <Flame className="size-3.5" />
+              Últimas vagas do plano fundador
+            </span>
+            <h2 className="font-display text-3xl uppercase sm:text-4xl">Escolha seu lado agora</h2>
             <p className="max-w-md text-sm text-muted-foreground">
-              Escolha o plano ideal para acompanhar o que importa em tecnologia.
+              Preço de fundador é travado pra sempre — mas só pra quem entrar antes do lote fechar. Depois disso, o valor sobe pros próximos.
             </p>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
@@ -411,16 +466,19 @@ function Index() {
                 }`}
               >
                 {plan.highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary-foreground">
-                    Mais popular
+                  <span className="urgency-pulse absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-destructive px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-destructive-foreground">
+                    Últimas vagas
                   </span>
                 )}
                 <div className="flex flex-col gap-1">
                   <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     {plan.name}
                   </span>
-                  <div className="flex items-end gap-1">
-                    <span className="font-display text-3xl">{plan.price}</span>
+                  <div className="flex items-end gap-2">
+                    {plan.originalPrice && (
+                      <span className="price-strike text-lg">{plan.originalPrice}</span>
+                    )}
+                    <span className="stat-counter font-display text-3xl">{plan.price}</span>
                     {plan.period && (
                       <span className="pb-1 text-sm text-muted-foreground">{plan.period}</span>
                     )}
@@ -439,7 +497,7 @@ function Index() {
 
                 <button
                   type="button"
-                  className={`w-full rounded-lg py-2.5 text-sm font-semibold transition-all focus-visible:outline-none ${
+                  className={`w-full rounded-lg py-2.5 text-sm font-bold uppercase tracking-wide transition-all focus-visible:outline-none ${
                     plan.highlighted
                       ? "btn-neon-subscribe text-primary-foreground"
                       : "border border-border bg-transparent text-foreground transition-colors duration-200 hover:border-primary/60 hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
@@ -447,6 +505,11 @@ function Index() {
                 >
                   {plan.cta}
                 </button>
+                {plan.highlighted && (
+                  <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Restam poucas vagas neste preço — depois sobe pra R$ 39/mês
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>
@@ -476,6 +539,11 @@ function Index() {
             </div>
           </motion.section>
         )}
+
+        {/* Garantia + CTA final de conversão */}
+        <div className="-mx-4 mt-16 md:-mx-6 md:mt-24 lg:-mx-8">
+          <GuaranteeSection />
+        </div>
       </main>
 
 
@@ -490,6 +558,25 @@ function Index() {
         />
 
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20 lg:px-8">
+          <div className="mb-14 flex flex-col items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-6 py-10 text-center">
+            <span className="urgency-pulse inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
+              <Flame className="size-3.5" />
+              Última chance nesse preço
+            </span>
+            <h3 className="font-display text-2xl uppercase sm:text-3xl">
+              Não feche essa página sem garantir sua vaga
+            </h3>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              Risco zero por 7 dias. Se não valer a pena, devolvemos 100% do seu dinheiro. A única coisa que você perde é continuar chegando atrasado.
+            </p>
+            <a
+              href="#planos"
+              className="btn-hero-green inline-flex items-center gap-2 rounded-lg px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
+            >
+              Quero assinar agora <ArrowRight className="size-4" />
+            </a>
+          </div>
+
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
             {/* Marca */}
             <div className="flex flex-col gap-4">
@@ -497,7 +584,7 @@ function Index() {
                 Ember<span className="text-ember">.</span>News
               </span>
               <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial, sem ruído.
+                Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial, sem ruído. Mais de 50.000 leitores já saem na frente.
               </p>
               <div className="mt-2 flex items-center gap-3">
                 <a
@@ -623,7 +710,7 @@ function Index() {
 
           <div className="mt-12 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:mt-16 md:flex-row md:items-center">
             <span>© {new Date().getFullYear().toString()} Ember.News. Todos os direitos reservados.</span>
-            <span className="uppercase tracking-wider">Tecnologia, sem ruído.</span>
+            <span className="uppercase tracking-wider">Tecnologia, sem ruído. Sem atraso.</span>
           </div>
         </div>
       </footer>

@@ -217,7 +217,7 @@ function Index() {
                   perde o furo
                 </h2>
                 <p className="max-w-xl text-base leading-relaxed text-[oklch(0.78_0.11_305)] md:text-lg">
-                  Enquanto você hesita, <strong className="text-[oklch(0.85_0.2_150)]">+50.000 leitores</strong> já estão 3 passos à frente com furos exclusivos de IA, cibersegurança e hardware. Assine agora e nunca mais chegue atrasado numa decisão importante.
+                  Enquanto você hesita, <strong className="font-extrabold text-[oklch(0.72_0.23_310)]">+50.000 leitores</strong> já estão 3 passos à frente com furos exclusivos de IA, cibersegurança e hardware. Assine agora e nunca mais chegue atrasado numa decisão importante.
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-4">
                   <a

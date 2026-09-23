@@ -1,169 +1,149 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { useState } from 'react'
-import { CheckCircle2, Loader2, XCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
+import { Loader2 } from 'lucide-react'
+import { supabaseAdmin } from '@/integrations/supabase/client.server'
 
-const TEST_USER_EMAIL = 'donodotrafego2@teste.com'
-const TEST_USER_PASSWORD = '456487898484das'
+const TEST_EMAIL = 'caio@teste.com'
+const TEST_PASSWORD = 'caioteste2625'
 
-type SeedUserResult = {
-  status: 'created' | 'already_exists'
-  userId: string | null
-  message: string
+type SeedResult = {
+  status: 'created' | 'updated'
+  email: string
 }
 
-const createTestUser = createServerFn({ method: 'POST' }).handler(
-  async (): Promise<SeedUserResult> => {
-    const { supabaseServer } = await import(
-      '@/integrations/supabase/client.server'
-    )
-
-    const { data, error } = await supabaseServer.auth.admin.createUser({
-      email: TEST_USER_EMAIL,
-      password: TEST_USER_PASSWORD,
+const seedTestUser = createServerFn({ method: 'POST' }).handler(
+  async (): Promise<SeedResult> => {
+    const { data, error } = await supabaseAdmin.auth.admin.createUser({
+      email: TEST_EMAIL,
+      password: TEST_PASSWORD,
       email_confirm: true,
     })
 
-    if (error) {
-      const alreadyExists =
-        error.message?.toLowerCase().includes('already registered') ||
-        error.message?.toLowerCase().includes('already exists') ||
-        error.message?.toLowerCase().includes('already been registered')
-
-      if (alreadyExists) {
-        return {
-          status: 'already_exists',
-          userId: null,
-          message: `O usuário ${TEST_USER_EMAIL} já existe.`,
-        }
-      }
-
-      throw new Error(error.message ?? 'Falha ao criar usuário de teste.')
+    if (!error && data?.user) {
+      return { status: 'created', email: TEST_EMAIL }
     }
 
-    return {
-      status: 'created',
-      userId: data.user?.id ?? null,
-      message: `Usuário ${TEST_USER_EMAIL} criado com sucesso.`,
+    const message = error?.message?.toLowerCase() ?? ''
+    const alreadyExists =
+      message.includes('already') ||
+      message.includes('registered') ||
+      message.includes('exists') ||
+      error?.status === 422
+
+    if (!alreadyExists) {
+      throw new Error(error?.message ?? 'Falha ao criar usuário de teste')
     }
+
+    const { data: listData, error: listError } =
+      await supabaseAdmin.auth.admin.listUsers()
+
+    if (listError) {
+      throw new Error(listError.message)
+    }
+
+    const existingUser = listData.users.find(
+      (u) => u.email?.toLowerCase() === TEST_EMAIL.toLowerCase(),
+    )
+
+    if (!existingUser) {
+      throw new Error('Usuário não encontrado após conflito de criação')
+    }
+
+    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
+      existingUser.id,
+      { password: TEST_PASSWORD },
+    )
+
+    if (updateError) {
+      throw new Error(updateError.message)
+    }
+
+    return { status: 'updated', email: TEST_EMAIL }
   },
 )
 
+export const Route = createFileRoute('/admin/seed-user')({
+  component: SeedUserPage,
+})
+
 function SeedUserPage() {
   const [isLoading, setIsLoading] = useState(false)
-  const [result, setResult] = useState<SeedUserResult | null>(null)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [hasRun, setHasRun] = useState(false)
 
-  const handleCreateUser = async () => {
+  const runSeed = async () => {
     setIsLoading(true)
-    setErrorMessage(null)
-    setResult(null)
-
     try {
-      const response = await createTestUser()
-      setResult(response)
-    } catch (error) {
+      const result = await seedTestUser()
+      if (result.status === 'created') {
+        toast.success('Usuário de teste criado com sucesso.')
+      } else {
+        toast.success('Usuário já existia — senha atualizada.')
+      }
+    } catch (err) {
       const message =
-        error instanceof Error
-          ? error.message
-          : 'Erro inesperado ao criar usuário de teste.'
-      setErrorMessage(message)
+        err instanceof Error ? err.message : 'Erro desconhecido ao criar usuário.'
+      toast.error(message)
     } finally {
       setIsLoading(false)
     }
   }
 
+  useEffect(() => {
+    if (!hasRun) {
+      setHasRun(true)
+      void runSeed()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-background px-4 py-12">
-      <Card className="w-full max-w-md border-border bg-card font-display">
-        <CardHeader>
-          <CardTitle className="text-xl text-foreground">
-            Criar usuário de teste
-          </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Ao clicar no botão abaixo, será criado (via Supabase Auth Admin) o
-            usuário de teste com o email{' '}
-            <span className="font-medium text-primary">
-              {TEST_USER_EMAIL}
-            </span>{' '}
-            e senha já confirmada (email_confirm: true).
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground">
-            <p>
-              <span className="text-foreground">Email:</span> {TEST_USER_EMAIL}
-            </p>
-            <p>
-              <span className="text-foreground">Senha:</span>{' '}
-              {TEST_USER_PASSWORD}
-            </p>
-          </div>
+    <div className="min-h-screen w-full flex items-center justify-center bg-background px-4 py-12 font-mono">
+      <div className="relative w-full max-w-md border border-border bg-card p-8">
+        <span className="hud-corner hud-corner-tl" aria-hidden="true" />
+        <span className="hud-corner hud-corner-tr" aria-hidden="true" />
+        <span className="hud-corner hud-corner-bl" aria-hidden="true" />
+        <span className="hud-corner hud-corner-br" aria-hidden="true" />
 
-          <Button
-            onClick={handleCreateUser}
-            disabled={isLoading}
-            className="w-full"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Criando usuário...
-              </>
-            ) : (
-              'Criar usuário'
-            )}
-          </Button>
+        <h1 className="text-sm uppercase tracking-[0.3em] text-primary mb-1">
+          root@ember
+        </h1>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-6">
+          seed :: usuário de teste
+        </p>
 
-          {result && result.status === 'created' && (
-            <Alert className="border-primary/40 bg-primary/10 text-foreground">
-              <CheckCircle2 className="h-4 w-4 text-primary" />
-              <AlertTitle>Usuário criado</AlertTitle>
-              <AlertDescription className="text-muted-foreground">
-                {result.message}
-                {result.userId && (
-                  <>
-                    <br />
-                    <span className="text-foreground">ID:</span>{' '}
-                    <span className="font-mono text-xs">{result.userId}</span>
-                  </>
-                )}
-              </AlertDescription>
-            </Alert>
+        <div
+          className="mb-6 border border-border bg-background/60 p-4 font-mono text-xs leading-relaxed"
+          role="group"
+          aria-label="Credenciais do usuário de teste"
+        >
+          <p className="text-muted-foreground">
+            <span className="text-primary">$</span> email
+          </p>
+          <p className="mb-2 break-all text-foreground">{TEST_EMAIL}</p>
+          <p className="text-muted-foreground">
+            <span className="text-primary">$</span> senha
+          </p>
+          <p className="text-foreground">{TEST_PASSWORD}</p>
+        </div>
+
+        <button
+          type="button"
+          onClick={runSeed}
+          disabled={isLoading}
+          className="btn-hero-green flex w-full items-center justify-center gap-2 text-xs uppercase tracking-widest disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              executando...
+            </>
+          ) : (
+            'Criar usuário teste'
           )}
-
-          {result && result.status === 'already_exists' && (
-            <Alert className="border-ember/40 bg-ember/10 text-foreground">
-              <CheckCircle2 className="h-4 w-4 text-ember" />
-              <AlertTitle>Usuário já existe</AlertTitle>
-              <AlertDescription className="text-muted-foreground">
-                {result.message}
-              </AlertDescription>
-            </Alert>
-          )}
-
-          {errorMessage && (
-            <Alert variant="destructive">
-              <XCircle className="h-4 w-4" />
-              <AlertTitle>Erro ao criar usuário</AlertTitle>
-              <AlertDescription>{errorMessage}</AlertDescription>
-            </Alert>
-          )}
-        </CardContent>
-      </Card>
+        </button>
+      </div>
     </div>
   )
 }
-
-export const Route = createFileRoute('/admin/seed-user')({
-  component: SeedUserPage,
-})

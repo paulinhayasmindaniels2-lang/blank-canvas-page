@@ -1,91 +1,59 @@
-import { motion } from "motion/react";
-import { Users, Star, Flame, TrendingUp } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import * as React from "react";
+import { Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface Stat {
-  icon: LucideIcon;
-  value: string;
-  label: string;
+export interface SocialProofBarProps {
+  headlines?: string[];
+  className?: string;
 }
 
-const stats: Stat[] = [
-  {
-    icon: Users,
-    value: "+50.000",
-    label: "leitores ativos por mês",
-  },
-  {
-    icon: Star,
-    value: "4.9/5",
-    label: "avaliação média dos assinantes",
-  },
-  {
-    icon: Flame,
-    value: "+120",
-    label: "furos exclusivos por mês",
-  },
-  {
-    icon: TrendingUp,
-    value: "98%",
-    label: "dos assinantes renovam",
-  },
+const DEFAULT_HEADLINES: string[] = [
+  "Congresso aprova novo marco regulatório para inteligência artificial",
+  "Inflação desacelera pelo terceiro mês consecutivo, aponta instituto",
+  "Setor de energia renovável atrai maior volume de investimentos da década",
+  "Seleção define escalação para amistoso decisivo nesta semana",
+  "Bolsas fecham em alta após sinalização de corte de juros",
 ];
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
+export function SocialProofBar({
+  headlines = DEFAULT_HEADLINES,
+  className,
+}: SocialProofBarProps) {
+  const track = [...headlines, ...headlines];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
-
-export default function SocialProofBar() {
   return (
-    <section
-      aria-label="Prova social e números da Ember.News"
-      className="relative border-y border-border bg-card/60 py-10 sm:py-12"
+    <div
+      className={cn(
+        "w-full border-b border-border bg-primary text-primary-foreground",
+        className
+      )}
+      role="region"
+      aria-label="Última hora"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <p className="mb-6 text-center text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground sm:text-xs">
-          Por que milhares confiam na cobertura Ember
-        </p>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4"
-        >
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.label}
-                variants={fadeUp}
-                className="flex flex-col items-center gap-2 rounded-[3px] border border-border bg-background/40 px-3 py-6 text-center sm:px-4"
-              >
-                <Icon className="h-6 w-6 text-primary sm:h-7 sm:w-7" aria-hidden="true" />
-                <span className="stat-counter text-2xl sm:text-3xl md:text-4xl">
-                  {stat.value}
+      <div className="mx-auto flex max-w-6xl items-stretch">
+        <div className="flex shrink-0 items-center gap-2 border-r border-primary-foreground/25 bg-primary px-3 py-2 sm:px-4">
+          <Zap className="h-3.5 w-3.5" aria-hidden="true" />
+          <span className="whitespace-nowrap text-[0.7rem] font-bold uppercase tracking-[0.14em]">
+            Última hora
+          </span>
+        </div>
+
+        <div className="relative flex-1 overflow-hidden py-2">
+          <div
+            className="ticker-track flex w-max items-center gap-10 whitespace-nowrap pr-10 text-[0.78rem] font-medium motion-reduce:animate-none"
+            style={{ animation: "ticker-scroll 32s linear infinite" }}
+          >
+            {track.map((headline, index) => (
+              <span key={`${headline}-${index}`} className="flex items-center gap-10">
+                <span>{headline}</span>
+                <span className="text-primary-foreground/50" aria-hidden="true">
+                  •
                 </span>
-                <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground sm:text-xs">
-                  {stat.label}
-                </span>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,94 +1,88 @@
-import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
-import type { Article } from "@/lib/articles";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-export function LatestTicker({ items }: { items: Article[] }) {
-  const [active, setActive] = useState(0);
+export interface LatestTickerItem {
+  title: string;
+  category: string;
+  href?: string;
+}
 
-  useEffect(() => {
-    if (items.length <= 1) return;
-    let id: ReturnType<typeof setInterval> | null = null;
-    const start = () => {
-      if (id != null) return;
-      id = setInterval(() => setActive((i) => (i + 1) % items.length), 3500);
-    };
-    const stop = () => {
-      if (id != null) {
-        clearInterval(id);
-        id = null;
-      }
-    };
-    const onVis = () => (document.hidden ? stop() : start());
-    start();
-    document.addEventListener("visibilitychange", onVis);
-    return () => {
-      stop();
-      document.removeEventListener("visibilitychange", onVis);
-    };
-  }, [items.length]);
+export interface LatestTickerProps {
+  items?: LatestTickerItem[];
+  title?: string;
+  className?: string;
+}
 
-  if (items.length === 0) return null;
+const DEFAULT_ITEMS: LatestTickerItem[] = [
+  {
+    title: "Bancos centrais aceleram debate sobre moedas digitais soberanas",
+    category: "Economia",
+    href: "#",
+  },
+  {
+    title: "Nova geração de chips promete cortar consumo de energia em data centers",
+    category: "Tecnologia",
+    href: "#",
+  },
+  {
+    title: "Cidades médias lideram retomada do mercado de trabalho no semestre",
+    category: "Negócios",
+    href: "#",
+  },
+  {
+    title: "Streaming muda estratégia e aposta em produções locais de longa duração",
+    category: "Cultura",
+    href: "#",
+  },
+  {
+    title: "Pesquisa aponta mudança no hábito de leitura de notícias entre jovens",
+    category: "Sociedade",
+    href: "#",
+  },
+];
 
+export function LatestTicker({
+  items = DEFAULT_ITEMS,
+  title = "Mais Lidas",
+  className,
+}: LatestTickerProps) {
   return (
-    <aside className="flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">
-      <div className="flex items-center justify-between">
-        <h2 className="font-display text-sm uppercase tracking-[0.3em] text-muted-foreground">
-          Últimas
-        </h2>
-        <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-primary" />
-          </span>
-          ao vivo
-        </span>
+    <aside
+      className={cn(
+        "card-hairline rounded-[6px] border border-border bg-card p-6",
+        className
+      )}
+      aria-label={title}
+    >
+      <div className="flex items-baseline justify-between">
+        <h2 className="headline-serif text-xl">{title}</h2>
+        <span className="kicker">Ranking</span>
       </div>
 
-      <ol className="flex flex-col divide-y divide-border">
-        {items.map((a, i) => (
-          <motion.li
-            key={a.slug}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08, duration: 0.45, ease: "easeOut" }}
-            className="relative py-3 first:pt-0"
-          >
-            <AnimatePresence>
-              {active === i && (
-                <motion.span
-                  layoutId="latest-active"
-                  className="pointer-events-none absolute inset-x-0 inset-y-1 -z-10 rounded-md bg-primary/5"
-                  transition={{ type: "spring", stiffness: 280, damping: 30 }}
-                />
-              )}
-            </AnimatePresence>
-            <Link
-              to="/artigo/$slug"
-              params={{ slug: a.slug }}
-              className="group flex gap-3"
+      <div className="newspaper-rule mt-4" />
+
+      <ol className="flex flex-col">
+        {items.map((item, index) => (
+          <li key={item.title} className={cn(index !== 0 && "border-t border-border")}>
+            <a
+              href={item.href ?? "#"}
+              className="group flex items-start gap-4 py-4"
             >
-              <motion.span
-                animate={{
-                  scale: active === i ? 1.08 : 1,
-                }}
-                transition={{ duration: 0.35 }}
-                className={`font-display text-2xl tabular-nums ${
-                  active === i ? "text-primary" : "text-primary/70"
-                }`}
+              <span
+                className="font-display shrink-0 text-3xl font-black leading-none text-primary"
+                aria-hidden="true"
               >
-                {(i + 1).toString().padStart(2, "0")}
-              </motion.span>
-              <div className="flex flex-col gap-1">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {a.category}
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span className="flex flex-col gap-1">
+                <span className="byline">{item.category}</span>
+                <span className="font-display text-base font-semibold leading-snug text-foreground decoration-primary decoration-2 underline-offset-4 group-hover:underline">
+                  {item.title}
                 </span>
-                <h3 className="text-sm font-medium leading-snug text-latest-title transition-colors group-hover:text-latest-title/80">
-                  {a.title}
-                </h3>
-              </div>
-            </Link>
-          </motion.li>
+              </span>
+            </a>
+          </li>
         ))}
       </ol>
     </aside>

@@ -4,10 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
-import { MatrixRain } from "@/components/MatrixRain";
 import { NewsletterModal } from "@/components/NewsletterModal";
-import UrgencyBanner from "@/components/UrgencyBanner";
-import SocialProofBar from "@/components/SocialProofBar";
+import { UrgencyBanner } from "@/components/UrgencyBanner";
+import { SocialProofBar } from "@/components/SocialProofBar";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
@@ -18,11 +17,10 @@ import {
   Twitter,
   Linkedin,
   Instagram,
-  ArrowUpRight,
   Check,
-  Terminal,
-  Zap,
-  Flame,
+  Mail,
+  Newspaper,
+  ShieldCheck,
 } from "lucide-react";
 
 const pricingPlans = [
@@ -31,28 +29,28 @@ const pricingPlans = [
     price: "Grátis",
     originalPrice: "",
     period: "",
-    description: "Pra testar o gosto — mas quem fica só aqui, fica pra trás.",
+    description: "Para conhecer a redação — acesso limitado ao essencial do dia.",
     features: [
-      "Acesso a todas as matérias",
+      "Acesso a todas as matérias abertas",
       "Newsletter semanal",
-      "Busca ilimitada",
+      "Busca ilimitada no acervo",
     ],
     highlighted: false,
-    cta: "COMEÇAR SEM PAGAR",
+    cta: "COMEÇAR GRATUITAMENTE",
   },
   {
     name: "Assinante Fundador",
     price: "R$ 19",
     originalPrice: "R$ 39",
     period: "/mês",
-    description: "O plano que separa quem sabe de quem descobre depois.",
+    description: "A assinatura completa, com preço de fundador travado para sempre.",
     features: [
       "Tudo do plano Leitor",
-      "Reportagens exclusivas antes de todo mundo",
-      "Zero anúncios, zero distração",
-      "Newsletter diária com furos reais",
-      "Acesso antecipado a pautas quentes",
-      "Preço travado pra sempre como fundador",
+      "Reportagens exclusivas em primeira mão",
+      "Edição sem anúncios",
+      "Newsletter diária com furos de redação",
+      "Acesso antecipado às pautas em apuração",
+      "Preço de fundador travado para sempre",
     ],
     highlighted: true,
     cta: "QUERO SER ASSINANTE FUNDADOR",
@@ -62,17 +60,39 @@ const pricingPlans = [
     price: "R$ 89",
     originalPrice: "",
     period: "/mês",
-    description: "Pra times que não podem se dar ao luxo de saber depois.",
+    description: "Para redações e times que precisam de informação verificada todos os dias.",
     features: [
       "Tudo do plano Assinante",
-      "Até 10 usuários",
+      "Até 10 usuários por licença",
       "Relatórios setoriais sob medida",
-      "Suporte prioritário dedicado",
+      "Suporte editorial prioritário",
     ],
     highlighted: false,
-    cta: "FALAR COM VENDAS AGORA",
+    cta: "FALAR COM O COMERCIAL",
   },
 ];
+
+const subscriptionSteps = [
+  {
+    icon: Newspaper,
+    title: "Escolha sua edição",
+    description: "Selecione o plano que combina com o seu ritmo de leitura — do gratuito ao fundador.",
+  },
+  {
+    icon: Mail,
+    title: "Confirme por e-mail",
+    description: "Você recebe a confirmação e já começa a receber a newsletter diária na hora.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Leia com garantia",
+    description: "Satisfação garantida em 7 dias — se não for para você, devolvemos o valor.",
+  },
+];
+
+function toTickerItem(a: (typeof articles)[number]) {
+  return { title: a.title, category: a.category, href: `/artigo/${a.slug}` };
+}
 
 function LazyVideo({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -109,11 +129,11 @@ function LazyVideo({ src }: { src: string }) {
         <button
           type="button"
           onClick={() => setPlay(true)}
-          className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted to-card"
+          className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-muted"
           aria-label="Reproduzir vídeo"
         >
-          <span className="flex size-16 items-center justify-center rounded-full bg-white/10 backdrop-blur transition-transform group-hover:scale-110">
-            <Play className="size-7 fill-white text-white" />
+          <span className="flex size-16 items-center justify-center rounded-full border border-border bg-background/90 transition-transform group-hover:scale-105">
+            <Play className="size-6 fill-foreground text-foreground" />
           </span>
         </button>
       )}
@@ -128,20 +148,20 @@ const fadeUp = {
   transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
 };
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ember.News — Assine antes que o furo vire notícia velha" },
+      { title: "Ember.News — Jornal Digital de Tecnologia, Negócios e Cultura" },
       {
         name: "description",
         content:
-          "+50.000 leitores já saem na frente com cobertura diária de IA, startups, cibersegurança, hardware e software. Assine agora com garantia de 7 dias.",
+          "Reportagens verificadas, análises independentes e as manchetes que importam. Assine a Ember.News e receba a edição diária com garantia de satisfação de 7 dias.",
       },
-      { property: "og:title", content: "Ember.News — Assine antes que o furo vire notícia velha" },
+      { property: "og:title", content: "Ember.News — Jornal Digital de Tecnologia" },
       {
         property: "og:description",
-        content: "Cobertura diária de tecnologia sem ruído. Vagas de fundador limitadas. Garantia de 7 dias.",
+        content:
+          "Cobertura diária de tecnologia, negócios e cultura em formato de jornal. Assine e receba as manchetes do dia.",
       },
     ],
   }),
@@ -162,295 +182,235 @@ function Index() {
   }, []);
 
   return (
-    <div className="theme-matrix-green relative min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
       <UrgencyBanner />
-      <MatrixRain />
       <NewsletterModal />
-      <div className="relative z-10">
       <SiteHeader />
+      <SocialProofBar />
 
-      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12">
-        <h1 className="sr-only">Notícias de tecnologia — assine antes que seja tarde</h1>
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+        <h1 className="sr-only">Ember.News — jornal digital de tecnologia, negócios e cultura</h1>
 
-        {/* Hero principal — bloco de abertura full-bleed com HUD e terminal */}
-        <section className="relative -mx-4 -mt-8 overflow-hidden px-4 pb-10 pt-10 md:-mx-6 md:-mt-10 md:px-6 md:pb-14 md:pt-14 lg:-mx-8 lg:px-8 lg:pt-16">
-          <div aria-hidden className="hero-grid-bg" />
-          <div aria-hidden className="hero-aurora-a" />
-          <div aria-hidden className="hero-aurora-b" />
-
-          <div className="relative z-10 flex flex-col gap-12">
+        {/* Hero editorial */}
+        <section className="border-b border-border pb-10 md:pb-14">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]">
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-wrap items-center justify-between gap-3"
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-5"
             >
-              <span className="ember-shimmer-text flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em]">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
-                </span>
-                Edição de Hoje — ao vivo
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm">#IA Multimodal</span>
-                <span className="rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm">#Cibersegurança</span>
-                <span className="hidden rounded-full border border-primary/30 bg-secondary/60 px-2.5 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm sm:inline-block">#Chips 3nm</span>
+              <span className="kicker">{featured.category}</span>
+              <h2 className="headline-serif text-4xl italic sm:text-5xl lg:text-[3.4rem]">
+                {featured.title}
+              </h2>
+              <p className="byline">
+                {featured.author} · {featured.date} · {featured.readTime}
+              </p>
+
+              <a
+                href={`/artigo/${featured.slug}`}
+                className="-mx-4 overflow-hidden border-y border-border sm:mx-0 sm:rounded-[6px] sm:border"
+              >
+                <img
+                  src={featured.image}
+                  alt={featured.title}
+                  className="h-[260px] w-full object-cover sm:h-[420px]"
+                />
+              </a>
+
+              <p className="drop-cap max-w-2xl font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
+                {featured.excerpt}
+              </p>
+
+              <div className="mt-2 flex flex-wrap items-center gap-4">
+                <a
+                  href="#planos"
+                  className="btn-news-primary inline-flex items-center gap-2 rounded-[6px] px-6 py-3 text-sm font-bold uppercase tracking-wide"
+                >
+                  Assinar agora <ArrowRight className="size-4" />
+                </a>
+                <a
+                  href="#em-pauta"
+                  className="btn-news-outline inline-flex items-center gap-2 rounded-[6px] px-6 py-3 text-sm font-semibold uppercase tracking-wide"
+                >
+                  Ver pauta de hoje
+                </a>
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-end">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col gap-6"
-              >
-                <span className="flex items-center gap-2 font-display text-[11px] uppercase tracking-[0.35em] text-fuchsia-400/80">
-                  <Terminal className="size-3.5" />
-                  root@ember:~$ assinar --agora --sem-desculpa
-                  <span aria-hidden className="terminal-cursor" />
-                </span>
-                <h2 className="headline-shimmer font-display text-5xl uppercase leading-[0.95] sm:text-6xl lg:text-[5.2rem]">
-                  Quem demora
-                  <br />
-                  perde o furo
-                </h2>
-                <p className="max-w-xl text-base leading-relaxed text-[oklch(0.78_0.11_305)] md:text-lg">
-                  Enquanto você hesita, <strong className="font-extrabold text-[oklch(0.72_0.23_310)]">+50.000 leitores</strong> já estão 3 passos à frente com furos exclusivos de IA, cibersegurança e hardware. Assine agora e nunca mais chegue atrasado numa decisão importante.
-                </p>
-                <div className="mt-2 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#planos"
-                    className="btn-hero-green inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-bold uppercase tracking-wide"
-                  >
-                    Quero ser assinante fundador <ArrowRight className="size-4" />
-                  </a>
-                  <a
-                    href="#em-pauta"
-                    className="link-outline-green inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium transition-colors duration-200"
-                  >
-                    Ver pauta de hoje
-                  </a>
-                </div>
-                <p className="urgency-pulse inline-flex w-fit items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
-                  <Flame className="size-3.5" />
-                  Vagas de fundador limitadas — preço sobe depois desse lote
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="relative flex flex-col gap-5 rounded-2xl border border-border/70 bg-card/50 p-6 backdrop-blur-sm"
-              >
-                <span aria-hidden className="hud-corner hud-corner-tl" />
-                <span aria-hidden className="hud-corner hud-corner-tr" />
-                <span aria-hidden className="hud-corner hud-corner-bl" />
-                <span aria-hidden className="hud-corner hud-corner-br" />
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                  <Zap className="size-3.5 text-primary" />
-                  Painel ao vivo
-                </div>
-                <div className="grid grid-cols-2 gap-5">
-                  <div>
-                    <p className="stat-counter font-display text-3xl">{articles.length}+</p>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Matérias hoje</p>
-                  </div>
-                  <div>
-                    <p className="stat-counter font-display text-3xl">{categories.length}</p>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Editorias</p>
-                  </div>
-                  <div>
-                    <p className="stat-counter font-display text-3xl">24/7</p>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Cobertura</p>
-                  </div>
-                  <div>
-                    <p className="stat-counter font-display text-3xl">Live</p>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Atualização</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <LatestTicker items={sidebarList.map(toTickerItem)} />
+            </motion.div>
           </div>
         </section>
 
-        {/* Prova social logo abaixo do hero */}
-        <div className="-mx-4 mt-10 md:-mx-6 lg:-mx-8">
-          <SocialProofBar />
-        </div>
-
-        {/* Bento de destaques do dia */}
-        <section className="mt-10 flex flex-col gap-4">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-2">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative lg:col-span-2 lg:row-span-2"
-            >
-              <span aria-hidden className="hud-corner hud-corner-tl" />
-              <span aria-hidden className="hud-corner hud-corner-br" />
-              <ArticleCard article={featured} size="lg" />
-            </motion.div>
-
+        {/* Destaques do dia */}
+        <section className="mt-12 md:mt-16">
+          <div className="flex items-end justify-between">
+            <h2 className="headline-serif text-2xl">Destaques do dia</h2>
+            <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
+              Selecionado pela redação
+            </span>
+          </div>
+          <div className="newspaper-rule mt-4 mb-8" />
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {bentoSecondary.map((a, i) => (
               <motion.div
                 key={a.slug}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="lg:col-start-3"
-                style={{ gridRow: i + 1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <ArticleCard article={a} size="sm" />
+                <ArticleCard
+                  image={a.image}
+                  category={a.category}
+                  title={a.title}
+                  excerpt={a.excerpt}
+                  author={a.author}
+                  date={a.date}
+                  readTime={a.readTime}
+                  href={`/artigo/${a.slug}`}
+                />
               </motion.div>
             ))}
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col rounded-2xl border border-border/80 bg-card/40 p-5 backdrop-blur-sm shadow-lg lg:col-start-4 lg:row-span-2"
-            >
-              <LatestTicker items={sidebarList} />
-            </motion.div>
           </div>
         </section>
 
         {/* Vídeo em destaque */}
-        <motion.section {...fadeUp} className="mt-16 flex justify-center md:mt-24">
-          <div className="relative w-full max-w-3xl">
-            <div className="pointer-events-none absolute -inset-8 -z-10 overflow-hidden rounded-[2rem]">
-              <div className="video-aurora absolute inset-0" />
-              <div className="video-aurora-2 absolute inset-0" />
-            </div>
-            <motion.div
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
-            >
-              <LazyVideo src={estatuaVideo.url} />
-            </motion.div>
+        <motion.section {...fadeUp} className="mt-14 flex justify-center md:mt-20">
+          <div className="w-full max-w-3xl overflow-hidden rounded-[6px] border border-border bg-card shadow-sm">
+            <LazyVideo src={estatuaVideo.url} />
           </div>
         </motion.section>
 
-        {/* Zigzag editorial rows */}
-        <section id="em-pauta" className="mt-16 flex flex-col gap-10 md:mt-24">
+        {/* Em pauta — zigzag editorial */}
+        <section id="em-pauta" className="mt-14 flex flex-col gap-10 md:mt-20">
           <motion.div {...fadeUp} className="flex flex-col gap-2">
-            <div className="flex items-end justify-between">
-              <h2 className="font-display text-2xl uppercase">Em pauta agora</h2>
-              <span className="h-px flex-1 mx-6 bg-border" />
-              <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                Leitura obrigatória
+            <div className="flex items-end justify-between gap-6">
+              <h2 className="headline-serif text-2xl">Em pauta agora</h2>
+              <span className="h-px flex-1 bg-border" />
+              <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
+                Leitura recomendada
               </span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Enquanto você lê isso, alguém já está agindo com base nessas informações. Não seja o último a saber.
+            <p className="max-w-2xl text-sm text-muted-foreground">
+              Reportagens em apuração e análises que estão movimentando a redação nas últimas horas.
             </p>
           </motion.div>
+
           {zigzag.map((a, i) => (
-            <motion.article
+            <motion.div
               key={a.slug}
-              initial={{ opacity: 0, x: i % 2 === 1 ? 40 : -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10 ${
-                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ArticleCard article={a} size="md" spotlight={i === 0} />
-              <div className="flex flex-col justify-center gap-3">
-                <span className="text-xs uppercase tracking-[0.3em] text-primary">
-                  {a.category}
-                </span>
-                <h3 className="font-display text-2xl leading-tight md:text-3xl">
-                  {a.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">{a.excerpt}</p>
-                <Link
-                  to="/artigo/$slug"
-                  params={{ slug: a.slug }}
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  Ler matéria agora <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </motion.article>
+              <ArticleCard
+                image={a.image}
+                category={a.category}
+                title={a.title}
+                excerpt={a.excerpt}
+                author={a.author}
+                date={a.date}
+                readTime={a.readTime}
+                href={`/artigo/${a.slug}`}
+                variant="horizontal"
+                className={i % 2 === 1 ? "sm:flex-row-reverse" : undefined}
+              />
+            </motion.div>
           ))}
         </section>
 
-        {/* CTA intermediário de alta densidade */}
-        <motion.section {...fadeUp} className="mt-16 md:mt-24">
-          <div className="flex flex-col items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-6 py-10 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive urgency-pulse">
-              <Flame className="size-3.5" />
-              Vagas de fundador acabando
-            </span>
-            <h3 className="font-display text-2xl uppercase sm:text-3xl">
-              Ainda vai continuar chegando depois de todo mundo?
+        {/* CTA intermediário */}
+        <motion.section {...fadeUp} className="mt-14 md:mt-20">
+          <div className="flex flex-col items-center gap-4 rounded-[6px] border border-border bg-card px-6 py-10 text-center">
+            <span className="kicker">Assinatura fundador</span>
+            <h3 className="headline-serif text-2xl sm:text-3xl">
+              A edição completa, sem interrupções.
             </h3>
             <p className="max-w-xl text-sm text-muted-foreground md:text-base">
-              Cada dia sem assinar é um furo que você não viu, uma vantagem que perdeu. Trave seu preço de fundador agora.
+              Reportagens exclusivas, sem anúncios e com a newsletter diária direto na sua caixa de entrada. Preço de fundador travado para sempre.
             </p>
             <a
               href="#planos"
-              className="btn-neon-subscribe inline-flex items-center gap-2 rounded-lg px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
+              className="btn-news-primary inline-flex items-center gap-2 rounded-[6px] px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
             >
-              Garantir minha vaga agora <ArrowRight className="size-4" />
+              Ver planos de assinatura <ArrowRight className="size-4" />
             </a>
           </div>
         </motion.section>
 
-        {/* Categorias */}
-        <motion.section {...fadeUp} className="mt-16 md:mt-24">
+        {/* Categorias como abas */}
+        <motion.section id="categorias" {...fadeUp} className="mt-14 md:mt-20">
           <div className="flex items-end justify-between">
-            <h2 className="font-display text-2xl uppercase">Escolha seu campo de batalha</h2>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">Cada editoria é uma vantagem</span>
+            <h2 className="headline-serif text-2xl">Editorias</h2>
+            <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
+              Escolha um assunto
+            </span>
           </div>
-          <div className="mt-6 flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <nav
+            aria-label="Editorias"
+            className="mt-6 flex gap-1 overflow-x-auto border-b border-border [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
             {categories.map((c, i) => (
-              <motion.div
+              <Link
                 key={c.slug}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="shrink-0"
+                to="/categoria/$slug"
+                params={{ slug: c.slug }}
+                className={`shrink-0 border-b-2 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${
+                  i === 0
+                    ? "border-primary text-primary"
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                }`}
               >
-                <Link
-                  to="/categoria/$slug"
-                  params={{slug: c.slug }}
-                  className="group flex items-center gap-3 rounded-full border border-border bg-card px-5 py-2.5 transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lg hover:shadow-primary/10"
-                >
-                  <span className="font-display text-xs text-primary">{(i + 1).toString().padStart(2, "0")}</span>
-                  <span className="whitespace-nowrap text-sm font-medium">{c.name}</span>
-                  <ArrowRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-ember" />
-                </Link>
-              </motion.div>
+                {c.name}
+              </Link>
+            ))}
+          </nav>
+        </motion.section>
+
+        {/* Como funciona a assinatura */}
+        <motion.section {...fadeUp} className="mt-14 md:mt-20">
+          <h2 className="headline-serif text-2xl">Como funciona a assinatura</h2>
+          <div className="newspaper-rule mt-4 mb-10" />
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+            {subscriptionSteps.map((step, i) => (
+              <div key={step.title} className="flex flex-col items-start gap-3">
+                <span className="font-display text-4xl font-black text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <step.icon className="size-5 text-primary" />
+                <h3 className="headline-serif text-lg">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {step.description}
+                </p>
+              </div>
             ))}
           </div>
         </motion.section>
 
-        {/* Depoimentos após categorias */}
-        <div className="-mx-4 mt-16 md:-mx-6 md:mt-24 lg:-mx-8">
+        {/* Depoimentos */}
+        <div id="depoimentos" className="mt-14 md:mt-20">
           <TestimonialsSection />
         </div>
 
-        {/* Tabela de preços */}
-        <motion.section {...fadeUp} id="planos" className="mt-16 md:mt-24">
+        {/* Planos */}
+        <motion.section {...fadeUp} id="planos" className="mt-14 md:mt-20">
           <div className="flex flex-col items-center gap-3 text-center">
-            <span className="urgency-pulse inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
-              <Flame className="size-3.5" />
-              Últimas vagas do plano fundador
-            </span>
-            <h2 className="font-display text-3xl uppercase sm:text-4xl">Escolha seu lado agora</h2>
+            <span className="kicker">Assinaturas</span>
+            <h2 className="headline-serif text-3xl sm:text-4xl">Escolha sua edição</h2>
             <p className="max-w-md text-sm text-muted-foreground">
-              Preço de fundador é travado pra sempre — mas só pra quem entrar antes do lote fechar. Depois disso, o valor sobe pros próximos.
+              O preço de fundador é travado para sempre — válido apenas para este lote de assinantes.
             </p>
           </div>
+
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {pricingPlans.map((plan, i) => (
               <motion.div
@@ -459,15 +419,15 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative flex flex-col gap-6 rounded-2xl border p-6 ${
+                className={`relative flex flex-col gap-6 rounded-[6px] border p-6 ${
                   plan.highlighted
-                    ? "border-primary bg-card shadow-xl shadow-primary/10 md:-translate-y-2"
-                    : "border-border bg-card/40"
+                    ? "border-primary bg-card shadow-md"
+                    : "border-border bg-card"
                 }`}
               >
                 {plan.highlighted && (
-                  <span className="urgency-pulse absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-destructive px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-destructive-foreground">
-                    Últimas vagas
+                  <span className="absolute -top-3 left-6 bg-primary px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-foreground">
+                    Recomendado
                   </span>
                 )}
                 <div className="flex flex-col gap-1">
@@ -476,15 +436,19 @@ function Index() {
                   </span>
                   <div className="flex items-end gap-2">
                     {plan.originalPrice && (
-                      <span className="price-strike text-lg">{plan.originalPrice}</span>
+                      <span className="text-lg text-muted-foreground line-through">
+                        {plan.originalPrice}
+                      </span>
                     )}
-                    <span className="stat-counter font-display text-3xl">{plan.price}</span>
+                    <span className="font-display text-3xl font-black">{plan.price}</span>
                     {plan.period && (
                       <span className="pb-1 text-sm text-muted-foreground">{plan.period}</span>
                     )}
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
                 </div>
+
+                <div className="newspaper-rule" />
 
                 <ul className="flex flex-1 flex-col gap-3">
                   {plan.features.map((f) => (
@@ -497,224 +461,22 @@ function Index() {
 
                 <button
                   type="button"
-                  className={`w-full rounded-lg py-2.5 text-sm font-bold uppercase tracking-wide transition-all focus-visible:outline-none ${
-                    plan.highlighted
-                      ? "btn-neon-subscribe text-primary-foreground"
-                      : "border border-border bg-transparent text-foreground transition-colors duration-200 hover:border-primary/60 hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+                  className={`w-full rounded-[6px] py-2.5 text-sm font-bold uppercase tracking-wide focus-visible:outline-none ${
+                    plan.highlighted ? "btn-news-primary" : "btn-news-outline"
                   }`}
                 >
                   {plan.cta}
                 </button>
-                {plan.highlighted && (
-                  <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                    Restam poucas vagas neste preço — depois sobe pra R$ 39/mês
-                  </p>
-                )}
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Grid mais recentes */}
-        {grid.length > 0 && (
-          <motion.section {...fadeUp} className="mt-16 md:mt-24">
-            <div className="flex items-end justify-between">
-              <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
-              <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                {articles.length} artigos
-              </span>
-            </div>
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {grid.map((a, i) => (
-                <motion.div
-                  key={a.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                >
-                  <ArticleCard article={a} size="sm" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-        )}
-
-        {/* Garantia + CTA final de conversão */}
-        <div className="-mx-4 mt-16 md:-mx-6 md:mt-24 lg:-mx-8">
+        {/* Garantia */}
+        <div className="mt-14 md:mt-20">
           <GuaranteeSection />
         </div>
-      </main>
 
-
-      <footer className="relative mt-16 overflow-hidden border-t border-border/60 bg-card/40 md:mt-24 lg:mt-32">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/50 to-transparent"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-40 left-1/2 size-96 -translate-x-1/2 rounded-full bg-ember/10 blur-3xl"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20 lg:px-8">
-          <div className="mb-14 flex flex-col items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-6 py-10 text-center">
-            <span className="urgency-pulse inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-destructive">
-              <Flame className="size-3.5" />
-              Última chance nesse preço
-            </span>
-            <h3 className="font-display text-2xl uppercase sm:text-3xl">
-              Não feche essa página sem garantir sua vaga
-            </h3>
-            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
-              Risco zero por 7 dias. Se não valer a pena, devolvemos 100% do seu dinheiro. A única coisa que você perde é continuar chegando atrasado.
-            </p>
-            <a
-              href="#planos"
-              className="btn-hero-green inline-flex items-center gap-2 rounded-lg px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
-            >
-              Quero assinar agora <ArrowRight className="size-4" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-            {/* Marca */}
-            <div className="flex flex-col gap-4">
-              <span className="font-display text-xl uppercase tracking-wider text-foreground">
-                Ember<span className="text-ember">.</span>News
-              </span>
-              <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial, sem ruído. Mais de 50.000 leitores já saem na frente.
-              </p>
-              <div className="mt-2 flex items-center gap-3">
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Ember.News no Twitter"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Twitter className="size-4" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Ember.News no LinkedIn"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Linkedin className="size-4" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Ember.News no Instagram"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Instagram className="size-4" />
-                </a>
-              </div>
-            </div>
-
-            {/* Categorias */}
-            <nav aria-label="Categorias" className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Categorias</span>
-              <ul className="flex flex-col gap-3">
-                {categories.map((c) => (
-                  <li key={c.slug}>
-                    <Link
-                      to="/categoria/$slug"
-                      params={{ slug: c.slug }}
-                      className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                    >
-                      {c.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Institucional */}
-            <nav aria-label="Institucional" className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Institucional</span>
-              <ul className="flex flex-col gap-3">
-                <li>
-                  <Link
-                    to="/buscar"
-                    search={{ q: "" }}
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Buscar
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Sobre nós
-                  </a>
-                </li>
-                <li>
-                  <Link
-                    to="/contato"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    Contato
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="group inline-flex items-center gap-1 text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Anuncie conosco
-                    <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-            {/* Legal */}
-            <nav aria-label="Legal" className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Legal</span>
-              <ul className="flex flex-col gap-3">
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Termos de uso
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Privacidade
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Cookies
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <div className="mt-12 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:mt-16 md:flex-row md:items-center">
-            <span>© {new Date().getFullYear().toString()} Ember.News. Todos os direitos reservados.</span>
-            <span className="uppercase tracking-wider">Tecnologia, sem ruído. Sem atraso.</span>
-          </div>
-        </div>
-      </footer>
-      </div>
-    </div>
-  );
-}
+        {/* Grid mais recentes */}
+        {grid.length > 0 && (
+          <motion.

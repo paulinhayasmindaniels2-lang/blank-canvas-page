@@ -24,14 +24,14 @@ export function SocialProofBar({
   return (
     <div
       className={cn(
-        "w-full border-b border-border bg-primary text-primary-foreground",
+        "w-full border-b border-border bg-green-700 text-white",
         className
       )}
       role="region"
       aria-label="Última hora"
     >
       <div className="mx-auto flex max-w-6xl items-stretch">
-        <div className="flex shrink-0 items-center gap-2 border-r border-primary-foreground/25 bg-primary px-3 py-2 sm:px-4">
+        <div className="flex shrink-0 items-center gap-2 border-r border-white/25 bg-green-700 px-3 py-2 sm:px-4">
           <Zap className="h-3.5 w-3.5" aria-hidden="true" />
           <span className="whitespace-nowrap text-[0.7rem] font-bold uppercase tracking-[0.14em]">
             Última hora
@@ -46,7 +46,7 @@ export function SocialProofBar({
             {track.map((headline, index) => (
               <span key={`${headline}-${index}`} className="flex items-center gap-10">
                 <span>{headline}</span>
-                <span className="text-primary-foreground/50" aria-hidden="true">
+                <span className="text-white/50" aria-hidden="true">
                   •
                 </span>
               </span>

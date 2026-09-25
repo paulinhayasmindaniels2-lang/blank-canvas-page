@@ -7,7 +7,7 @@ import { searchArticles } from "@/lib/articles";
 const searchSchema = z.object({ q: z.string().optional().default("") });
 
 export const Route = createFileRoute("/buscar")({
-  validateSearch: (input) => searchSchema.parse(input),
+  validateSearch: (input: Record<string, unknown>) => searchSchema.parse(input),
   head: () => ({
     meta: [
       { title: "Buscar — Ember.News" },

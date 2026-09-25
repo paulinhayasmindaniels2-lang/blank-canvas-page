@@ -110,7 +110,7 @@ export function SiteHeader() {
 
         <a
           href="#planos"
-          className="btn-news-primary hidden rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em] md:inline-flex"
+          className="btn-news-lilac hidden rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em] md:inline-flex"
         >
           Assinar agora
         </a>

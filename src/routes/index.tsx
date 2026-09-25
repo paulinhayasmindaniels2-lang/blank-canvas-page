@@ -206,7 +206,7 @@ function Index() {
                 {featured.title}
               </h2>
               <p className="byline">
-                {featured.author} · {featured.date} · {featured.readMinutes} min`}
+                {featured.author} · {featured.date} · {{featured.readMinutes} min
               </p>
 
               <a
@@ -275,7 +275,7 @@ function Index() {
                   excerpt={a.excerpt}
                   author={a.author}
                   date={a.date}
-                  readTime={a.readMinutes} min`}
+                  readTime={{a.readMinutes} min
                   href={`/artigo/${a.slug}`}
                 />
               </motion.div>
@@ -320,7 +320,7 @@ function Index() {
                 excerpt={a.excerpt}
                 author={a.author}
                 date={a.date}
-                readTime={a.readMinutes} min`}
+                readTime={{a.readMinutes} min
                 href={`/artigo/${a.slug}`}
                 variant="horizontal"
                 className={i % 2 === 1 ? "sm:flex-row-reverse" : undefined}

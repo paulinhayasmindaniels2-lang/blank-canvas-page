@@ -1,21 +1,41 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import type { Article } from "@/lib/articles";
 
 export interface ArticleCardProps {
-  image: string;
-  category: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  readTime: string;
+  article?: Article;
+  size?: string;
+  image?: string;
+  category?: string;
+  title?: string;
+  excerpt?: string;
+  author?: string;
+  date?: string;
+  readTime?: string;
   href?: string;
   /** "default" for grid cards, "horizontal" for zigzag/featured rows */
   variant?: "default" | "horizontal";
   className?: string;
 }
 
-export function ArticleCard({
+export function ArticleCard(props: ArticleCardProps) {
+  const a = props.article;
+  return (
+    <ArticleCardView
+      {...props}
+      image={props.image ?? a?.image ?? ""}
+      category={props.category ?? a?.category ?? ""}
+      title={props.title ?? a?.title ?? ""}
+      excerpt={props.excerpt ?? a?.excerpt ?? ""}
+      author={props.author ?? a?.author ?? ""}
+      date={props.date ?? a?.date ?? ""}
+      readTime={props.readTime ?? (a ? `${a.readMinutes} min` : "")}
+      href={props.href ?? (a ? `/artigo/${a.slug}` : undefined)}
+    />
+  );
+}
+
+function ArticleCardView({
   image,
   category,
   title,

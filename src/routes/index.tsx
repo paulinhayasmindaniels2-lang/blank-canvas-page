@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Play,
   Twitter,
+  ArrowUpRight,
   Linkedin,
   Instagram,
   Check,
@@ -205,7 +206,7 @@ function Index() {
                 {featured.title}
               </h2>
               <p className="byline">
-                {featured.author} · {featured.date} · {featured.readTime}
+                {featured.author} · {featured.date} · {featured.readMinutes} min`}
               </p>
 
               <a
@@ -268,13 +269,13 @@ function Index() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <ArticleCard
-                  image={a.image}
+                  image={a.image ?? ""}
                   category={a.category}
                   title={a.title}
                   excerpt={a.excerpt}
                   author={a.author}
                   date={a.date}
-                  readTime={a.readTime}
+                  readTime={a.readMinutes} min`}
                   href={`/artigo/${a.slug}`}
                 />
               </motion.div>
@@ -313,13 +314,13 @@ function Index() {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <ArticleCard
-                image={a.image}
+                image={a.image ?? ""}
                 category={a.category}
                 title={a.title}
                 excerpt={a.excerpt}
                 author={a.author}
                 date={a.date}
-                readTime={a.readTime}
+                readTime={a.readMinutes} min`}
                 href={`/artigo/${a.slug}`}
                 variant="horizontal"
                 className={i % 2 === 1 ? "sm:flex-row-reverse" : undefined}

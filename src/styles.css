@@ -147,28 +147,28 @@ html.dark {
 }
 
 .btn-hero-green {
-  --hero-green: oklch(0.6 0.18 145);
-  background: var(--hero-green);
-  color: oklch(0.98 0.02 145);
-  border: 1px solid oklch(0.6 0.18 145 / 0.6);
+  --hero-pink: oklch(0.66 0.24 355);
+  background: var(--hero-pink);
+  color: oklch(0.98 0.02 355);
+  border: 1px solid oklch(0.66 0.24 355 / 0.6);
   box-shadow:
-    0 0 0 1px oklch(0.6 0.18 145 / 0.35),
-    0 10px 28px -10px oklch(0.6 0.18 145 / 0.65);
+    0 0 0 1px oklch(0.66 0.24 355 / 0.35),
+    0 10px 28px -10px oklch(0.66 0.24 355 / 0.65);
   transition: background-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
 .btn-hero-green:hover {
-  background: oklch(0.66 0.18 145);
+  background: oklch(0.71 0.24 355);
   box-shadow:
-    0 0 0 1px oklch(0.66 0.18 145 / 0.5),
-    0 12px 32px -8px oklch(0.66 0.18 145 / 0.75);
+    0 0 0 1px oklch(0.71 0.24 355 / 0.5),
+    0 12px 32px -8px oklch(0.71 0.24 355 / 0.75);
 }
 
 .btn-hero-green:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px oklch(0.09 0.008 85),
-    0 0 0 4px oklch(0.6 0.18 145 / 0.7);
+    0 0 0 4px oklch(0.66 0.24 355 / 0.7);
 }
 
 .link-outline-green {

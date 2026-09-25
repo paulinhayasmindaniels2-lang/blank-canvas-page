@@ -212,7 +212,7 @@ function Index() {
                 i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <ArticleCard article={a} size="md" spotlight={i === 0} />
+              <ArticleCard article={a} size="md" />
               <div className="flex flex-col justify-center gap-3">
                 <span className="text-xs uppercase tracking-[0.3em] text-primary">
                   {a.category}

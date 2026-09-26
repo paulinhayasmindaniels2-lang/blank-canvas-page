@@ -9,6 +9,7 @@ import { UrgencyBanner } from "@/components/UrgencyBanner";
 import { SocialProofBar } from "@/components/SocialProofBar";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
+import NewsPhotoCarousel from "@/components/NewsPhotoCarousel";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
 import {
@@ -249,6 +250,13 @@ function Index() {
             </motion.div>
           </div>
         </section>
+
+        {/* Carrossel de destaques */}
+        <motion.section {...fadeUp} id="carrossel-noticias" className="mt-14 md:mt-20">
+          <h2 className="headline-serif text-2xl">Em imagens</h2>
+          <div className="newspaper-rule mt-4 mb-8" />
+          <NewsPhotoCarousel />
+        </motion.section>
 
         {/* Destaques do dia */}
         <section className="mt-12 md:mt-16">
@@ -605,50 +613,59 @@ function Index() {
                 <li>
                   <a
                     href="#"
-                    className="group inline-flex items-center gap-1 text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
                   >
-                    Anuncie conosco
-                    <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    Trabalhe conosco
                   </a>
                 </li>
               </ul>
             </nav>
 
-            {/* Legal */}
-            <nav aria-label="Legal" className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Legal</span>
-              <ul className="flex flex-col gap-3">
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Termos de uso
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Privacidade
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Cookies
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            {/* Newsletter */}
+            <div className="flex flex-col gap-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Receba a edição diária</span>
+              <p className="text-sm text-muted-foreground">
+                As principais manchetes, direto na sua caixa de entrada, todas as manhãs.
+              </p>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex flex-col gap-2 sm:flex-row"
+              >
+                <label htmlFor="footer-email" className="sr-only">
+                  E-mail
+                </label>
+                <input
+                  id="footer-email"
+                  type="email"
+                  required
+                  placeholder="seu@email.com"
+                  className="w-full rounded-[6px] border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
+                />
+                <button
+                  type="submit"
+                  className="btn-news-primary inline-flex shrink-0 items-center justify-center gap-1.5 rounded-[6px] px-4 py-2.5 text-sm font-bold uppercase tracking-wide"
+                >
+                  Assinar <ArrowUpRight className="size-4" />
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
-            <span>© {new Date().getFullYear().toString()} Ember.News. Todos os direitos reservados.</span>
-            <span className="uppercase tracking-wider">Tecnologia, sem ruído.</span>
+          <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Ember.News. Todos os direitos reservados.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
+                Termos de uso
+              </a>
+              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
+                Privacidade
+              </a>
+              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
+                Cookies
+              </a>
+            </div>
           </div>
         </div>
       </footer>

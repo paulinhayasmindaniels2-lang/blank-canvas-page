@@ -1,6 +1,7 @@
 import * as React from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import supportAgent from "@/assets/chat-support-agent.webp";
 
 interface ChatMessage {
   id: number;
@@ -60,6 +61,13 @@ export function ChatSupport() {
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border bg-primary px-4 py-3">
             <div className="flex items-center gap-2">
+              <span className="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full ring-2 ring-primary-foreground/40">
+                <img
+                  src={supportAgent}
+                  alt="Atendente de suporte usando fone de ouvido"
+                  className="h-full w-full object-cover"
+                />
+              </span>
               <span className="flex h-2.5 w-2.5 rounded-full bg-breaking-strip" />
               <div>
                 <p className="font-display text-sm font-bold text-primary-foreground">
@@ -129,9 +137,17 @@ export function ChatSupport() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Fechar chat de suporte" : "Abrir chat de suporte"}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-primary-foreground shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+        {open ? (
+          <X className="h-6 w-6" />
+        ) : (
+          <img
+            src={supportAgent}
+            alt="Atendente de suporte usando fone de ouvido"
+            className="h-full w-full object-cover"
+          />
+        )}
         {!open && (
           <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-breaking-strip">
             <span className="absolute h-full w-full animate-ping rounded-full bg-breaking-strip opacity-75" />

@@ -120,7 +120,7 @@ const NewsPhotoCarousel = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10" />
                 <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-black/45 p-4 backdrop-blur-[2px] sm:p-6 md:p-8">
                   <span className="kicker text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9)]">{slide.category}</span>
-                  <h3 className="headline-serif text-xl text-white [text-shadow:0_2px_6px_rgba(0,0,0,0.9)] sm:text-2xl md:text-3xl">
+                  <h3 className="headline-serif text-xl !text-white [text-shadow:0_2px_6px_rgba(0,0,0,0.9)] sm:text-2xl md:text-3xl">
                     {slide.title}
                   </h3>
                   <p className="text-sm text-white/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.9)]">

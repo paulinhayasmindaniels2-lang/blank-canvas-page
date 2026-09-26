@@ -277,7 +277,7 @@ function Index() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <ArticleCard
-                  image={a.image ?? ""}
+                  image={a.image}
                   category={a.category}
                   title={a.title}
                   excerpt={a.excerpt}
@@ -322,7 +322,7 @@ function Index() {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <ArticleCard
-                image={a.image ?? ""}
+                image={a.image}
                 category={a.category}
                 title={a.title}
                 excerpt={a.excerpt}

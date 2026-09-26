@@ -23,7 +23,7 @@ export function ArticleCard(props: ArticleCardProps) {
   return (
     <ArticleCardView
       {...props}
-      image={props.image ?? a?.image ?? ""}
+      image={props.image ?? a?.image}
       category={props.category ?? a?.category ?? ""}
       title={props.title ?? a?.title ?? ""}
       excerpt={props.excerpt ?? a?.excerpt ?? ""}

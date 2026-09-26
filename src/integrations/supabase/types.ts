@@ -137,7 +137,7 @@ export type Database = {
         }
         Relationships: []
       }
-      teste_3: {
+      teste_5: {
         Row: {
           created_at: string
           descricao: string | null

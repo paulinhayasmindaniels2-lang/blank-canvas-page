@@ -5,8 +5,10 @@ import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import { supabaseAdmin } from '@/integrations/supabase/client.server'
 
-const TEST_EMAIL = 'caio@teste.com'
-const TEST_PASSWORD = 'caioteste2625'
+const TEST_USERS = [
+  { email: 'caio@teste.com', password: 'caioteste2625' },
+  { email: 'teste2@teste.com', password: 'teste2025senha' },
+] as const
 
 type SeedResult = {
   status: 'created' | 'updated'
@@ -14,28 +16,7 @@ type SeedResult = {
 }
 
 const seedTestUser = createServerFn({ method: 'POST' }).handler(
-  async (): Promise<SeedResult> => {
-    const { data, error } = await supabaseAdmin.auth.admin.createUser({
-      email: TEST_EMAIL,
-      password: TEST_PASSWORD,
-      email_confirm: true,
-    })
-
-    if (!error && data?.user) {
-      return { status: 'created', email: TEST_EMAIL }
-    }
-
-    const message = error?.message?.toLowerCase() ?? ''
-    const alreadyExists =
-      message.includes('already') ||
-      message.includes('registered') ||
-      message.includes('exists') ||
-      error?.status === 422
-
-    if (!alreadyExists) {
-      throw new Error(error?.message ?? 'Falha ao criar usuário de teste')
-    }
-
+  async (): Promise<SeedResult[]> => {
     const { data: listData, error: listError } =
       await supabaseAdmin.auth.admin.listUsers()
 
@@ -43,24 +24,77 @@ const seedTestUser = createServerFn({ method: 'POST' }).handler(
       throw new Error(listError.message)
     }
 
-    const existingUser = listData.users.find(
-      (u) => u.email?.toLowerCase() === TEST_EMAIL.toLowerCase(),
-    )
+    const results: SeedResult[] = []
 
-    if (!existingUser) {
-      throw new Error('Usuário não encontrado após conflito de criação')
+    for (const user of TEST_USERS) {
+      const existingUser = listData.users.find(
+        (u) => u.email?.toLowerCase() === user.email.toLowerCase(),
+      )
+
+      if (existingUser) {
+        const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
+          existingUser.id,
+          { password: user.password },
+        )
+
+        if (updateError) {
+          throw new Error(updateError.message)
+        }
+
+        results.push({ status: 'updated', email: user.email })
+        continue
+      }
+
+      const { data, error } = await supabaseAdmin.auth.admin.createUser({
+        email: user.email,
+        password: user.password,
+        email_confirm: true,
+      })
+
+      if (!error && data?.user) {
+        results.push({ status: 'created', email: user.email })
+        continue
+      }
+
+      const message = error?.message?.toLowerCase() ?? ''
+      const alreadyExists =
+        message.includes('already') ||
+        message.includes('registered') ||
+        message.includes('exists') ||
+        error?.status === 422
+
+      if (!alreadyExists) {
+        throw new Error(error?.message ?? `Falha ao criar usuário de teste ${user.email}`)
+      }
+
+      const { data: refreshedList, error: refreshError } =
+        await supabaseAdmin.auth.admin.listUsers()
+
+      if (refreshError) {
+        throw new Error(refreshError.message)
+      }
+
+      const conflictingUser = refreshedList.users.find(
+        (u) => u.email?.toLowerCase() === user.email.toLowerCase(),
+      )
+
+      if (!conflictingUser) {
+        throw new Error(`Usuário ${user.email} não encontrado após conflito de criação`)
+      }
+
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
+        conflictingUser.id,
+        { password: user.password },
+      )
+
+      if (updateError) {
+        throw new Error(updateError.message)
+      }
+
+      results.push({ status: 'updated', email: user.email })
     }
 
-    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
-      existingUser.id,
-      { password: TEST_PASSWORD },
-    )
-
-    if (updateError) {
-      throw new Error(updateError.message)
-    }
-
-    return { status: 'updated', email: TEST_EMAIL }
+    return results
   },
 )
 
@@ -75,15 +109,20 @@ function SeedUserPage() {
   const runSeed = async () => {
     setIsLoading(true)
     try {
-      const result = await seedTestUser()
-      if (result.status === 'created') {
-        toast.success('Usuário de teste criado com sucesso.')
+      const results = await seedTestUser()
+      const createdCount = results.filter((r) => r.status === 'created').length
+      const updatedCount = results.filter((r) => r.status === 'updated').length
+
+      if (createdCount > 0 && updatedCount === 0) {
+        toast.success('Usuários de teste criados com sucesso.')
+      } else if (createdCount > 0 && updatedCount > 0) {
+        toast.success('Usuários de teste sincronizados (alguns criados, outros com senha atualizada).')
       } else {
-        toast.success('Usuário já existia — senha atualizada.')
+        toast.success('Usuários já existiam — senhas atualizadas.')
       }
     } catch (err) {
       const message =
-        err instanceof Error ? err.message : 'Erro desconhecido ao criar usuário.'
+        err instanceof Error ? err.message : 'Erro desconhecido ao criar usuários.'
       toast.error(message)
     } finally {
       setIsLoading(false)
@@ -110,22 +149,27 @@ function SeedUserPage() {
           root@ember
         </h1>
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-6">
-          seed :: usuário de teste
+          seed :: usuários de teste
         </p>
 
-        <div
-          className="mb-6 border border-border bg-background/60 p-4 font-mono text-xs leading-relaxed"
-          role="group"
-          aria-label="Credenciais do usuário de teste"
-        >
-          <p className="text-muted-foreground">
-            <span className="text-primary">$</span> email
-          </p>
-          <p className="mb-2 break-all text-foreground">{TEST_EMAIL}</p>
-          <p className="text-muted-foreground">
-            <span className="text-primary">$</span> senha
-          </p>
-          <p className="text-foreground">{TEST_PASSWORD}</p>
+        <div className="mb-6 space-y-4">
+          {TEST_USERS.map((user) => (
+            <div
+              key={user.email}
+              className="border border-border bg-background/60 p-4 font-mono text-xs leading-relaxed"
+              role="group"
+              aria-label={`Credenciais do usuário de teste ${user.email}`}
+            >
+              <p className="text-muted-foreground">
+                <span className="text-primary">$</span> email
+              </p>
+              <p className="mb-2 break-all text-foreground">{user.email}</p>
+              <p className="text-muted-foreground">
+                <span className="text-primary">$</span> senha
+              </p>
+              <p className="text-foreground">{user.password}</p>
+            </div>
+          ))}
         </div>
 
         <button
@@ -140,7 +184,7 @@ function SeedUserPage() {
               executando...
             </>
           ) : (
-            'Criar usuário teste'
+            'Criar usuários teste'
           )}
         </button>
       </div>

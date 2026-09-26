@@ -349,7 +349,7 @@ function Index() {
             </p>
             <a
               href="#planos"
-              className="btn-news-primary inline-flex items-center gap-2 rounded-[6px] px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
+              className="btn-news-lilac inline-flex items-center gap-2 rounded-[6px] px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
             >
               Ver planos de assinatura <ArrowRight className="size-4" />
             </a>

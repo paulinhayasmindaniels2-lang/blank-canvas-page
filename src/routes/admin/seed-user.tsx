@@ -8,6 +8,7 @@ import { supabaseAdmin } from '@/integrations/supabase/client.server'
 const TEST_USERS = [
   { email: 'caio@teste.com', password: 'caioteste2625' },
   { email: 'teste2@teste.com', password: 'teste2025senha' },
+  { email: 'teste3@teste.com', password: 'teste2025acesso' },
 ] as const
 
 type SeedResult = {

@@ -1,6 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
+
+function useCurrentYear() {
+  const [year, setYear] = useState<number | null>(null);
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+  return year;
+}
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -171,6 +179,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const currentYear = useCurrentYear();
   const { featured, bentoSecondary, sidebarList, zigzag, grid } = useMemo(() => {
     const featured = articles.find((a) => a.featured) ?? articles[0];
     const rest = articles.filter((a) => a.slug !== featured.slug);
@@ -652,8 +661,8 @@ function Index() {
           </div>
 
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Ember.News. Todos os direitos reservados.
+            <p className="text-xs text-muted-foreground" suppressHydrationWarning>
+              © {currentYear ?? ""} Ember.News. Todos os direitos reservados.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">

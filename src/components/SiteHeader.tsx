@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Moon, Sun } from "lucide-react";
+import { LogIn, Menu, Moon, Sun } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -108,12 +108,21 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href="#planos"
-          className="btn-news-lilac hidden rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em] md:inline-flex"
-        >
-          Assinar agora
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <Link
+            to="/login"
+            className="btn-news-outline inline-flex items-center gap-1.5 rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em]"
+          >
+            <LogIn className="h-3.5 w-3.5" />
+            Entrar
+          </Link>
+          <a
+            href="#planos"
+            className="btn-news-lilac inline-flex rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em]"
+          >
+            Assinar agora
+          </a>
+        </div>
 
         {/* Mobile menu */}
         <div className="flex w-full items-center justify-between py-2 md:hidden">
@@ -148,9 +157,18 @@ export function SiteHeader() {
                   ))}
                 </div>
                 <SheetClose asChild>
+                  <Link
+                    to="/login"
+                    className="btn-news-outline mt-6 inline-flex items-center justify-center gap-1.5 rounded-[6px] px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.12em]"
+                  >
+                    <LogIn className="h-3.5 w-3.5" />
+                    Entrar
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
                   <a
                     href="#planos"
-                    className="btn-news-primary mt-6 rounded-[6px] px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.12em]"
+                    className="btn-news-primary mt-3 rounded-[6px] px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.12em]"
                   >
                     Assinar agora
                   </a>

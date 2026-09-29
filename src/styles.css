@@ -292,6 +292,27 @@ body {
 }
 
 /* ==========================================================================
+   Chat support bubble
+   ========================================================================== */
+
+@keyframes chat-bubble-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.04);
+  }
+}
+
+.chat-bubble-animated {
+  animation: chat-bubble-float 2.6s ease-in-out infinite;
+}
+
+.chat-bubble-animated:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
    Misc utilities
    ========================================================================== */
 

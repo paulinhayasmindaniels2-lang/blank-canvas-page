@@ -137,7 +137,10 @@ export function ChatSupport() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Fechar chat de suporte" : "Abrir chat de suporte"}
-        className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-primary-foreground shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className={cn(
+          "relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-primary-foreground shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          !open && "chat-bubble-animated"
+        )}
       >
         {open ? (
           <X className="h-6 w-6" />

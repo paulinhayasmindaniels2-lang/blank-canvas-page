@@ -1,3 +1,6 @@
+import fintechFundingImg from "@/assets/news-fintech-funding.webp";
+import routerVulnerabilityImg from "@/assets/news-router-vulnerability.webp";
+
 export type CategorySlug = "ia" | "startups" | "ciberseguranca" | "hardware" | "software";
 
 export type Category = {
@@ -56,6 +59,7 @@ export const articles: Article[] = [
     date: "2026-05-17",
     readMinutes: 4,
     size: "md",
+    image: fintechFundingImg,
     body: [
       "A fintech, que oferece infraestrutura de pagamentos para marketplaces, anunciou uma rodada de Série B de US$ 80 milhões liderada por um fundo sediado em Nova York.",
       "Com o novo aporte, a empresa planeja triplicar o time de engenharia e abrir escritórios em Cidade do México e Bogotá.",
@@ -70,6 +74,7 @@ export const articles: Article[] = [
     date: "2026-05-16",
     readMinutes: 5,
     size: "md",
+    image: routerVulnerabilityImg,
     body: [
       "Pesquisadores divulgaram uma falha crítica que afeta firmwares de roteadores domésticos amplamente distribuídos.",
       "A vulnerabilidade, classificada com CVSS 9.8, permite execução remota de código sem autenticação prévia.",

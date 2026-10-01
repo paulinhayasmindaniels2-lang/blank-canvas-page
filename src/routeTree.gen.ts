@@ -9,29 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as BrancoRouteImport } from './routes/branco'
-import { Route as BuscarRouteImport } from './routes/buscar'
-import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AdminLoginRouteImport } from './routes/admin/login'
-import { Route as AdminSeedUserRouteImport } from './routes/admin/seed-user'
-import { Route as ArtigoSlugRouteImport } from './routes/artigo.$slug'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as BrancoRouteImport } from './routes/branco'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
+import { Route as ArtigoSlugRouteImport } from './routes/artigo.$slug'
+import { Route as AdminSeedUserRouteImport } from './routes/admin/seed-user'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BrancoRoute = BrancoRouteImport.update({
-  id: '/branco',
-  path: '/branco',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BuscarRoute = BuscarRouteImport.update({
-  id: '/buscar',
-  path: '/buscar',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -39,19 +29,24 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const BuscarRoute = BuscarRouteImport.update({
+  id: '/buscar',
+  path: '/buscar',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
+const BrancoRoute = BrancoRouteImport.update({
+  id: '/branco',
+  path: '/branco',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminSeedUserRoute = AdminSeedUserRouteImport.update({
-  id: '/admin/seed-user',
-  path: '/admin/seed-user',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
+  id: '/categoria/$slug',
+  path: '/categoria/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArtigoSlugRoute = ArtigoSlugRouteImport.update({
@@ -59,9 +54,14 @@ const ArtigoSlugRoute = ArtigoSlugRouteImport.update({
   path: '/artigo/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
-  id: '/categoria/$slug',
-  path: '/categoria/$slug',
+const AdminSeedUserRoute = AdminSeedUserRouteImport.update({
+  id: '/admin/seed-user',
+  path: '/admin/seed-user',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -149,25 +149,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/branco': {
-      id: '/branco'
-      path: '/branco'
-      fullPath: '/branco'
-      preLoaderRoute: typeof BrancoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/buscar': {
-      id: '/buscar'
-      path: '/buscar'
-      fullPath: '/buscar'
-      preLoaderRoute: typeof BuscarRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -177,25 +163,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/buscar': {
+      id: '/buscar'
+      path: '/buscar'
+      fullPath: '/buscar'
+      preLoaderRoute: typeof BuscarRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
+    '/branco': {
+      id: '/branco'
+      path: '/branco'
+      fullPath: '/branco'
+      preLoaderRoute: typeof BrancoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/seed-user': {
-      id: '/admin/seed-user'
-      path: '/admin/seed-user'
-      fullPath: '/admin/seed-user'
-      preLoaderRoute: typeof AdminSeedUserRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categoria/$slug': {
+      id: '/categoria/$slug'
+      path: '/categoria/$slug'
+      fullPath: '/categoria/$slug'
+      preLoaderRoute: typeof CategoriaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/artigo/$slug': {
@@ -205,11 +198,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtigoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/categoria/$slug': {
-      id: '/categoria/$slug'
-      path: '/categoria/$slug'
-      fullPath: '/categoria/$slug'
-      preLoaderRoute: typeof CategoriaSlugRouteImport
+    '/admin/seed-user': {
+      id: '/admin/seed-user'
+      path: '/admin/seed-user'
+      fullPath: '/admin/seed-user'
+      preLoaderRoute: typeof AdminSeedUserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

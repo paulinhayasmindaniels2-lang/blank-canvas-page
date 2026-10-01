@@ -82,7 +82,7 @@ export function SiteHeader() {
           to="/"
           className="font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl"
         >
-          Ember<span className="text-primary">.</span>News
+          Ember<span className="text-foreground">.</span>News
         </Link>
         <p className="font-sans text-[0.68rem] uppercase tracking-[0.28em] text-muted-foreground">
           Jornal digital de tecnologia, negócios e cultura
@@ -142,7 +142,7 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-72 border-l border-border bg-background">
               <div className="mt-8 flex flex-col">
                 <span className="font-display text-xl font-black text-foreground">
-                  Ember<span className="text-primary">.</span>News
+                  Ember<span className="text-foreground">.</span>News
                 </span>
                 <div className="mt-6 flex flex-col">
                   {NAV_LINKS.map((item) => (

@@ -597,7 +597,7 @@ function Index() {
               <ul className="flex flex-col gap-3">
                 <li>
                   <Link
-                    to="/buscar"
+                    to="/buscar" search={{ q: "" }}
                     className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
                   >
                     Buscar

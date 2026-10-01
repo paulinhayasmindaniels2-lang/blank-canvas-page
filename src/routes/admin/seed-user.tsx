@@ -94,7 +94,7 @@ const seedTestUser = createServerFn({ method: 'POST' }).handler(
 
 export const Route = createFileRoute('/admin/seed-user')({
   head: () => ({
-    title: 'Seed de usuário | Ember.News',
+    meta: [{ title: 'Seed de usuário | Ember.News' }],
   }),
   component: SeedUserPage,
 })

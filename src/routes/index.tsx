@@ -536,8 +536,8 @@ function Index() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
             {/* Marca */}
             <div className="flex flex-col gap-4">
-              <span className="font-display text-xl uppercase tracking-wider text-foreground">
-                Ember<span className="text-foreground">.</span>News
+              <span className="font-display text-xl uppercase tracking-wider text-logo">
+                Ember<span className="text-logo">.</span>News
               </span>
               <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
                 Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial, sem ruído.

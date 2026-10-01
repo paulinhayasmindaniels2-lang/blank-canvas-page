@@ -80,9 +80,9 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-1 px-4 py-5 sm:px-6">
         <Link
           to="/"
-          className="font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl"
+          className="font-display text-3xl font-black tracking-tight text-logo sm:text-4xl"
         >
-          Ember<span className="text-foreground">.</span>News
+          Ember<span className="text-logo">.</span>News
         </Link>
         <p className="font-sans text-[0.68rem] uppercase tracking-[0.28em] text-muted-foreground">
           Jornal digital de tecnologia, negócios e cultura
@@ -141,8 +141,8 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72 border-l border-border bg-background">
               <div className="mt-8 flex flex-col">
-                <span className="font-display text-xl font-black text-foreground">
-                  Ember<span className="text-foreground">.</span>News
+                <span className="font-display text-xl font-black text-logo">
+                  Ember<span className="text-logo">.</span>News
                 </span>
                 <div className="mt-6 flex flex-col">
                   {NAV_LINKS.map((item) => (

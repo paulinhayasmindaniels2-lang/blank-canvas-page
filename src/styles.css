@@ -36,7 +36,7 @@
   --card-foreground: hsl(222 15% 12%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(222 15% 12%);
-  --primary: hsl(355 78% 42%);
+  --primary: hsl(142 62% 28%);
   --primary-foreground: hsl(0 0% 98%);
   --secondary: hsl(220 14% 94%);
   --secondary-foreground: hsl(222 15% 12%);
@@ -48,7 +48,7 @@
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(220 10% 85%);
   --input: hsl(220 10% 85%);
-  --ring: hsl(355 78% 42%);
+  --ring: hsl(142 62% 28%);
   --breaking-strip: hsl(142 62% 28%);
   --breaking-strip-foreground: hsl(0 0% 98%);
 }
@@ -60,7 +60,7 @@ html.dark {
   --card-foreground: hsl(0 0% 96%);
   --popover: hsl(220 16% 11%);
   --popover-foreground: hsl(0 0% 96%);
-  --primary: hsl(355 70% 52%);
+  --primary: hsl(142 55% 42%);
   --primary-foreground: hsl(0 0% 98%);
   --secondary: hsl(220 14% 18%);
   --secondary-foreground: hsl(0 0% 96%);
@@ -72,7 +72,7 @@ html.dark {
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(0 0% 100% / 0.12);
   --input: hsl(0 0% 100% / 0.12);
-  --ring: hsl(355 70% 52%);
+  --ring: hsl(142 55% 42%);
   --breaking-strip: hsl(142 55% 34%);
   --breaking-strip-foreground: hsl(0 0% 98%);
 }
@@ -268,9 +268,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: hsl(270 55% 62%);
+  background-color: hsl(142 62% 32%);
   color: hsl(0 0% 100%);
-  border: 1px solid hsl(270 55% 62%);
+  border: 1px solid hsl(142 62% 32%);
   border-radius: var(--radius);
   font-family: var(--font-sans);
   font-weight: 700;
@@ -280,15 +280,15 @@ body {
 }
 
 .btn-news-lilac:hover {
-  background-color: hsl(270 55% 52%);
-  border-color: hsl(270 55% 52%);
+  background-color: hsl(142 62% 24%);
+  border-color: hsl(142 62% 24%);
 }
 
 .btn-news-lilac:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--background),
-    0 0 0 4px hsl(270 55% 62%);
+    0 0 0 4px hsl(142 62% 32%);
 }
 
 /* ==========================================================================

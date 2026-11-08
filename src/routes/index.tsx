@@ -212,7 +212,7 @@ function Index() {
               className="flex flex-col gap-5"
             >
               <span className="kicker">{featured.category}</span>
-              <h2 className="headline-serif text-4xl italic sm:text-5xl lg:text-[3.4rem]">
+              <h2 className="headline-serif text-5xl sm:text-6xl lg:text-7xl">
                 {featured.title}
               </h2>
               <p className="byline">
@@ -522,16 +522,7 @@ function Index() {
       </main>
 
 
-      <footer className="relative mt-32 overflow-hidden border-t border-white/10 bg-black">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-ember to-transparent"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-40 left-1/2 size-80 -translate-x-1/2 rounded-full bg-ember/20 blur-3xl"
-        />
-
+      <footer className="relative mt-32 overflow-hidden bg-foreground text-background">
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
             {/* Marca */}

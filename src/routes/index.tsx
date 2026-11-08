@@ -1,22 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-function useCurrentYear() {
-  const [year, setYear] = useState<number | null>(null);
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
-  return year;
-}
 import { ArticleCard } from "@/components/ArticleCard";
 import { LatestTicker } from "@/components/LatestTicker";
 import { SiteHeader } from "@/components/SiteHeader";
 import { NewsletterModal } from "@/components/NewsletterModal";
-import { UrgencyBanner } from "@/components/UrgencyBanner";
-import { SocialProofBar } from "@/components/SocialProofBar";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import GuaranteeSection from "@/components/GuaranteeSection";
 import NewsPhotoCarousel from "@/components/NewsPhotoCarousel";
 import estatuaVideo from "@/assets/estatua.mp4.asset.json";
 import { articles, categories } from "@/lib/articles";
@@ -25,87 +13,26 @@ import {
   Play,
   Twitter,
   ArrowUpRight,
-  Linkedin,
   Instagram,
-  Check,
+  Flame,
   Mail,
-  Newspaper,
-  ShieldCheck,
+  Zap,
 } from "lucide-react";
 
-const pricingPlans = [
-  {
-    name: "Leitor",
-    price: "Grátis",
-    originalPrice: "",
-    period: "",
-    description: "Para conhecer a redação — acesso limitado ao essencial do dia.",
-    features: [
-      "Acesso a todas as matérias abertas",
-      "Newsletter semanal",
-      "Busca ilimitada no acervo",
-    ],
-    highlighted: false,
-    cta: "COMEÇAR GRATUITAMENTE",
-  },
-  {
-    name: "Assinante Fundador",
-    price: "R$ 19",
-    originalPrice: "R$ 39",
-    period: "/mês",
-    description: "A assinatura completa, com preço de fundador travado para sempre.",
-    features: [
-      "Tudo do plano Leitor",
-      "Reportagens exclusivas em primeira mão",
-      "Edição sem anúncios",
-      "Newsletter diária com furos de redação",
-      "Acesso antecipado às pautas em apuração",
-      "Preço de fundador travado para sempre",
-    ],
-    highlighted: true,
-    cta: "QUERO SER ASSINANTE FUNDADOR",
-  },
-  {
-    name: "Empresa",
-    price: "R$ 89",
-    originalPrice: "",
-    period: "/mês",
-    description: "Para redações e times que precisam de informação verificada todos os dias.",
-    features: [
-      "Tudo do plano Assinante",
-      "Até 10 usuários por licença",
-      "Relatórios setoriais sob medida",
-      "Suporte editorial prioritário",
-    ],
-    highlighted: false,
-    cta: "FALAR COM O COMERCIAL",
-  },
-];
-
-const subscriptionSteps = [
-  {
-    icon: Newspaper,
-    title: "Escolha sua edição",
-    description: "Selecione o plano que combina com o seu ritmo de leitura — do gratuito ao fundador.",
-  },
-  {
-    icon: Mail,
-    title: "Confirme por e-mail",
-    description: "Você recebe a confirmação e já começa a receber a newsletter diária na hora.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Leia com garantia",
-    description: "Satisfação garantida em 7 dias — se não for para você, devolvemos o valor.",
-  },
-];
+function useCurrentYear() {
+  const [year, setYear] = useState<number | null>(null);
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+  return year;
+}
 
 function toTickerItem(a: (typeof articles)[number]) {
   return { title: a.title, category: a.category, href: `/artigo/${a.slug}` };
 }
 
 function LazyVideo({ src }: { src: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
   const [play, setPlay] = useState(false);
 
@@ -161,17 +88,16 @@ const fadeUp = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ember.News — Jornal Digital de Tecnologia, Negócios e Cultura" },
+      { title: "Ember.News — Notícias, Fofocas e Bastidores" },
       {
         name: "description",
         content:
-          "Reportagens verificadas, análises independentes e as manchetes que importam. Assine a Ember.News e receba a edição diária com garantia de satisfação de 7 dias.",
+          "As notícias do dia, as fofocas mais quentes e os bastidores dos famosos. Receba o plantão da Ember.News no seu e-mail.",
       },
-      { property: "og:title", content: "Ember.News — Jornal Digital de Tecnologia" },
+      { property: "og:title", content: "Ember.News — Notícias, Fofocas e Bastidores" },
       {
         property: "og:description",
-        content:
-          "Cobertura diária de tecnologia, negócios e cultura em formato de jornal. Assine e receba as manchetes do dia.",
+        content: "Plantão de notícias, fofocas e bastidores dos famosos, todos os dias.",
       },
     ],
   }),
@@ -180,116 +106,74 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const currentYear = useCurrentYear();
-  const { featured, bentoSecondary, sidebarList, zigzag, grid } = useMemo(() => {
+  const { featured, secondary, plantao, fofocas, grid } = useMemo(() => {
     const featured = articles.find((a) => a.featured) ?? articles[0];
     const rest = articles.filter((a) => a.slug !== featured.slug);
     return {
       featured,
-      bentoSecondary: rest.slice(0, 2),
-      sidebarList: rest.slice(2, 7),
-      zigzag: rest.slice(7, 11),
-      grid: rest.slice(11, 15),
+      secondary: rest.slice(0, 2),
+      plantao: rest.slice(2, 8),
+      fofocas: rest.slice(8, 12),
+      grid: rest.slice(12, 16),
     };
   }, []);
 
   return (
     <div className="relative min-h-screen bg-background">
-      <UrgencyBanner />
       <NewsletterModal />
       <SiteHeader />
-      <SocialProofBar />
+
+      {/* Faixa de plantão */}
+      <div className="border-b border-border bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2 text-xs sm:px-6">
+          <span className="inline-flex shrink-0 items-center gap-1 font-bold uppercase tracking-[0.14em]">
+            <Zap className="size-3.5" /> Plantão
+          </span>
+          <a
+            href={`/artigo/${featured.slug}`}
+            className="min-w-0 truncate font-medium hover:underline"
+          >
+            {featured.title}
+          </a>
+        </div>
+      </div>
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
-        <h1 className="sr-only">Ember.News — jornal digital de tecnologia, negócios e cultura</h1>
+        <h1 className="sr-only">Ember.News — notícias, fofocas e bastidores</h1>
 
-        {/* Hero editorial */}
-        <section className="border-b border-border pb-12 md:pb-16">
-          <motion.div
+        {/* Manchete + destaques */}
+        <section className="grid grid-cols-1 gap-8 lg:grid-cols-[1.7fr_1fr]">
+          <motion.a
+            href={`/artigo/${featured.slug}`}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-6"
-          >
-            <span className="kicker">{featured.category}</span>
-            <h2 className="headline-serif text-5xl sm:text-6xl lg:text-7xl">
-              {featured.title}
-            </h2>
-            <p className="byline">
-              {featured.author} · {featured.date} · {featured.readMinutes} min
-            </p>
-          </motion.div>
-
-          <a
-            href={`/artigo/${featured.slug}`}
-            className="mt-8 block w-full overflow-hidden rounded-[6px]"
+            className="group relative block overflow-hidden rounded-[6px]"
           >
             <img
               src={featured.image}
               alt={featured.title}
-              className="h-[320px] w-full max-w-full object-cover sm:h-[460px] lg:h-[580px]"
+              className="h-[380px] w-full max-w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] sm:h-[480px]"
             />
-          </a>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5 text-white sm:p-8">
+              <span className="inline-flex w-fit items-center gap-1 bg-primary px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-foreground">
+                <Flame className="size-3.5" /> Bomba do dia
+              </span>
+              <h2 className="headline-serif text-3xl text-white sm:text-4xl lg:text-5xl">
+                {featured.title}
+              </h2>
+              <p className="max-w-xl text-sm text-white/85 sm:text-base">{featured.excerpt}</p>
+            </div>
+          </motion.a>
 
-          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-8"
-            >
-              <p className="max-w-2xl font-sans text-lg leading-relaxed text-foreground md:text-xl">
-                {featured.excerpt}
-              </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href="#planos"
-                  className="btn-news-primary inline-flex items-center gap-2 rounded-[6px] px-6 py-3 text-sm font-bold uppercase tracking-wide"
-                >
-                  Assinar agora <ArrowRight className="size-4" />
-                </a>
-                <a
-                  href="#em-pauta"
-                  className="btn-news-outline inline-flex items-center gap-2 rounded-[6px] px-6 py-3 text-sm font-semibold uppercase tracking-wide"
-                >
-                  Ver pauta de hoje
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <LatestTicker items={sidebarList.map(toTickerItem)} />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Carrossel de destaques */}
-        <motion.section {...fadeUp} id="carrossel-noticias" className="mt-14 md:mt-20">
-          <h2 className="headline-serif text-2xl">Em imagens</h2>
-          <div className="newspaper-rule mt-4 mb-8" />
-          <NewsPhotoCarousel />
-        </motion.section>
-
-        {/* Destaques do dia */}
-        <section className="mt-12 md:mt-16">
-          <div className="flex items-end justify-between">
-            <h2 className="headline-serif text-2xl">Destaques do dia</h2>
-            <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
-              Selecionado pela redação
-            </span>
-          </div>
-          <div className="newspaper-rule mt-4 mb-8" />
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {bentoSecondary.map((a, i) => (
+          <div className="flex flex-col gap-6">
+            {secondary.map((a, i) => (
               <motion.div
                 key={a.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
               >
                 <ArticleCard
                   image={a.image}
@@ -306,29 +190,41 @@ function Index() {
           </div>
         </section>
 
-        {/* Vídeo em destaque */}
-        <motion.section {...fadeUp} className="mt-14 flex justify-center md:mt-20">
-          <div className="w-full max-w-3xl overflow-hidden rounded-[6px] border border-border bg-card shadow-sm">
-            <LazyVideo src={estatuaVideo.url} />
+        {/* Plantão */}
+        <motion.section {...fadeUp} id="plantao" className="mt-14 md:mt-20">
+          <div className="flex items-end justify-between">
+            <h2 className="headline-serif text-2xl">Plantão de notícias</h2>
+            <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
+              Atualizado ao longo do dia
+            </span>
           </div>
+          <div className="newspaper-rule mt-4 mb-8" />
+          <LatestTicker items={plantao.map(toTickerItem)} />
         </motion.section>
 
-        {/* Em pauta — zigzag editorial */}
-        <section id="em-pauta" className="mt-14 flex flex-col gap-10 md:mt-20">
+        {/* Em imagens */}
+        <motion.section {...fadeUp} id="carrossel-noticias" className="mt-14 md:mt-20">
+          <h2 className="headline-serif text-2xl">Flagras e imagens</h2>
+          <div className="newspaper-rule mt-4 mb-8" />
+          <NewsPhotoCarousel />
+        </motion.section>
+
+        {/* Fofocas */}
+        <section id="fofocas" className="mt-14 flex flex-col gap-10 md:mt-20">
           <motion.div {...fadeUp} className="flex flex-col gap-2">
             <div className="flex items-end justify-between gap-6">
-              <h2 className="headline-serif text-2xl">Em pauta agora</h2>
+              <h2 className="headline-serif text-2xl">Fofoca quente</h2>
               <span className="h-px flex-1 bg-border" />
               <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
-                Leitura recomendada
+                O assunto do momento
               </span>
             </div>
             <p className="max-w-2xl text-sm text-muted-foreground">
-              Reportagens em apuração e análises que estão movimentando a redação nas últimas horas.
+              Rumores, bastidores e tudo o que os famosos não queriam que você soubesse.
             </p>
           </motion.div>
 
-          {zigzag.map((a, i) => (
+          {fofocas.map((a, i) => (
             <motion.div
               key={a.slug}
               initial={{ opacity: 0, y: 20 }}
@@ -352,26 +248,15 @@ function Index() {
           ))}
         </section>
 
-        {/* CTA intermediário */}
-        <motion.section {...fadeUp} className="mt-14 md:mt-20">
-          <div className="flex flex-col items-center gap-4 rounded-[6px] border border-border bg-card px-6 py-10 text-center">
-            <span className="kicker">Assinatura fundador</span>
-            <h3 className="headline-serif text-2xl sm:text-3xl">
-              A edição completa, sem interrupções.
-            </h3>
-            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
-              Reportagens exclusivas, sem anúncios e com a newsletter diária direto na sua caixa de entrada. Preço de fundador travado para sempre.
-            </p>
-            <a
-              href="#planos"
-              className="btn-news-lilac inline-flex items-center gap-2 rounded-[6px] px-8 py-3.5 text-sm font-bold uppercase tracking-wide"
-            >
-              Ver planos de assinatura <ArrowRight className="size-4" />
-            </a>
+        {/* Vídeo */}
+        <motion.section {...fadeUp} className="mt-14 flex flex-col items-center gap-4 md:mt-20">
+          <h2 className="headline-serif text-2xl">Vídeo do dia</h2>
+          <div className="w-full max-w-3xl overflow-hidden rounded-[6px] border border-border bg-card shadow-sm">
+            <LazyVideo src={estatuaVideo.url} />
           </div>
         </motion.section>
 
-        {/* Categorias como abas */}
+        {/* Editorias */}
         <motion.section id="categorias" {...fadeUp} className="mt-14 md:mt-20">
           <div className="flex items-end justify-between">
             <h2 className="headline-serif text-2xl">Editorias</h2>
@@ -400,117 +285,52 @@ function Index() {
           </nav>
         </motion.section>
 
-        {/* Como funciona a assinatura */}
-        <motion.section {...fadeUp} className="mt-14 md:mt-20">
-          <h2 className="headline-serif text-2xl">Como funciona a assinatura</h2>
-          <div className="newspaper-rule mt-4 mb-10" />
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
-            {subscriptionSteps.map((step, i) => (
-              <div key={step.title} className="flex flex-col items-start gap-3">
-                <span className="font-display text-4xl font-black text-primary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <step.icon className="size-5 text-primary" />
-                <h3 className="headline-serif text-lg">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Depoimentos */}
-        <div id="depoimentos" className="mt-14 md:mt-20">
-          <TestimonialsSection />
-        </div>
-
-        {/* Planos */}
-        <motion.section {...fadeUp} id="planos" className="mt-14 md:mt-20">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <span className="kicker">Assinaturas</span>
-            <h2 className="headline-serif text-3xl sm:text-4xl">Escolha sua edição</h2>
-            <p className="max-w-md text-sm text-muted-foreground">
-              O preço de fundador é travado para sempre — válido apenas para este lote de assinantes.
+        {/* Newsletter */}
+        <motion.section {...fadeUp} id="newsletter" className="mt-14 md:mt-20">
+          <div className="flex flex-col items-center gap-4 rounded-[6px] border border-border bg-card px-6 py-10 text-center">
+            <Mail className="size-6 text-primary" />
+            <span className="kicker">Newsletter grátis</span>
+            <h3 className="headline-serif text-2xl sm:text-3xl">
+              Saia na frente: a fofoca chega primeiro no seu e-mail.
+            </h3>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-base">
+              Todas as manhãs, o resumo das notícias e das fofocas mais comentadas. Sem custo e sem spam.
             </p>
-          </div>
-
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {pricingPlans.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative flex flex-col gap-6 rounded-[6px] border p-6 ${
-                  plan.highlighted
-                    ? "border-primary bg-card shadow-md"
-                    : "border-border bg-card"
-                }`}
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex w-full max-w-md flex-col gap-2 sm:flex-row"
+            >
+              <label htmlFor="newsletter-email" className="sr-only">
+                E-mail
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                required
+                placeholder="seu@email.com"
+                className="w-full rounded-[6px] border border-border bg-background px-4 py-3 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              />
+              <button
+                type="submit"
+                className="btn-news-primary inline-flex shrink-0 items-center justify-center gap-2 rounded-[6px] px-6 py-3 text-sm font-bold uppercase tracking-wide"
               >
-                {plan.highlighted && (
-                  <span className="absolute -top-3 left-6 bg-primary px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-foreground">
-                    Recomendado
-                  </span>
-                )}
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                    {plan.name}
-                  </span>
-                  <div className="flex items-end gap-2">
-                    {plan.originalPrice && (
-                      <span className="text-lg text-muted-foreground line-through">
-                        {plan.originalPrice}
-                      </span>
-                    )}
-                    <span className="font-display text-3xl font-black">{plan.price}</span>
-                    {plan.period && (
-                      <span className="pb-1 text-sm text-muted-foreground">{plan.period}</span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
-                </div>
-
-                <div className="newspaper-rule" />
-
-                <ul className="flex flex-1 flex-col gap-3">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <Check className="mt-0.5 size-4 shrink-0 text-primary" />
-                      <span className="text-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  type="button"
-                  className={`w-full rounded-[6px] py-2.5 text-sm font-bold uppercase tracking-wide focus-visible:outline-none ${
-                    plan.highlighted ? "btn-news-primary" : "btn-news-outline"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </motion.div>
-            ))}
+                Quero receber <ArrowRight className="size-4" />
+              </button>
+            </form>
           </div>
         </motion.section>
 
-        {/* Garantia */}
-        <div className="mt-14 md:mt-20">
-          <GuaranteeSection />
-        </div>
-
-        {/* Grid mais recentes */}
+        {/* Mais recentes */}
         {grid.length > 0 && (
           <motion.section {...fadeUp} className="mt-16">
             <div className="flex items-end justify-between">
-              <h2 className="font-display text-2xl uppercase">Mais recentes</h2>
+              <h2 className="headline-serif text-2xl">Mais lidas</h2>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
-                {articles.length} artigos
+                {articles.length} matérias
               </span>
             </div>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="newspaper-rule mt-4 mb-6" />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {grid.map((a, i) => (
                 <motion.div
                   key={a.slug}
@@ -527,17 +347,15 @@ function Index() {
         )}
       </main>
 
-
       <footer className="relative mt-32 overflow-hidden bg-foreground text-background">
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-            {/* Marca */}
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
             <div className="flex flex-col gap-4">
               <span className="font-display text-xl uppercase tracking-wider text-logo">
                 Ember<span className="text-logo">.</span>News
               </span>
               <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
-                Cobertura diária de IA, startups, cibersegurança, hardware e software — jornalismo de tecnologia com curadoria editorial, sem ruído.
+                Notícias, fofocas e bastidores dos famosos, todos os dias, sem enrolação.
               </p>
               <div className="mt-2 flex items-center gap-3">
                 <a
@@ -545,41 +363,31 @@ function Index() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Ember.News no Twitter"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <Twitter className="size-4" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Ember.News no LinkedIn"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Linkedin className="size-4" />
                 </a>
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Ember.News no Instagram"
-                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-200 hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <Instagram className="size-4" />
                 </a>
               </div>
             </div>
 
-            {/* Categorias */}
-            <nav aria-label="Categorias" className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Categorias</span>
+            <nav aria-label="Editorias" className="flex flex-col gap-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Editorias</span>
               <ul className="flex flex-col gap-3">
                 {categories.map((c) => (
                   <li key={c.slug}>
                     <Link
                       to="/categoria/$slug"
                       params={{ slug: c.slug }}
-                      className="text-base font-medium text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {c.name}
                     </Link>
@@ -588,90 +396,42 @@ function Index() {
               </ul>
             </nav>
 
-            {/* Institucional */}
             <nav aria-label="Institucional" className="flex flex-col gap-4">
               <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Institucional</span>
               <ul className="flex flex-col gap-3">
                 <li>
                   <Link
-                    to="/buscar" search={{ q: "" }}
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                    to="/buscar"
+                    search={{ q: "" }}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     Buscar
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
-                  >
-                    Sobre nós
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                  <Link
+                    to="/contato"
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     Contato
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
-                    href="#"
-                    className="text-sm text-muted-foreground border-b border-transparent transition-colors duration-200 hover:border-ember/40 hover:text-foreground"
+                    href="#newsletter"
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    Trabalhe conosco
+                    Newsletter <ArrowUpRight className="size-3.5" />
                   </a>
                 </li>
               </ul>
             </nav>
-
-            {/* Newsletter */}
-            <div className="flex flex-col gap-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-foreground">Receba a edição diária</span>
-              <p className="text-sm text-muted-foreground">
-                As principais manchetes, direto na sua caixa de entrada, todas as manhãs.
-              </p>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-col gap-2 sm:flex-row"
-              >
-                <label htmlFor="footer-email" className="sr-only">
-                  E-mail
-                </label>
-                <input
-                  id="footer-email"
-                  type="email"
-                  required
-                  placeholder="seu@email.com"
-                  className="w-full rounded-[6px] border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
-                />
-                <button
-                  type="submit"
-                  className="btn-news-primary inline-flex shrink-0 items-center justify-center gap-1.5 rounded-[6px] px-4 py-2.5 text-sm font-bold uppercase tracking-wide"
-                >
-                  Assinar <ArrowUpRight className="size-4" />
-                </button>
-              </form>
-            </div>
           </div>
 
           <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
             <p className="text-xs text-muted-foreground" suppressHydrationWarning>
               © {currentYear ?? ""} Ember.News. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
-                Termos de uso
-              </a>
-              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
-                Privacidade
-              </a>
-              <a href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
-                Cookies
-              </a>
-            </div>
           </div>
         </div>
       </footer>

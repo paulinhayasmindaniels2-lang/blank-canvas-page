@@ -10,11 +10,11 @@ export type Category = {
 };
 
 export const categories: Category[] = [
-  { slug: "ia", name: "Inteligência Artificial", description: "Modelos, pesquisa e aplicações de IA." },
-  { slug: "startups", name: "Startups", description: "Rodadas, lançamentos e bastidores do ecossistema." },
-  { slug: "ciberseguranca", name: "Cibersegurança", description: "Vulnerabilidades, ataques e defesa." },
-  { slug: "hardware", name: "Hardware", description: "Chips, dispositivos e infraestrutura." },
-  { slug: "software", name: "Software", description: "Ferramentas, linguagens e código aberto." },
+  { slug: "ia", name: "Famosos", description: "O que andam fazendo as celebridades." },
+  { slug: "startups", name: "Bastidores", description: "Os bastidores do mundo dos famosos e dos negócios." },
+  { slug: "ciberseguranca", name: "Plantão", description: "Últimas notícias, direto da redação." },
+  { slug: "hardware", name: "Polêmicas", description: "Os assuntos que estão dando o que falar." },
+  { slug: "software", name: "TV e Cultura", description: "Novelas, séries, música e lançamentos." },
 ];
 
 export type Article = {

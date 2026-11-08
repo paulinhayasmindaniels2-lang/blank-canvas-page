@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "Início", href: "/" },
-  { label: "Em Pauta", href: "#em-pauta" },
-  { label: "Categorias", href: "#categorias" },
-  { label: "Assinaturas", href: "#planos" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Plantão", href: "#plantao" },
+  { label: "Fofocas", href: "#fofocas" },
+  { label: "Editorias", href: "#categorias" },
+  { label: "Newsletter", href: "#newsletter" },
 ] as const;
 
 function getTodayLong() {
@@ -85,7 +85,7 @@ export function SiteHeader() {
           Ember<span className="text-logo">.</span>News
         </Link>
         <p className="font-sans text-[0.68rem] uppercase tracking-[0.28em] text-muted-foreground">
-          Jornal digital de tecnologia, negócios e cultura
+          Notícias, fofocas e bastidores todos os dias
         </p>
       </div>
 
@@ -117,10 +117,10 @@ export function SiteHeader() {
             Entrar
           </Link>
           <a
-            href="#planos"
+            href="#newsletter"
             className="btn-news-lilac inline-flex rounded-[6px] px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.12em]"
           >
-            Assinar agora
+            Receber fofocas
           </a>
         </div>
 
@@ -167,10 +167,10 @@ export function SiteHeader() {
                 </SheetClose>
                 <SheetClose asChild>
                   <a
-                    href="#planos"
+                    href="#newsletter"
                     className="btn-news-primary mt-3 rounded-[6px] px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.12em]"
                   >
-                    Assinar agora
+                    Receber fofocas
                   </a>
                 </SheetClose>
               </div>

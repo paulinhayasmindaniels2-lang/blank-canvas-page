@@ -203,38 +203,44 @@ function Index() {
         <h1 className="sr-only">Ember.News — jornal digital de tecnologia, negócios e cultura</h1>
 
         {/* Hero editorial */}
-        <section className="border-b border-border pb-10 md:pb-14">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]">
+        <section className="border-b border-border pb-12 md:pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-6"
+          >
+            <span className="kicker">{featured.category}</span>
+            <h2 className="headline-serif text-5xl sm:text-6xl lg:text-7xl">
+              {featured.title}
+            </h2>
+            <p className="byline">
+              {featured.author} · {featured.date} · {featured.readMinutes} min
+            </p>
+          </motion.div>
+
+          <a
+            href={`/artigo/${featured.slug}`}
+            className="mt-8 block w-full overflow-hidden rounded-[6px]"
+          >
+            <img
+              src={featured.image}
+              alt={featured.title}
+              className="h-[320px] w-full max-w-full object-cover sm:h-[460px] lg:h-[580px]"
+            />
+          </a>
+
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-5"
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-8"
             >
-              <span className="kicker">{featured.category}</span>
-              <h2 className="headline-serif text-5xl sm:text-6xl lg:text-7xl">
-                {featured.title}
-              </h2>
-              <p className="byline">
-                {featured.author} · {featured.date} · {featured.readMinutes} min
-              </p>
-
-              <a
-                href={`/artigo/${featured.slug}`}
-                className="-mx-4 overflow-hidden border-y border-border sm:mx-0 sm:rounded-[6px] sm:border"
-              >
-                <img
-                  src={featured.image}
-                  alt={featured.title}
-                  className="h-[260px] w-full object-cover sm:h-[420px]"
-                />
-              </a>
-
-              <p className="drop-cap max-w-2xl font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="max-w-2xl font-sans text-lg leading-relaxed text-foreground md:text-xl">
                 {featured.excerpt}
               </p>
-
-              <div className="mt-2 flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#planos"
                   className="btn-news-primary inline-flex items-center gap-2 rounded-[6px] px-6 py-3 text-sm font-bold uppercase tracking-wide"
@@ -253,7 +259,7 @@ function Index() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <LatestTicker items={sidebarList.map(toTickerItem)} />
             </motion.div>

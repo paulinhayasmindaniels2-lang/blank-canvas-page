@@ -17,17 +17,53 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   },
 ];
 
+// Lista isolada e memoizada: digitar no campo de texto não re-renderiza as mensagens.
+const ChatMessages = React.memo(function ChatMessages({
+  messages,
+  scrollRef,
+}: {
+  messages: ChatMessage[];
+  scrollRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background px-4 py-4">
+      {messages.map((message) => (
+        <div
+          key={message.id}
+          className={cn("flex", message.from === "user" ? "justify-end" : "justify-start")}
+        >
+          <p
+            className={cn(
+              "max-w-[85%] rounded-[8px] px-3 py-2 text-sm leading-relaxed",
+              message.from === "user"
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground"
+            )}
+          >
+            {message.text}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+});
+
 export function ChatSupport() {
   const [open, setOpen] = React.useState(false);
   const [messages, setMessages] = React.useState<ChatMessage[]>(INITIAL_MESSAGES);
   const [draft, setDraft] = React.useState("");
-  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const scrollRef = React.useRef<HTMLDivElement | null>(null);
+  const replyTimerRef = React.useRef<number | undefined>(undefined);
 
   React.useEffect(() => {
     if (open && scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, open]);
+
+  React.useEffect(() => {
+    return () => window.clearTimeout(replyTimerRef.current);
+  }, []);
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +74,7 @@ export function ChatSupport() {
     setMessages((prev) => [...prev, userMessage]);
     setDraft("");
 
-    window.setTimeout(() => {
+    replyTimerRef.current = window.setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         {
@@ -65,6 +101,9 @@ export function ChatSupport() {
                 <img
                   src={supportAgent}
                   alt="Atendente de suporte usando fone de ouvido"
+                  width={32}
+                  height={32}
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </span>
@@ -89,28 +128,7 @@ export function ChatSupport() {
           </div>
 
           {/* Messages */}
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background px-4 py-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={cn(
-                  "flex",
-                  message.from === "user" ? "justify-end" : "justify-start"
-                )}
-              >
-                <p
-                  className={cn(
-                    "max-w-[85%] rounded-[8px] px-3 py-2 text-sm leading-relaxed",
-                    message.from === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-secondary-foreground"
-                  )}
-                >
-                  {message.text}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ChatMessages messages={messages} scrollRef={scrollRef} />
 
           {/* Input */}
           <form onSubmit={handleSend} className="flex items-center gap-2 border-t border-border bg-card px-3 py-3">
@@ -148,6 +166,9 @@ export function ChatSupport() {
           <img
             src={supportAgent}
             alt="Atendente de suporte usando fone de ouvido"
+            width={56}
+            height={56}
+            decoding="async"
             className="h-full w-full object-cover"
           />
         )}

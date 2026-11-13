@@ -27,6 +27,17 @@ function getTodayLong() {
   return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 }
 
+// Estado da data isolado: preencher a data após a hidratação não re-renderiza o cabeçalho inteiro.
+function TodayLabel() {
+  const [today, setToday] = React.useState("");
+
+  React.useEffect(() => {
+    setToday(getTodayLong());
+  }, []);
+
+  return <span suppressHydrationWarning>{today}</span>;
+}
+
 function useTheme() {
   const [isDark, setIsDark] = React.useState(false);
 
@@ -48,19 +59,14 @@ function useTheme() {
   return { isDark, toggle };
 }
 
-export function SiteHeader() {
-  const [today, setToday] = React.useState("");
+export const SiteHeader = React.memo(function SiteHeader() {
   const { isDark, toggle } = useTheme();
-
-  React.useEffect(() => {
-    setToday(getTodayLong());
-  }, []);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background">
       {/* Utility line */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground sm:px-6">
-        <span suppressHydrationWarning>{today}</span>
+        <TodayLabel />
         <div className="flex items-center gap-4">
           <span className="hidden sm:inline">Edição digital</span>
           <button
@@ -180,4 +186,4 @@ export function SiteHeader() {
       </div>
     </header>
   );
-}
+});

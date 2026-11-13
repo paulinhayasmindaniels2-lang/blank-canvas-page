@@ -15,11 +15,11 @@ const DEFAULT_HEADLINES: string[] = [
   "Bolsas fecham em alta após sinalização de corte de juros",
 ];
 
-export function SocialProofBar({
+export const SocialProofBar = React.memo(function SocialProofBar({
   headlines = DEFAULT_HEADLINES,
   className,
 }: SocialProofBarProps) {
-  const track = [...headlines, ...headlines];
+  const track = React.useMemo(() => [...headlines, ...headlines], [headlines]);
 
   return (
     <div
@@ -39,10 +39,7 @@ export function SocialProofBar({
         </div>
 
         <div className="relative flex-1 overflow-hidden py-2">
-          <div
-            className="ticker-track flex w-max items-center gap-10 whitespace-nowrap pr-10 text-[0.78rem] font-medium motion-reduce:animate-none"
-            style={{ animation: "ticker-scroll 32s linear infinite" }}
-          >
+          <div className="ticker-track flex w-max items-center gap-10 whitespace-nowrap pr-10 text-[0.78rem] font-medium [animation:ticker-scroll_32s_linear_infinite] motion-reduce:[animation:none]">
             {track.map((headline, index) => (
               <span key={`${headline}-${index}`} className="flex items-center gap-10">
                 <span>{headline}</span>
@@ -56,4 +53,4 @@ export function SocialProofBar({
       </div>
     </div>
   );
-}
+});

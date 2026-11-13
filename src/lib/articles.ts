@@ -153,8 +153,19 @@ export const articles: Article[] = [
   },
 ];
 
+// Índices calculados uma única vez no carregamento do módulo (dados em memória):
+// evitam varredura linear por slug e repetição de toLowerCase() a cada busca.
+const articlesBySlug = new Map<string, Article>(articles.map((a) => [a.slug, a]));
+
+const searchIndex = articles.map((article) => ({
+  article,
+  title: article.title.toLowerCase(),
+  excerpt: article.excerpt.toLowerCase(),
+  author: article.author.toLowerCase(),
+}));
+
 export function getArticleBySlug(slug: string) {
-  return articles.find((a) => a.slug === slug);
+  return articlesBySlug.get(slug);
 }
 
 export function getCategoryBySlug(slug: string) {
@@ -168,12 +179,9 @@ export function articlesByCategory(slug: CategorySlug) {
 export function searchArticles(query: string) {
   const q = query.trim().toLowerCase();
   if (!q) return [];
-  return articles.filter(
-    (a) =>
-      a.title.toLowerCase().includes(q) ||
-      a.excerpt.toLowerCase().includes(q) ||
-      a.author.toLowerCase().includes(q),
-  );
+  return searchIndex
+    .filter((e) => e.title.includes(q) || e.excerpt.includes(q) || e.author.includes(q))
+    .map((e) => e.article);
 }
 
 // Formato estável (não usa Intl locale-dependent) — evita hydration mismatch

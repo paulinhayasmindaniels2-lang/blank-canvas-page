@@ -41,7 +41,7 @@ const DEFAULT_ITEMS: LatestTickerItem[] = [
   },
 ];
 
-export function LatestTicker({
+export const LatestTicker = React.memo(function LatestTicker({
   items = DEFAULT_ITEMS,
   title = "Mais Lidas",
   className,
@@ -87,4 +87,4 @@ export function LatestTicker({
       </ol>
     </aside>
   );
-}
+});

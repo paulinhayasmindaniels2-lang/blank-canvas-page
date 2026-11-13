@@ -18,7 +18,9 @@ export interface ArticleCardProps {
   className?: string;
 }
 
-export function ArticleCard(props: ArticleCardProps) {
+// Memoizado: as props são primitivas (ou o objeto estável do módulo de artigos),
+// então o card só re-renderiza quando algo realmente muda.
+export const ArticleCard = React.memo(function ArticleCard(props: ArticleCardProps) {
   const a = props.article;
   return (
     <ArticleCardView
@@ -33,7 +35,7 @@ export function ArticleCard(props: ArticleCardProps) {
       href={props.href ?? (a ? `/artigo/${a.slug}` : undefined)}
     />
   );
-}
+});
 
 function ArticleCardView({
   image,
@@ -68,6 +70,7 @@ function ArticleCardView({
           src={image}
           alt={title}
           loading="lazy"
+          decoding="async"
           className={cn(
             "h-48 w-full rounded-[4px] object-cover",
             isHorizontal && "sm:h-full"

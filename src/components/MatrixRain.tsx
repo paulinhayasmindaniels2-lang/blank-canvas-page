@@ -4,7 +4,13 @@ import { useEffect, useRef } from "react";
  * Fundo animado estilo "Matrix digital rain".
  * Renderizado em <canvas>, fixo atrás do conteúdo, com baixa opacidade
  * para não competir com a leitura do site.
+ *
+ * Otimizações: limita a ~30 fps (independente da taxa do monitor), pausa quando
+ * a aba está oculta e aplica debounce no redimensionamento.
  */
+const FRAME_INTERVAL_MS = 1000 / 30;
+const RESIZE_DEBOUNCE_MS = 150;
+
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -17,8 +23,10 @@ export function MatrixRain() {
     const chars =
       "アイウエオカキクケコサシスセソタチツテト0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const fontSize = 15;
-    let columns = 0;
     let drops: number[] = [];
+    let rafId = 0;
+    let lastTime = 0;
+    let resizeTimer: number | undefined;
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -27,30 +35,30 @@ export function MatrixRain() {
     const setup = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      columns = Math.floor(canvas.width / fontSize);
-      drops = new Array(columns).fill(1).map(() => Math.random() * -50);
+      // Redimensionar o canvas reinicia o contexto; define a fonte uma única vez aqui.
+      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+      const columns = Math.floor(canvas.width / fontSize);
+      drops = Array.from({ length: columns }, () => Math.random() * -50);
+    };
+
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(setup, RESIZE_DEBOUNCE_MS);
     };
 
     setup();
-    window.addEventListener("resize", setup);
+    window.addEventListener("resize", onResize);
 
     if (prefersReducedMotion) {
-      return () => window.removeEventListener("resize", setup);
+      return () => {
+        window.clearTimeout(resizeTimer);
+        window.removeEventListener("resize", onResize);
+      };
     }
 
-    let frame = 0;
-    let rafId: number;
-
     const draw = () => {
-      rafId = requestAnimationFrame(draw);
-      frame++;
-      // controla a velocidade (desenha a cada 2 frames)
-      if (frame % 2 !== 0) return;
-
       ctx.fillStyle = "rgba(2, 12, 7, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
@@ -72,11 +80,35 @@ export function MatrixRain() {
       }
     };
 
-    rafId = requestAnimationFrame(draw);
+    const loop = (time: number) => {
+      rafId = requestAnimationFrame(loop);
+      if (time - lastTime < FRAME_INTERVAL_MS) return;
+      lastTime = time;
+      draw();
+    };
+
+    const start = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const stop = () => {
+      cancelAnimationFrame(rafId);
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    start();
 
     return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", setup);
+      stop();
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 

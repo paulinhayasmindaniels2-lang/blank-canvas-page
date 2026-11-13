@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Mail, Loader2, CheckCircle2 } from "lucide-react";
 import {
   Dialog,
@@ -14,12 +14,14 @@ import { toast } from "sonner";
 
 const STORAGE_KEY = "ember-newsletter-seen";
 const OPEN_DELAY_MS = 1500;
+const SUCCESS_CLOSE_DELAY_MS = 1800;
 
 export function NewsletterModal() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const closeTimerRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -29,20 +31,25 @@ export function NewsletterModal() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    return () => window.clearTimeout(closeTimerRef.current);
+  }, []);
+
   const dismiss = () => {
     setOpen(false);
     window.localStorage.setItem(STORAGE_KEY, "1");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     const trimmed = email.trim();
     if (!trimmed) return;
 
     setLoading(true);
-    const { error } = await supabase
-      .from("newsletter_subscribers" as never)
-      .insert({ email: trimmed } as never);
+    // Insert tipado conforme o contrato gerado (newsletter_subscribers.Insert):
+    // grava apenas o e-mail e não lê nenhuma coluna de volta.
+    const { error } = await supabase.from("newsletter_subscribers").insert({ email: trimmed });
     setLoading(false);
 
     if (error) {
@@ -58,7 +65,7 @@ export function NewsletterModal() {
     setSuccess(true);
     window.localStorage.setItem(STORAGE_KEY, "1");
     toast.success("Inscrição confirmada!");
-    window.setTimeout(() => setOpen(false), 1800);
+    closeTimerRef.current = window.setTimeout(() => setOpen(false), SUCCESS_CLOSE_DELAY_MS);
   };
 
   return (

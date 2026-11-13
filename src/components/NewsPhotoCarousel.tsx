@@ -16,9 +16,21 @@ interface NewsSlide {
   title: string;
   author: string;
   date: string;
+  image?: string;
+  summary?: string;
 }
 
 const slides: NewsSlide[] = [
+  {
+    photoId: -1,
+    category: "Entretenimento",
+    title: "Imagem de Jon Vlogs em academia de Londrina desperta curiosidade dos fãs",
+    author: "Redação Ember.News",
+    date: "Imagem recebida pela redação",
+    image: "/ultrax-attached-9f64c2e2-07e2-4744-871f-e50d42bed9d9.svg",
+    summary:
+      "O registro enviado à redação circula com a alegação de que Jon Vlogs esteve em uma academia em Londrina. A autenticidade e o contexto da imagem não foram verificados, e ela não confirma encontro ou qualquer vínculo entre as pessoas retratadas.",
+  },
   {
     photoId: 1015,
     category: "Economia",
@@ -96,8 +108,8 @@ const NewsSlideItem = memo(function NewsSlideItem({ slide }: { slide: NewsSlide 
     <CarouselItem>
       <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[6px] border border-border sm:aspect-[21/9]">
         <img
-          src={photoUrl(slide.photoId, 1024)}
-          srcSet={photoSrcSet(slide.photoId)}
+          src={slide.image ?? photoUrl(slide.photoId, 1024)}
+          srcSet={slide.image ? undefined : photoSrcSet(slide.photoId)}
           sizes={SLIDE_SIZES}
           width={1600}
           height={900}
@@ -112,6 +124,11 @@ const NewsSlideItem = memo(function NewsSlideItem({ slide }: { slide: NewsSlide 
           <h3 className="headline-serif text-xl !text-white [text-shadow:0_2px_6px_rgba(0,0,0,0.9)] sm:text-2xl md:text-3xl">
             {slide.title}
           </h3>
+          {slide.summary && (
+            <p className="max-w-3xl text-sm leading-relaxed text-white/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.9)]">
+              {slide.summary}
+            </p>
+          )}
           <p className="text-sm text-white/90 [text-shadow:0_1px_3px_rgba(0,0,0,0.9)]">
             {slide.author} · {slide.date}
           </p>

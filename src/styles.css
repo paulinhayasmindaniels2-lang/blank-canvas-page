@@ -37,7 +37,7 @@
   --card-foreground: hsl(222 15% 12%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(222 15% 12%);
-  --primary: hsl(142 62% 28%);
+  --primary: hsl(0 72% 38%);
   --primary-foreground: hsl(0 0% 98%);
   --secondary: hsl(220 14% 94%);
   --secondary-foreground: hsl(222 15% 12%);
@@ -49,10 +49,10 @@
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(220 10% 85%);
   --input: hsl(220 10% 85%);
-  --ring: hsl(142 62% 28%);
-  --breaking-strip: hsl(142 62% 28%);
+  --ring: hsl(0 72% 38%);
+  --breaking-strip: hsl(0 72% 38%);
   --breaking-strip-foreground: hsl(0 0% 98%);
-  --logo: hsl(145 55% 35%);
+  --logo: hsl(0 65% 40%);
 }
 
 html.dark {
@@ -62,7 +62,7 @@ html.dark {
   --card-foreground: hsl(0 0% 96%);
   --popover: hsl(220 16% 11%);
   --popover-foreground: hsl(0 0% 96%);
-  --primary: hsl(142 55% 42%);
+  --primary: hsl(0 65% 48%);
   --primary-foreground: hsl(0 0% 98%);
   --secondary: hsl(220 14% 18%);
   --secondary-foreground: hsl(0 0% 96%);
@@ -74,10 +74,10 @@ html.dark {
   --destructive-foreground: hsl(0 0% 98%);
   --border: hsl(0 0% 100% / 0.12);
   --input: hsl(0 0% 100% / 0.12);
-  --ring: hsl(142 55% 42%);
-  --breaking-strip: hsl(142 55% 34%);
+  --ring: hsl(0 65% 48%);
+  --breaking-strip: hsl(0 65% 42%);
   --breaking-strip-foreground: hsl(0 0% 98%);
-  --logo: hsl(145 55% 55%);
+  --logo: hsl(0 65% 60%);
 }
 
 /* ==========================================================================
@@ -271,9 +271,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: hsl(142 62% 32%);
+  background-color: hsl(0 72% 38%);
   color: hsl(0 0% 100%);
-  border: 1px solid hsl(142 62% 32%);
+  border: 1px solid hsl(0 72% 38%);
   border-radius: var(--radius);
   font-family: var(--font-sans);
   font-weight: 700;
@@ -283,15 +283,15 @@ body {
 }
 
 .btn-news-lilac:hover {
-  background-color: hsl(142 62% 24%);
-  border-color: hsl(142 62% 24%);
+  background-color: hsl(0 72% 32%);
+  border-color: hsl(0 72% 32%);
 }
 
 .btn-news-lilac:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--background),
-    0 0 0 4px hsl(142 62% 32%);
+    0 0 0 4px hsl(0 72% 38%);
 }
 
 /* ==========================================================================

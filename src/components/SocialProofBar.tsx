@@ -24,14 +24,14 @@ export const SocialProofBar = React.memo(function SocialProofBar({
   return (
     <div
       className={cn(
-        "w-full border-b border-border bg-green-700 text-white",
+        "w-full border-b border-border bg-red-700 text-white",
         className
       )}
       role="region"
       aria-label="Última hora"
     >
       <div className="mx-auto flex max-w-6xl items-stretch">
-        <div className="flex shrink-0 items-center gap-2 border-r border-white/25 bg-green-700 px-3 py-2 sm:px-4">
+        <div className="flex shrink-0 items-center gap-2 border-r border-white/25 bg-red-700 px-3 py-2 sm:px-4">
           <Zap className="h-3.5 w-3.5" aria-hidden="true" />
           <span className="whitespace-nowrap text-[0.7rem] font-bold uppercase tracking-[0.14em]">
             Última hora

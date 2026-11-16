@@ -57,7 +57,7 @@ export function MatrixRain() {
     }
 
     const draw = () => {
-      ctx.fillStyle = "rgba(12, 2, 2, 0.06)";
+      ctx.fillStyle = "rgba(12, 6, 2, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < drops.length; i++) {
@@ -66,11 +66,11 @@ export function MatrixRain() {
         const y = drops[i] * fontSize;
 
         // caractere líder mais brilhante
-        ctx.fillStyle = "rgba(255, 190, 190, 0.95)";
+        ctx.fillStyle = "rgba(255, 220, 150, 0.95)";
         ctx.fillText(char, x, y);
 
-        // rastro verde neon
-        ctx.fillStyle = "rgba(220, 35, 45, 0.4)";
+        // rastro laranja neon
+        ctx.fillStyle = "rgba(255, 140, 0, 0.4)";
         ctx.fillText(char, x, y - fontSize);
 
         if (y > canvas.height && Math.random() > 0.975) {

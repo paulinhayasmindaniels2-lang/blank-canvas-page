@@ -282,7 +282,19 @@ function Index() {
             {/* Plantão */}
             <m.section {...fadeUp} id="plantao" className="mt-14 md:mt-20">
               <div className="flex items-end justify-between">
-                <h2 className="headline-serif text-2xl">Plantão de notícias</h2>
+                <h2 className="headline-serif text-2xl">
+                  <span className="logo-animated">
+                    <span className="logo-char" style={{ animationDelay: "0ms" }}>P</span>
+                    <span className="logo-char" style={{ animationDelay: "60ms" }}>l</span>
+                    <span className="logo-char" style={{ animationDelay: "120ms" }}>a</span>
+                    <span className="logo-char" style={{ animationDelay: "180ms" }}>n</span>
+                    <span className="logo-char" style={{ animationDelay: "240ms" }}>t</span>
+                    <span className="logo-char" style={{ animationDelay: "300ms" }}>ã</span>
+                    <span className="logo-char" style={{ animationDelay: "360ms" }}>o</span>
+                    <span className="logo-dot text-primary" aria-hidden="true" style={{ animationDelay: "420ms" }}>.</span>
+                  </span>
+                  {" "}de notícias
+                </h2>
                 <span className="hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">
                   Atualizado ao longo do dia
                 </span>

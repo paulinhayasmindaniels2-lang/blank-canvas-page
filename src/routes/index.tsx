@@ -440,7 +440,7 @@ function Index() {
             <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
               <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
                 <div className="flex flex-col gap-4">
-                  <span className="font-display text-xl uppercase tracking-wider text-logo">
+                  <span className="logo-animated font-display text-xl uppercase tracking-wider text-logo">
                     Ember<span className="text-logo">.</span>News
                   </span>
                   <p className="max-w-[38ch] text-sm leading-relaxed text-muted-foreground">

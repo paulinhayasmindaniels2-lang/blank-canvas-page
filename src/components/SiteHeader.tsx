@@ -86,7 +86,7 @@ export const SiteHeader = React.memo(function SiteHeader() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-1 px-4 py-5 sm:px-6">
         <Link
           to="/"
-          className="font-display text-3xl font-black tracking-tight text-logo sm:text-4xl"
+          className="logo-animated font-display text-3xl font-black tracking-tight text-logo sm:text-4xl"
         >
           Ember<span className="text-logo">.</span>News
         </Link>
@@ -147,7 +147,7 @@ export const SiteHeader = React.memo(function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72 border-l border-border bg-background">
               <div className="mt-8 flex flex-col">
-                <span className="font-display text-xl font-black text-logo">
+                <span className="logo-animated font-display text-xl font-black text-logo">
                   Ember<span className="text-logo">.</span>News
                 </span>
                 <div className="mt-6 flex flex-col">

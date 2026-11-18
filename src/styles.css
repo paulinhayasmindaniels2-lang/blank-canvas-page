@@ -338,6 +338,31 @@ html, body { max-width: 100%; }
 @supports not (overflow-x: clip) { body { overflow-x: hidden; } }
 /* /GoIDE zoom */
 
+/* ==========================================================================
+   Logo animation
+   ========================================================================== */
+
+@keyframes logo-glow {
+  0%, 100% {
+    text-shadow: 0 0 0 transparent;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 12px color-mix(in oklab, var(--logo) 60%, transparent);
+    opacity: 0.92;
+  }
+}
+
+.logo-animated {
+  animation: logo-glow 3.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-animated {
+    animation: none;
+  }
+}
+
 /* GoIDE: oculta la insignia "Edit with Lovable" (v2) */
 #lovable-badge, [id^="lovable-badge"], [id*="lovable-badge"], [class*="lovable-badge"], aside[id*="lovable" i], a[href*="utm_source=lovable-badge"], a[href*="lovable.dev"][href*="utm_campaign=lovable-badge"] { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important }
 /* /GoIDE */

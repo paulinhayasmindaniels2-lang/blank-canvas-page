@@ -87,8 +87,18 @@ export const SiteHeader = React.memo(function SiteHeader() {
         <Link
           to="/"
           className="logo-animated font-display text-3xl font-black tracking-tight text-logo sm:text-4xl"
+          aria-label="Ember.News"
         >
-          Ember<span className="text-logo">.</span>News
+          <span className="logo-char" style={{ animationDelay: "0ms" }}>E</span>
+          <span className="logo-char" style={{ animationDelay: "70ms" }}>m</span>
+          <span className="logo-char" style={{ animationDelay: "140ms" }}>b</span>
+          <span className="logo-char" style={{ animationDelay: "210ms" }}>e</span>
+          <span className="logo-char" style={{ animationDelay: "280ms" }}>r</span>
+          <span className="logo-dot text-logo" aria-hidden="true" style={{ animationDelay: "350ms" }}>.</span>
+          <span className="logo-char" style={{ animationDelay: "420ms" }}>N</span>
+          <span className="logo-char" style={{ animationDelay: "490ms" }}>e</span>
+          <span className="logo-char" style={{ animationDelay: "560ms" }}>w</span>
+          <span className="logo-char" style={{ animationDelay: "630ms" }}>s</span>
         </Link>
         <p className="font-sans text-[0.68rem] uppercase tracking-[0.28em] text-muted-foreground">
           Notícias, fofocas e bastidores todos os dias
@@ -147,8 +157,17 @@ export const SiteHeader = React.memo(function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72 border-l border-border bg-background">
               <div className="mt-8 flex flex-col">
-                <span className="logo-animated font-display text-xl font-black text-logo">
-                  Ember<span className="text-logo">.</span>News
+                <span className="logo-animated font-display text-xl font-black text-logo" aria-label="Ember.News">
+                  <span className="logo-char" style={{ animationDelay: "0ms" }}>E</span>
+                  <span className="logo-char" style={{ animationDelay: "70ms" }}>m</span>
+                  <span className="logo-char" style={{ animationDelay: "140ms" }}>b</span>
+                  <span className="logo-char" style={{ animationDelay: "210ms" }}>e</span>
+                  <span className="logo-char" style={{ animationDelay: "280ms" }}>r</span>
+                  <span className="logo-dot text-logo" aria-hidden="true" style={{ animationDelay: "350ms" }}>.</span>
+                  <span className="logo-char" style={{ animationDelay: "420ms" }}>N</span>
+                  <span className="logo-char" style={{ animationDelay: "490ms" }}>e</span>
+                  <span className="logo-char" style={{ animationDelay: "560ms" }}>w</span>
+                  <span className="logo-char" style={{ animationDelay: "630ms" }}>s</span>
                 </span>
                 <div className="mt-6 flex flex-col">
                   {NAV_LINKS.map((item) => (

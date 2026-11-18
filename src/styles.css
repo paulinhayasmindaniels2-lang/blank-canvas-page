@@ -342,24 +342,61 @@ html, body { max-width: 100%; }
    Logo animation
    ========================================================================== */
 
-@keyframes logo-glow {
+@keyframes logo-letter-wave {
   0%, 100% {
-    text-shadow: 0 0 0 transparent;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: translateY(-12%) scale(1.08);
+    filter: brightness(1.35);
+  }
+  70% {
+    transform: translateY(4%) scale(0.98);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes logo-dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--logo) 70%, transparent);
     opacity: 1;
   }
   50% {
-    text-shadow: 0 0 12px color-mix(in oklab, var(--logo) 60%, transparent);
-    opacity: 0.92;
+    transform: scale(1.45);
+    box-shadow: 0 0 14px 4px color-mix(in oklab, var(--logo) 55%, transparent);
+    opacity: 0.9;
   }
 }
 
 .logo-animated {
-  animation: logo-glow 3.5s ease-in-out infinite;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.logo-animated .logo-char {
+  display: inline-block;
+  will-change: transform, filter;
+  animation: logo-letter-wave 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.logo-animated .logo-dot {
+  display: inline-block;
+  margin-inline: 0.04em;
+  border-radius: 9999px;
+  will-change: transform, box-shadow;
+  animation: logo-dot-pulse 1.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo-animated {
+  .logo-animated .logo-char,
+  .logo-animated .logo-dot {
     animation: none;
+    transform: none;
+    filter: none;
+    box-shadow: none;
   }
 }
 

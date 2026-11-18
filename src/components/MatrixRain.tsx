@@ -21,9 +21,10 @@ export function MatrixRain() {
     if (!ctx) return;
 
     const chars =
-      "アイウエオカキクケコサシスセソタチツテト0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const fontSize = 15;
-    let drops: number[] = [];
+      "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 16;
+    type Drop = { y: number; speed: number; offset: number };
+    let drops: Drop[] = [];
     let rafId = 0;
     let lastTime = 0;
     let resizeTimer: number | undefined;
@@ -32,13 +33,19 @@ export function MatrixRain() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
+    const makeDrop = (): Drop => ({
+      y: Math.random() * -50,
+      speed: 0.6 + Math.random() * 0.6,
+      offset: Math.random() * chars.length,
+    });
+
     const setup = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      // Redimensionar o canvas reinicia o contexto; define a fonte uma única vez aqui.
       ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+      ctx.textBaseline = "top";
       const columns = Math.floor(canvas.width / fontSize);
-      drops = Array.from({ length: columns }, () => Math.random() * -50);
+      drops = Array.from({ length: columns }, makeDrop);
     };
 
     const onResize = () => {
@@ -57,26 +64,43 @@ export function MatrixRain() {
     }
 
     const draw = () => {
-      ctx.fillStyle = "rgba(12, 6, 2, 0.06)";
+      // Trail fade: semi-transparent overlay creates smooth decay instead of hard clear
+      ctx.fillStyle = "rgba(10, 5, 2, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
+        const drop = drops[i];
         const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const y = drop.y * fontSize;
 
-        // caractere líder mais brilhante
-        ctx.fillStyle = "rgba(255, 220, 150, 0.95)";
+        // Pick character using per-drop offset for visual variety
+        const charIndex = Math.floor(drop.offset + drop.y * 0.3) % chars.length;
+        const char = chars[charIndex < 0 ? 0 : charIndex];
+
+        // Leading character: bright white-amber with subtle glow
+        ctx.shadowColor = "rgba(255, 180, 80, 0.7)";
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = "rgba(255, 235, 180, 0.95)";
         ctx.fillText(char, x, y);
 
-        // rastro laranja neon
-        ctx.fillStyle = "rgba(255, 140, 0, 0.4)";
+        // Reset shadow for trail characters to avoid cumulative blur cost
+        ctx.shadowBlur = 0;
+
+        // First trail: warm amber
+        ctx.fillStyle = "rgba(255, 160, 40, 0.45)";
         ctx.fillText(char, x, y - fontSize);
 
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        // Second trail: dimmer for depth gradient
+        ctx.fillStyle = "rgba(255, 120, 20, 0.18)";
+        ctx.fillText(char, x, y - fontSize * 2);
+
+        // Reset drop when well past viewport bottom; random threshold prevents sync
+        if (y > canvas.height + fontSize * 3 && Math.random() > 0.97) {
+          drops[i] = makeDrop();
+          drops[i].y = Math.random() * -20;
+        } else {
+          drop.y += drop.speed;
         }
-        drops[i]++;
       }
     };
 

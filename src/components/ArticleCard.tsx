@@ -18,8 +18,6 @@ export interface ArticleCardProps {
   className?: string;
 }
 
-// Memoizado: as props são primitivas (ou o objeto estável do módulo de artigos),
-// então o card só re-renderiza quando algo realmente muda.
 export const ArticleCard = React.memo(function ArticleCard(props: ArticleCardProps) {
   const a = props.article;
   return (
@@ -54,7 +52,7 @@ function ArticleCardView({
   return (
     <article
       className={cn(
-        "card-hairline group flex h-full flex-col overflow-hidden rounded-[6px] border border-border bg-card transition-shadow hover:shadow-sm",
+        "group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5",
         isHorizontal && "sm:flex-row",
         className
       )}
@@ -72,7 +70,7 @@ function ArticleCardView({
           loading="lazy"
           decoding="async"
           className={cn(
-            "h-48 w-full rounded-[4px] object-cover",
+            "h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105",
             isHorizontal && "sm:h-full"
           )}
         />
@@ -84,31 +82,31 @@ function ArticleCardView({
           isHorizontal && "sm:justify-center sm:p-6"
         )}
       >
-        <span className="kicker">{category}</span>
+        <span className="kicker text-[10px]">{category}</span>
 
         <h3
           className={cn(
-            "headline-serif text-xl leading-snug",
-            isHorizontal && "sm:text-2xl"
+            "headline-serif text-lg leading-snug transition-colors group-hover:text-primary",
+            isHorizontal && "sm:text-xl"
           )}
         >
-          <a
-            href={href}
-            className="decoration-primary decoration-2 underline-offset-4 hover:underline"
-          >
+          <a href={href} className="hover:underline decoration-primary/40 underline-offset-4">
             {title}
           </a>
         </h3>
 
-        <p className="font-sans text-sm leading-relaxed text-muted-foreground">
-          {excerpt}
-        </p>
+        {excerpt && (
+          <p className="line-clamp-2 font-sans text-sm leading-relaxed text-muted-foreground">
+            {excerpt}
+          </p>
+        )}
 
-        <div className="newspaper-rule mt-1" />
-
-        <p className="byline">
-          {author} · {date} · {readTime}
-        </p>
+        <div className="mt-auto pt-3">
+          <div className="newspaper-rule mb-3" />
+          <p className="byline text-[11px]">
+            {author} · {date} · {readTime}
+          </p>
+        </div>
       </div>
     </article>
   );
